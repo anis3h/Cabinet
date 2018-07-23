@@ -17,9 +17,7 @@ namespace Cabinet.Services
        // private readonly ILogger<CatalogService> _logger;
         private readonly IAsyncRepository<Patient> _itemRepository;
         private readonly IMapper _mapper;
-        //   private readonly IAsyncRepository<CatalogBrand> _brandRepository;
-        //  private readonly IAsyncRepository<CatalogType> _typeRepository;
-        // private readonly IUriComposer _uriComposer;
+
 
 
         public PatientService(IAsyncRepository<Patient> itemRepository, IMapper mapper)
@@ -41,11 +39,6 @@ namespace Cabinet.Services
                 .Skip(itemsPage * pageIndex)
                 .Take(itemsPage)
                 .ToList();
-
-            //itemsOnPage.ForEach(x =>
-            //{
-            //    x.PictureUri = _uriComposer.ComposePicUri(x.PictureUri);
-            //});
 
             var itemsOnPageViewModel = _mapper.Map<List<Patient>, List<PatientViewModel>>(itemsOnPage);
         

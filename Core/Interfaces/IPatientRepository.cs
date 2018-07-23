@@ -7,6 +7,6 @@ namespace Core.Interfaces
 {
     public interface IPatientRepository : IRepository<Person>
     {
-
+         
     }
 }
