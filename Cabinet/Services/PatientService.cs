@@ -1,5 +1,7 @@
-﻿using Cabinet.Interfaces;
+﻿using AutoMapper;
+using Cabinet.Interfaces;
 using Cabinet.Models;
+using Cabinet.Models.CabinetViewModel;
 using Core.Entities;
 using Core.Interfaces;
 using Core.Services;
@@ -14,14 +16,16 @@ namespace Cabinet.Services
     {
        // private readonly ILogger<CatalogService> _logger;
         private readonly IAsyncRepository<Patient> _itemRepository;
-     //   private readonly IAsyncRepository<CatalogBrand> _brandRepository;
-      //  private readonly IAsyncRepository<CatalogType> _typeRepository;
-      // private readonly IUriComposer _uriComposer;
+        private readonly IMapper _mapper;
+        //   private readonly IAsyncRepository<CatalogBrand> _brandRepository;
+        //  private readonly IAsyncRepository<CatalogType> _typeRepository;
+        // private readonly IUriComposer _uriComposer;
 
 
-        public PatientService(IAsyncRepository<Patient> itemRepository)
+        public PatientService(IAsyncRepository<Patient> itemRepository, IMapper mapper)
         {
             _itemRepository = itemRepository;
+            _mapper = mapper;
         }
 
         public async Task<PatientIndexViewModel> GetPatientItems(int pageIndex, int itemsPage)
@@ -43,23 +47,19 @@ namespace Cabinet.Services
             //    x.PictureUri = _uriComposer.ComposePicUri(x.PictureUri);
             //});
 
-            var vm = new PatientIndexViewModel()
+            var itemsOnPageViewModel = _mapper.Map<List<Patient>, List<PatientViewModel>>(itemsOnPage);
+        
+            var paginationInfo = new PaginationInfoViewModel()
             {
-                PatientItems = itemsOnPage.Select(i => new PatientViewModel()
-                {
-                    Id = i.Id,
-                    Name = i.Name,
-                }),
-            
-              
-                PaginationInfo = new PaginationInfoViewModel()
-                {
-                    ActualPage = pageIndex,
-                    ItemsPerPage = itemsOnPage.Count,
-                    TotalItems = totalItems,
-                    TotalPages = int.Parse(Math.Ceiling(((decimal)totalItems / itemsPage)).ToString())
-                }
+                ActualPage = pageIndex,
+                ItemsPerPage = itemsOnPage.Count,
+                TotalItems = totalItems,
+                TotalPages = int.Parse(Math.Ceiling(((decimal)totalItems / itemsPage)).ToString())
             };
+
+            PatientIndexViewModel vm = new PatientIndexViewModel();
+            vm.PatientItems = itemsOnPageViewModel;
+            vm.PaginationInfo = paginationInfo;
 
             vm.PaginationInfo.Next = (vm.PaginationInfo.ActualPage == vm.PaginationInfo.TotalPages - 1) ? "is-disabled" : "";
             vm.PaginationInfo.Previous = (vm.PaginationInfo.ActualPage == 0) ? "is-disabled" : "";

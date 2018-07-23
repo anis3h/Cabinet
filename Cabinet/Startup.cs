@@ -14,6 +14,7 @@ using Cabinet.Services;
 using Infrastructure.Data;
 using Core.Interfaces;
 using Cabinet.Interfaces;
+using AutoMapper;
 
 namespace Cabinet
 {
@@ -47,6 +48,7 @@ namespace Cabinet
             services.AddScoped<IPatientViewModelService, PatientService>();
             services.AddScoped<PatientService>();
             services.AddMvc();
+            services.AddAutoMapper();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
