@@ -8,4 +8,5 @@ Run Add-Migration InitialCreate to scaffold a migration to create the initial se
 Run Update-Database to apply the new migration to the database. This command creates the database before applying migrations.
 
 PM:
-Add-Migration -context CabinetContext -project infrastructure TestMigration
+1) Add-Migration -context CabinetContext -project infrastructure TestMigration
+2) Update-Database -context CabinetContext -project infrastructure
