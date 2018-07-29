@@ -5,6 +5,7 @@ using Cabinet.Models.CabinetViewModel;
 using Core.Entities;
 using Core.Interfaces;
 using Core.Services;
+using Core.Specifications;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,8 +19,6 @@ namespace Cabinet.Services
         private readonly IAsyncRepository<Patient> _itemRepository;
         private readonly IMapper _mapper;
 
-
-
         public PatientService(IAsyncRepository<Patient> itemRepository, IMapper mapper)
         {
             _itemRepository = itemRepository;
@@ -29,9 +28,8 @@ namespace Cabinet.Services
         public async Task<PatientIndexViewModel> GetPatientItems(int pageIndex, int itemsPage)
         {
             //_logger.LogInformation("GetCatalogItems called.");
-
-          //  var filterSpecification = new CatalogFilterSpecification(brandId, typeId);
-            var root = await _itemRepository.ListAllAsync();
+            var patientSpecification = new PatientSpecification();
+            var root = await _itemRepository.ListAsync(patientSpecification);
            // IEnumerable<Patient> patients = await _itemRepository.ListAllAsync();
             var totalItems = root.Count();
 

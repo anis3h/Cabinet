@@ -12,7 +12,7 @@ namespace Cabinet.Models.CabinetViewModel
         public string FirstName { get; set; }
         public DateTime DateOfBirth { get; set; }
         public string Adresse { get; set; }
-        public int tel { get; set; }
+        public int Tel { get; set; }
         public FatherViewModel Father { get; set; }
         public MotherViewModel Mother { get; set; }
         public int Fraternity { get; set; }

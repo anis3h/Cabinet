@@ -6,13 +6,14 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.EntityFrameworkCore.Storage.Internal;
+using Microsoft.EntityFrameworkCore.ValueGeneration;
 using System;
 
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(CabinetContext))]
-    [Migration("20180722020232_NewMigration2")]
-    partial class NewMigration2
+    [Migration("20180729174736_TestMigration3")]
+    partial class TestMigration3
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -43,32 +44,29 @@ namespace Infrastructure.Migrations
                     b.ToTable("Consultations");
                 });
 
-            modelBuilder.Entity("Core.Entities.Father", b =>
+            modelBuilder.Entity("Core.Entities.Parent", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Adresse");
 
                     b.Property<string>("FirstName");
 
                     b.Property<string>("Name");
 
-                    b.HasKey("Id");
+                    b.Property<string>("ParentsType")
+                        .IsRequired();
 
-                    b.ToTable("Fathers");
-                });
+                    b.Property<string>("Profession");
 
-            modelBuilder.Entity("Core.Entities.Mother", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("FirstName");
-
-                    b.Property<string>("Name");
+                    b.Property<int>("Tel");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Mothers");
+                    b.ToTable("Parents");
+
+                    b.HasDiscriminator<string>("ParentsType").HasValue("Parent");
                 });
 
             modelBuilder.Entity("Core.Entities.Patient", b =>
@@ -90,7 +88,7 @@ namespace Infrastructure.Migrations
 
                     b.Property<string>("Name");
 
-                    b.Property<int>("tel");
+                    b.Property<int>("Tel");
 
                     b.HasKey("Id");
 
@@ -99,6 +97,27 @@ namespace Infrastructure.Migrations
                     b.HasIndex("MotherId");
 
                     b.ToTable("Patients");
+                });
+
+            modelBuilder.Entity("Core.Entities.Father", b =>
+                {
+                    b.HasBaseType("Core.Entities.Parent");
+
+
+                    b.ToTable("Father");
+
+                    b.HasDiscriminator().HasValue("Father");
+                });
+
+            modelBuilder.Entity("Core.Entities.Mother", b =>
+                {
+                    b.HasBaseType("Core.Entities.Parent");
+
+                    b.Property<string>("MaidenName");
+
+                    b.ToTable("Mother");
+
+                    b.HasDiscriminator().HasValue("Mother");
                 });
 
             modelBuilder.Entity("Core.Entities.Consultation", b =>

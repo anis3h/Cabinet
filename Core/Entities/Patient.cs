@@ -6,9 +6,7 @@ namespace Core.Entities
 {
     public class Patient: Person
     {
-        public DateTime DateOfBirth { get; set; }
-        public string Adresse { get; set; }
-        public int tel { get; set; }
+        public DateTime DateOfBirth { get; set; }      
         public Father Father { get; set; }
         public Mother Mother { get; set; }
         public int Fraternity { get; set; }

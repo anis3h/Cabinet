@@ -12,9 +12,10 @@ using System;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(CabinetContext))]
-    partial class CabinetContextModelSnapshot : ModelSnapshot
+    [Migration("20180729171056_TestMigration")]
+    partial class TestMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -57,9 +58,7 @@ namespace Infrastructure.Migrations
                     b.Property<string>("ParentsType")
                         .IsRequired();
 
-                    b.Property<string>("Profession");
-
-                    b.Property<int>("Tel");
+                    b.Property<int>("tel");
 
                     b.HasKey("Id");
 
@@ -87,7 +86,7 @@ namespace Infrastructure.Migrations
 
                     b.Property<string>("Name");
 
-                    b.Property<int>("Tel");
+                    b.Property<int>("tel");
 
                     b.HasKey("Id");
 
@@ -112,7 +111,7 @@ namespace Infrastructure.Migrations
                 {
                     b.HasBaseType("Core.Entities.Parent");
 
-                    b.Property<string>("MaidenName");
+                    b.Property<string>("maidenName");
 
                     b.ToTable("Mother");
 

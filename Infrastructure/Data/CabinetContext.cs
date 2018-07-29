@@ -11,8 +11,10 @@ namespace Infrastructure.Data
     {
         public DbSet<Consultation> Consultations { get; set; }
         public DbSet<Father> Fathers { get; set; }
+        public DbSet<Parent> Parents { get; set; }
         public DbSet<Mother> Mothers { get; set; }
         public DbSet<Patient> Patients { get; set; }
+       
         public CabinetContext(DbContextOptions<CabinetContext> options) : base(options)
         {
         }
@@ -21,10 +23,12 @@ namespace Infrastructure.Data
         //    optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=Cabinet;Trusted_Connection=True;");
         //}
 
-        protected override void OnModelCreating(ModelBuilder builder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
+            modelBuilder.Entity<Parent>()
+           .HasDiscriminator<string>("ParentsType")
+           .HasValue<Father>("Father")
+           .HasValue<Mother>("Mother");
         }
-
     }
 }

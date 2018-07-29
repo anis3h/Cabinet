@@ -21,6 +21,7 @@ namespace Infrastructure.Data
         public EfRepository(CabinetContext dbContext)
         {
             _dbContext = dbContext;
+            DbInitializer.Initialize(dbContext);
         }
 
         public virtual T GetById(int id)

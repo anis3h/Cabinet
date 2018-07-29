@@ -6,5 +6,6 @@ namespace Core.Entities
 {
     public class Mother: Parent
     {
+        public string MaidenName { get; set; }
     }
 }

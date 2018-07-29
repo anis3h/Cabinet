@@ -8,5 +8,7 @@ namespace Core.Entities
     {
         public string Name { get; set; }
         public string FirstName { get; set; }
+        public int Tel { get; set; }
+        public string Adresse { get; set; }
     }
 }

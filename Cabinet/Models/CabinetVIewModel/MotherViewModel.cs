@@ -7,6 +7,12 @@ namespace Cabinet.Models.CabinetViewModel
 {
     public class MotherViewModel
     {
-
+        public int Id { get; set; }
+        public string MaidenName { get; set; }
+        public string Adresse { get; set; }
+        public string FirstName { get; set; }
+        public string Name { get; set; }
+        public int Tel { get; set; }
+        public string Profession { get; set; }
     }
 }

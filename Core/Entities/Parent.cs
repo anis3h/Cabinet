@@ -6,6 +6,6 @@ namespace Core.Entities
 {
     public abstract class Parent : Person
     {
-        public string profession;
+        public string Profession { get; set; }
     }
 }
