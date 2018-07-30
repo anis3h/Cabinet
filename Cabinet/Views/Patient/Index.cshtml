@@ -5,97 +5,20 @@
 }
 
 
-@*<div class="container">
-        @if (Model.PatientItems.Any())
-        {
-            <partial name="_pagination" for="PaginationInfo" />
-
-            <div class="esh-catalog-items row">
-                @foreach (var patientItem in Model.PatientItems)
-                {
-                    <div class="esh-catalog-item col-md-4">
-                        <partial name="_patient" model="patientItem" />
-                    </div>
-                }
-            </div>
-
-            <partial name="_pagination" for="PaginationInfo" />
-        }
-        else
-        {
-            <div class="esh-catalog-items row">
-                THERE ARE NO RESULTS THAT MATCH YOUR SEARCH
-            </div>
-        }
-    </div>*@
-
 <div>
-
+    <div>
+        <ejs-grid id="Grid" dataSource=@Model.PatientItems allowPaging="true" allowSorting="true" allowFiltering="true" allowGrouping="true">
+            <e-grid-columns>
+                <e-grid-column field="Id" headerText="Customer ID" width="150" textAlign="Center"></e-grid-column>
+                <e-grid-column field="Name" headerText="Nom" textAlign="Center" width="120"></e-grid-column>
+                <e-grid-column field="FirstName" headerText="Prenom" textAlign="Center" width="120"></e-grid-column>
+                <e-grid-column field="DateOfBirth" headerText="Date de naissance" width="130" textAlign="Center" format="yMd"></e-grid-column>
+            </e-grid-columns>
+        </ejs-grid>
+    </div>
 </div>
-@*<div>
-    @if (Model.PatientItems.Any())
-    {
-        @foreach (var patientItem in Model.PatientItems)
-        {
-            <table>
 
-                <tr>
-                    <td>
-                        @patientItem.Name
-                    <td>
-                        @patientItem.Id
-                    </td>
 
-                <tr>
-            </table>
-        }
-    }
-</div>*@
-<div>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>
-                    Name
-                    @*@Html.DisplayNameFor(model => model.Title)*@
-                </th>
-                <th>
-                    Vorname
-                    @*@Html.DisplayNameFor(model => model.ReleaseDate)*@
-                </th>
-                @*<th>
-                    @Html.DisplayNameFor(model => model.Genre)
-                </th>*@
-                @*<th>
-                    @Html.DisplayNameFor(model => model.Price)
-                </th>
-                <th></th>*@
-            </tr>
-        </thead>
-        <tbody>
 
-            @foreach (var patientItem in Model.PatientItems)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => patientItem.Name)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => patientItem.FirstName)
-                    </td>
-                    @*<td>
-                        @Html.DisplayFor(modelItem => item.Genre)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Price)
-                    </td>*@
-                    @*<td>
-                        <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
-                        <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
-                        <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
-                    </td>*@
-                </tr>
-            }
-        </tbody>
-    </table>
-</div>
+
+

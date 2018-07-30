@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Cabinet.Interfaces;
 using Cabinet.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 
@@ -21,6 +22,7 @@ namespace Cabinet.Controllers
 
         [HttpGet]
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> Index(int? patientFilterApplied, int? typesFilterApplied, int? page)
         {
             var itemsPage = 10;
