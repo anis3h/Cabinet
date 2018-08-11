@@ -7,12 +7,14 @@
 
 <div>
     <div>
-        <ejs-grid id="Grid" dataSource=@Model.PatientItems allowPaging="true" allowSorting="true" allowFiltering="true" allowGrouping="true">
+        <ejs-grid id="Grid" dataSource=@Model.PatientItems toolbar="@(new List<string>() {"Add", "Edit", "Update", "Print","Search"})" allowPaging="true" allowSorting="true" allowFiltering="true" allowGrouping="true">
+            <e-grid-editSettings allowAdding="true" allowDeleting="true" allowEditing="true" mode="Dialog"></e-grid-editSettings>
+            <e-grid-pagesettings pageCount="4" pageSizes="true"></e-grid-pagesettings>
             <e-grid-columns>
                 <e-grid-column field="Id" headerText="Customer ID" width="150" textAlign="Center"></e-grid-column>
                 <e-grid-column field="Name" headerText="Nom" textAlign="Center" width="120"></e-grid-column>
                 <e-grid-column field="FirstName" headerText="Prenom" textAlign="Center" width="120"></e-grid-column>
-                <e-grid-column field="DateOfBirth" headerText="Date de naissance" width="130" textAlign="Center" format="yMd"></e-grid-column>
+                <e-grid-column field="DateOfBirth" headerText="Date de naissance" width="130" textAlign="Center" editType="datepickeredit" format="yMd"></e-grid-column>
             </e-grid-columns>
         </ejs-grid>
     </div>

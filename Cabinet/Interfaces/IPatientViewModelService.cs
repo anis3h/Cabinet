@@ -8,6 +8,6 @@ namespace Cabinet.Interfaces
 {
     public interface IPatientViewModelService
     {
-        Task<PatientIndexViewModel> GetPatientItems(int pageIndex, int itemsPage);
+        Task<PatientIndexViewModel> GetPatientItems();
     }
 }

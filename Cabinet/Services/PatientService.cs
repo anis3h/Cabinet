@@ -25,36 +25,14 @@ namespace Cabinet.Services
             _mapper = mapper;
         }
 
-        public async Task<PatientIndexViewModel> GetPatientItems(int pageIndex, int itemsPage)
+        public async Task<PatientIndexViewModel> GetPatientItems()
         {
             //_logger.LogInformation("GetCatalogItems called.");
             var patientSpecification = new PatientSpecification();
             var root = await _itemRepository.ListAsync(patientSpecification);
-           // IEnumerable<Patient> patients = await _itemRepository.ListAllAsync();
-            var totalItems = root.Count();
-
-            var itemsOnPage = root
-                .Skip(itemsPage * pageIndex)
-                .Take(itemsPage)
-                .ToList();
-
-            var itemsOnPageViewModel = _mapper.Map<List<Patient>, List<PatientViewModel>>(itemsOnPage);
-        
-            var paginationInfo = new PaginationInfoViewModel()
-            {
-                ActualPage = pageIndex,
-                ItemsPerPage = itemsOnPage.Count,
-                TotalItems = totalItems,
-                TotalPages = int.Parse(Math.Ceiling(((decimal)totalItems / itemsPage)).ToString())
-            };
-
+            var itemsOnPageViewModel = _mapper.Map<List<Patient>, List<PatientViewModel>>(root);
             PatientIndexViewModel vm = new PatientIndexViewModel();
             vm.PatientItems = itemsOnPageViewModel;
-            vm.PaginationInfo = paginationInfo;
-
-            vm.PaginationInfo.Next = (vm.PaginationInfo.ActualPage == vm.PaginationInfo.TotalPages - 1) ? "is-disabled" : "";
-            vm.PaginationInfo.Previous = (vm.PaginationInfo.ActualPage == 0) ? "is-disabled" : "";
-
             return vm;
         }
     }

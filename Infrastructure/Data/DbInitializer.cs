@@ -54,7 +54,53 @@ namespace Infrastructure.Data
                     DateOfBirth = DateTime.Parse("2010-09-01"), Fraternity = 2,
                     Mother = parents.FirstOrDefault(row => row.FirstName == "Mutter2Vorname") as Mother,
                     Father = parents.FirstOrDefault(row => row.FirstName == "Vater2Vorname") as Father
-               }
+               },
+               new Patient { Name = "Patient3Nachname",   FirstName = "Patient3Vorname",
+                    DateOfBirth = DateTime.Parse("2010-09-01"), Fraternity = 2,
+                    Mother = parents.FirstOrDefault(row => row.FirstName == "Mutter2Vorname") as Mother,
+                    Father = parents.FirstOrDefault(row => row.FirstName == "Vater2Vorname") as Father
+               },
+               new Patient { Name = "Patient4Nachname",   FirstName = "Patient4Vorname",
+                    DateOfBirth = DateTime.Parse("2010-09-01"), Fraternity = 2,
+                    Mother = parents.FirstOrDefault(row => row.FirstName == "Mutter2Vorname") as Mother,
+                    Father = parents.FirstOrDefault(row => row.FirstName == "Vater2Vorname") as Father
+               },
+               new Patient { Name = "Patient5Nachname",   FirstName = "Patient5Vorname",
+                    DateOfBirth = DateTime.Parse("2010-09-01"), Fraternity = 2,
+                    Mother = parents.FirstOrDefault(row => row.FirstName == "Mutter2Vorname") as Mother,
+                    Father = parents.FirstOrDefault(row => row.FirstName == "Vater2Vorname") as Father
+               },
+               new Patient { Name = "Patient6Nachname",   FirstName = "Patient6Vorname",
+                    DateOfBirth = DateTime.Parse("2010-09-01"), Fraternity = 2,
+                    Mother = parents.FirstOrDefault(row => row.FirstName == "Mutter2Vorname") as Mother,
+                    Father = parents.FirstOrDefault(row => row.FirstName == "Vater2Vorname") as Father
+               },
+               new Patient { Name = "Patient7Nachname",   FirstName = "Patient7Vorname",
+                    DateOfBirth = DateTime.Parse("2010-09-01"), Fraternity = 2,
+                    Mother = parents.FirstOrDefault(row => row.FirstName == "Mutter2Vorname") as Mother,
+                    Father = parents.FirstOrDefault(row => row.FirstName == "Vater2Vorname") as Father
+               },new Patient { Name = "Patient8Nachname",   FirstName = "Patient8Vorname",
+                    DateOfBirth = DateTime.Parse("2010-09-01"), Fraternity = 2,
+                    Mother = parents.FirstOrDefault(row => row.FirstName == "Mutter2Vorname") as Mother,
+                    Father = parents.FirstOrDefault(row => row.FirstName == "Vater2Vorname") as Father
+               },
+               new Patient { Name = "Patient9Nachname",   FirstName = "Patient9Vorname",
+                    DateOfBirth = DateTime.Parse("2010-09-01"), Fraternity = 2,
+                    Mother = parents.FirstOrDefault(row => row.FirstName == "Mutter2Vorname") as Mother,
+                    Father = parents.FirstOrDefault(row => row.FirstName == "Vater2Vorname") as Father
+               },new Patient { Name = "Patient10Nachname",   FirstName = "Patient10Vorname",
+                    DateOfBirth = DateTime.Parse("2010-09-01"), Fraternity = 2,
+                    Mother = parents.FirstOrDefault(row => row.FirstName == "Mutter2Vorname") as Mother,
+                    Father = parents.FirstOrDefault(row => row.FirstName == "Vater2Vorname") as Father
+               },
+               new Patient { Name = "Patient11Nachname",   FirstName = "Patient11Vorname",
+                    DateOfBirth = DateTime.Parse("2010-09-01"), Fraternity = 2,
+                    Mother = parents.FirstOrDefault(row => row.FirstName == "Mutter2Vorname") as Mother,
+                    Father = parents.FirstOrDefault(row => row.FirstName == "Vater2Vorname") as Father
+               },
+
+
+
             };
 
             foreach (Patient patient in patients)

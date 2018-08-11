@@ -26,9 +26,15 @@ namespace Infrastructure.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Parent>()
-           .HasDiscriminator<string>("ParentsType")
-           .HasValue<Father>("Father")
-           .HasValue<Mother>("Mother");
+                        .HasDiscriminator<string>("ParentsType")
+                        .HasValue<Father>("Father")
+                        .HasValue<Mother>("Mother");
+
+            //modelBuilder.Entity<Patient>()
+            //.HasMany(p => p.Consultations)
+            //.WithOne(b => b.Patient);
+
+           
         }
     }
 }

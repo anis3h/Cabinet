@@ -25,8 +25,7 @@ namespace Cabinet.Controllers
         [Authorize]
         public async Task<IActionResult> Index(int? patientFilterApplied, int? typesFilterApplied, int? page)
         {
-            var itemsPage = 10;
-            var patientModel = await _patientViewModelService.GetPatientItems(page ?? 0, itemsPage);
+            var patientModel = await _patientViewModelService.GetPatientItems();
             return View(patientModel);
         }
 
