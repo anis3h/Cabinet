@@ -56,6 +56,8 @@ namespace Infrastructure.Migrations
 
                     b.Property<int?>("ConsultationId");
 
+                    b.Property<string>("Name");
+
                     b.HasKey("Id");
 
                     b.HasIndex("ConsultationId");
@@ -107,6 +109,8 @@ namespace Infrastructure.Migrations
 
                     b.Property<string>("Name");
 
+                    b.Property<int?>("PreganancyId");
+
                     b.Property<int>("Tel");
 
                     b.HasKey("Id");
@@ -115,7 +119,27 @@ namespace Infrastructure.Migrations
 
                     b.HasIndex("MotherId");
 
+                    b.HasIndex("PreganancyId");
+
                     b.ToTable("Patients");
+                });
+
+            modelBuilder.Entity("Core.Entities.Pregnancy", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("BirthWeight");
+
+                    b.Property<int>("Day");
+
+                    b.Property<int>("TypPregnancy");
+
+                    b.Property<int>("Week");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Pregnancies");
                 });
 
             modelBuilder.Entity("Core.Entities.Father", b =>
@@ -141,7 +165,7 @@ namespace Infrastructure.Migrations
 
             modelBuilder.Entity("Core.Entities.Consultation", b =>
                 {
-                    b.HasOne("Core.Entities.Patient")
+                    b.HasOne("Core.Entities.Patient", "Patient")
                         .WithMany("Consultations")
                         .HasForeignKey("PatientId");
                 });
@@ -162,6 +186,10 @@ namespace Infrastructure.Migrations
                     b.HasOne("Core.Entities.Mother", "Mother")
                         .WithMany()
                         .HasForeignKey("MotherId");
+
+                    b.HasOne("Core.Entities.Pregnancy", "Preganancy")
+                        .WithMany()
+                        .HasForeignKey("PreganancyId");
                 });
 #pragma warning restore 612, 618
         }

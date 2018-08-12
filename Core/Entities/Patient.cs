@@ -10,6 +10,8 @@ namespace Core.Entities
         public Father Father { get; set; }
         public Mother Mother { get; set; }
         public int Fraternity { get; set; }
+        //Schwangerschaft
+        public Pregnancy Preganancy { get; set; }
         // Untersuchungen
         public List<Consultation> Consultations{ get; set; }
 

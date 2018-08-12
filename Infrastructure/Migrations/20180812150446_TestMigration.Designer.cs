@@ -12,8 +12,8 @@ using System;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(CabinetContext))]
-    [Migration("20180729171348_TestMigration2")]
-    partial class TestMigration2
+    [Migration("20180812150446_TestMigration")]
+    partial class TestMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -27,21 +27,43 @@ namespace Infrastructure.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<int>("Cut");
+
                     b.Property<DateTime>("Date");
 
                     b.Property<string>("Information");
 
-                    b.Property<string>("Krankheit");
-
                     b.Property<int?>("PatientId");
 
+                    b.Property<int>("Pc");
+
+                    b.Property<int>("Temperature");
+
                     b.Property<DateTime>("UpdateDate");
+
+                    b.Property<int>("Weight");
 
                     b.HasKey("Id");
 
                     b.HasIndex("PatientId");
 
                     b.ToTable("Consultations");
+                });
+
+            modelBuilder.Entity("Core.Entities.Illness", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int?>("ConsultationId");
+
+                    b.Property<string>("Name");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ConsultationId");
+
+                    b.ToTable("Illness");
                 });
 
             modelBuilder.Entity("Core.Entities.Parent", b =>
@@ -58,7 +80,9 @@ namespace Infrastructure.Migrations
                     b.Property<string>("ParentsType")
                         .IsRequired();
 
-                    b.Property<int>("tel");
+                    b.Property<string>("Profession");
+
+                    b.Property<int>("Tel");
 
                     b.HasKey("Id");
 
@@ -86,7 +110,9 @@ namespace Infrastructure.Migrations
 
                     b.Property<string>("Name");
 
-                    b.Property<int>("tel");
+                    b.Property<int?>("PreganancyId");
+
+                    b.Property<int>("Tel");
 
                     b.HasKey("Id");
 
@@ -94,7 +120,27 @@ namespace Infrastructure.Migrations
 
                     b.HasIndex("MotherId");
 
+                    b.HasIndex("PreganancyId");
+
                     b.ToTable("Patients");
+                });
+
+            modelBuilder.Entity("Core.Entities.Pregnancy", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("BirthWeight");
+
+                    b.Property<int>("Day");
+
+                    b.Property<int>("TypPregnancy");
+
+                    b.Property<int>("Week");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Pregnancies");
                 });
 
             modelBuilder.Entity("Core.Entities.Father", b =>
@@ -111,7 +157,7 @@ namespace Infrastructure.Migrations
                 {
                     b.HasBaseType("Core.Entities.Parent");
 
-                    b.Property<string>("maidenName");
+                    b.Property<string>("MaidenName");
 
                     b.ToTable("Mother");
 
@@ -120,9 +166,16 @@ namespace Infrastructure.Migrations
 
             modelBuilder.Entity("Core.Entities.Consultation", b =>
                 {
-                    b.HasOne("Core.Entities.Patient")
+                    b.HasOne("Core.Entities.Patient", "Patient")
                         .WithMany("Consultations")
                         .HasForeignKey("PatientId");
+                });
+
+            modelBuilder.Entity("Core.Entities.Illness", b =>
+                {
+                    b.HasOne("Core.Entities.Consultation")
+                        .WithMany("IllnessList")
+                        .HasForeignKey("ConsultationId");
                 });
 
             modelBuilder.Entity("Core.Entities.Patient", b =>
@@ -134,6 +187,10 @@ namespace Infrastructure.Migrations
                     b.HasOne("Core.Entities.Mother", "Mother")
                         .WithMany()
                         .HasForeignKey("MotherId");
+
+                    b.HasOne("Core.Entities.Pregnancy", "Preganancy")
+                        .WithMany()
+                        .HasForeignKey("PreganancyId");
                 });
 #pragma warning restore 612, 618
         }

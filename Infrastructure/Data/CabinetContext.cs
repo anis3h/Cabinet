@@ -14,7 +14,9 @@ namespace Infrastructure.Data
         public DbSet<Parent> Parents { get; set; }
         public DbSet<Mother> Mothers { get; set; }
         public DbSet<Patient> Patients { get; set; }
-       
+        public DbSet<Pregnancy> Pregnancies { get; set; }
+      //  public DbSet<TypPregnancy> TypPregnancies { get; set; }
+        
         public CabinetContext(DbContextOptions<CabinetContext> options) : base(options)
         {
         }
@@ -30,11 +32,12 @@ namespace Infrastructure.Data
                         .HasValue<Father>("Father")
                         .HasValue<Mother>("Mother");
 
-            //modelBuilder.Entity<Patient>()
-            //.HasMany(p => p.Consultations)
-            //.WithOne(b => b.Patient);
-
            
+            modelBuilder.Entity<Patient>()
+            .HasMany(p => p.Consultations)
+            .WithOne(b => b.Patient);
+
+
         }
     }
 }

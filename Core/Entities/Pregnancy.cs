@@ -5,7 +5,7 @@ using System.Text;
 namespace Core.Entities
 {
     // Grossesse
-    public class Pregnancy
+    public class Pregnancy : EntityBase
     {
         public TypPregnancy TypPregnancy { get; set; }
         // Semaine
@@ -14,6 +14,7 @@ namespace Core.Entities
         public int Day { get; set; }
         // Poids de naissance
         public int BirthWeight { get; set; }
+        //public Patient Patient {get; set; }
        
     }
 }
