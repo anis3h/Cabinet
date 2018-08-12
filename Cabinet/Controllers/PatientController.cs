@@ -10,11 +10,13 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Cabinet.Controllers
 {
+
     public class PatientController : Controller
     {
         IPatientViewModelService _patientViewModelService;
 
-        public PatientController(IPatientViewModelService patientViewModelService) {
+        public PatientController(IPatientViewModelService patientViewModelService)
+        {
             _patientViewModelService = patientViewModelService;
         }
 
@@ -35,5 +37,19 @@ namespace Cabinet.Controllers
             return View();
         }
 
+        // [Route("patient/editPatient")]
+        [HttpGet("[controller]/[action]/{id}")]
+        public async Task<IActionResult> EditPatient([FromRoute] int id)
+        {
+            var patientModel = await _patientViewModelService.GetPatient(id);
+            //  ViewData["Title"] = "Modification du challenge " + p.ProjectName;
+            return View(patientModel);
+        }
+
+        [HttpPost("[controller]/[action]")]
+        public IActionResult EditPatient()
+        {
+            return View();
+        }
     }
 }

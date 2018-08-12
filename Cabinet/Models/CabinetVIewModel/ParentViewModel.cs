@@ -7,5 +7,6 @@ namespace Cabinet.Models.CabinetVIewModel
 {
     public class ParentViewModel
     {
+
     }
 }

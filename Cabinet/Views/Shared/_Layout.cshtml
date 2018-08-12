@@ -46,6 +46,7 @@
     </nav>
     <div class="container body-content">
         @RenderBody()
+        @RenderSection("ControlsSection", required: false)
         <hr />
         <footer>
             <p>&copy; 2018 - Cabinet</p>
@@ -74,7 +75,7 @@
     </environment>
 
     @RenderSection("PreScripts", required: false)
-    <script src="~/scripts/index.js"></script>
+    @*<script src="~/scripts/index.js"></script>*@
     <ejs-scripts></ejs-scripts>
     @RenderSection("Scripts", required: false)
 

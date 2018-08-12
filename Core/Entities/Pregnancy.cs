@@ -14,8 +14,7 @@ namespace Core.Entities
         public int Day { get; set; }
         // Poids de naissance
         public int BirthWeight { get; set; }
-        //public Patient Patient {get; set; }
-       
+        //public Patient Patient {get; set; }       
     }
 }
 
