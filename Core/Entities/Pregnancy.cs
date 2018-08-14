@@ -12,8 +12,8 @@ namespace Core.Entities
         public int Week { get; set; }
         // Jour
         public int Day { get; set; }
-        // Poids de naissance
-        public int BirthWeight { get; set; }
+        // Position de naissance
+        public TypPosition Position {get; set;}
         //public Patient Patient {get; set; }       
     }
 }
@@ -28,4 +28,11 @@ public enum TypPregnancy
     Gemulaire,
     // Drilling
     Triplé
+}
+
+// Schwangerschafttyp
+public enum TypPosition
+{
+   Sommet,
+   Siège
 }

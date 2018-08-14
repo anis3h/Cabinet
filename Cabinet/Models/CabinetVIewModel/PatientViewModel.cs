@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Cabinet.Models.CabinetVIewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -17,6 +18,7 @@ namespace Cabinet.Models.CabinetViewModel
         public MotherViewModel Mother { get; set; }
         public int Fraternity { get; set; }
         public Age Age { get; set; }
+        public BornViewModel Born {get; set;}
         
        // public List<Consultation> Consultations { get; set; }
     }

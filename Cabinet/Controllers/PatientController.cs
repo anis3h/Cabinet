@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Cabinet.Controllers
 {
-
+   
     public class PatientController : Controller
     {
         IPatientViewModelService _patientViewModelService;
@@ -24,7 +24,6 @@ namespace Cabinet.Controllers
 
         [HttpGet]
         [HttpPost]
-        [Authorize]
         public async Task<IActionResult> Index(int? patientFilterApplied, int? typesFilterApplied, int? page)
         {
             var patientModel = await _patientViewModelService.GetPatientItems();
@@ -37,12 +36,10 @@ namespace Cabinet.Controllers
             return View();
         }
 
-        // [Route("patient/editPatient")]
         [HttpGet("[controller]/[action]/{id}")]
         public async Task<IActionResult> EditPatient([FromRoute] int id)
         {
             var patientModel = await _patientViewModelService.GetPatient(id);
-            //  ViewData["Title"] = "Modification du challenge " + p.ProjectName;
             return View(patientModel);
         }
 

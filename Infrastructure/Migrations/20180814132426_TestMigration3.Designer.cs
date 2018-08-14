@@ -12,9 +12,10 @@ using System;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(CabinetContext))]
-    partial class CabinetContextModelSnapshot : ModelSnapshot
+    [Migration("20180814132426_TestMigration3")]
+    partial class TestMigration3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -168,27 +169,6 @@ namespace Infrastructure.Migrations
                     b.ToTable("Pregnanicies");
                 });
 
-            modelBuilder.Entity("Core.Entities.Sibling", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<DateTime>("DateOfBirth");
-
-                    b.Property<bool>("Health");
-
-                    b.Property<bool>("Information");
-
-                    b.Property<string>("SiblingType")
-                        .IsRequired();
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Siblings");
-
-                    b.HasDiscriminator<string>("SiblingType").HasValue("Sibling");
-                });
-
             modelBuilder.Entity("Core.Entities.Father", b =>
                 {
                     b.HasBaseType("Core.Entities.Parent");
@@ -208,26 +188,6 @@ namespace Infrastructure.Migrations
                     b.ToTable("Mother");
 
                     b.HasDiscriminator().HasValue("Mother");
-                });
-
-            modelBuilder.Entity("Core.Entities.Brother", b =>
-                {
-                    b.HasBaseType("Core.Entities.Sibling");
-
-
-                    b.ToTable("Brother");
-
-                    b.HasDiscriminator().HasValue("Brother");
-                });
-
-            modelBuilder.Entity("Core.Entities.Sister", b =>
-                {
-                    b.HasBaseType("Core.Entities.Sibling");
-
-
-                    b.ToTable("Sister");
-
-                    b.HasDiscriminator().HasValue("Sister");
                 });
 
             modelBuilder.Entity("Core.Entities.Consultation", b =>

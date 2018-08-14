@@ -27,6 +27,8 @@
                     <label class="e-float-text" asp-for="FirstName">Prénom</label>
                 </div>
             </div>
+        </div>
+        <div class="row">
             <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6">
                 <div class="e-float-input">
                     <input required="" type="date" asp-for="DateOfBirth">
@@ -43,6 +45,31 @@
             </div>
         </div>
         <div class="row">
+            <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6">
+                <div class="e-float-input">
+                    <input required="" type="number" asp-for="Fraternity">
+                    <span class="e-float-line"></span>
+                    <label class="e-float-text" asp-for="Fraternity">Fraternité</label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6">
+                <div class="e-float-input">
+                    <input required="" type="text" asp-for="Adresse">
+                    <span class="e-float-line"></span>
+                    <label class="e-float-text" asp-for="Adresse">Adresse</label>
+                </div>
+            </div>
+            <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6">
+                <div class="e-float-input">
+                    <input required="" type="tel" asp-for="Tel">
+                    <span class="e-float-line"></span>
+                    <label class="e-float-text" asp-for="Tel">Tel</label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
             <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12">
                 <div class="e-float-input e-input-group">
                     <input required="" type="text">
@@ -52,7 +79,6 @@
                 </div>
             </div>
         </div>
-
         <div class="row">
             <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6">
                 <b>Grossesse</b>
@@ -82,6 +108,53 @@
             </div>
         </div>
 
+        <div class="row">
+            <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6">
+                <b>Naissance</b>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-4 col-sm-4 col-lg-4 col-md-4">
+                <div class="e-float-input">
+                    <input required="" type="number" asp-for="Born.BirthWeight">
+                    <span class="e-float-line"></span>
+                    <label class="e-float-text" asp-for="Born.BirthWeight">Poids de naissance en gr.</label>
+                </div>
+            </div>
+            <div class="col-xs-4 col-sm-4 col-lg-4 col-md-4">
+                <div class="e-float-input">
+                    <input required="" type="checkbox" asp-for="Born.Cry">
+                    <span class="e-float-input"></span>
+                    <label class="e-float-text" asp-for="Born.Cry">Cri immédiat</label>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-xs-4 col-sm-4 col-lg-4 col-md-4">
+                <div class="e-float-input">
+                    <input required="" type="number">
+                    <span class="e-float-line"></span>
+                    <label class="e-float-text">Allaitement</label>
+                </div>
+            </div>
+            <div class="col-xs-4 col-sm-4 col-lg-4 col-md-4">
+                <div class="e-float-input">
+                    <input required="" type="text">
+                    <span class="e-float-line"></span>
+                    <label class="e-float-text">Remarque</label>
+                </div>
+            </div>
+            <div class="col-xs-4 col-sm-4 col-lg-4 col-md-4">
+                <div class="e-float-input">
+                    <input required="" type="number">
+                    <span class="e-float-line"></span>
+                    <label class="e-float-text">Poid de Naissance</label>
+                </div>
+            </div>
+        </div>
         <div class="row">
             <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6">
                 <b>Père</b>
