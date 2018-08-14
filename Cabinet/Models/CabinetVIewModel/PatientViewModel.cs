@@ -16,6 +16,8 @@ namespace Cabinet.Models.CabinetViewModel
         public FatherViewModel Father { get; set; }
         public MotherViewModel Mother { get; set; }
         public int Fraternity { get; set; }
+        public Age Age { get; set; }
+        
        // public List<Consultation> Consultations { get; set; }
     }
 }
