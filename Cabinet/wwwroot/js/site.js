@@ -24,10 +24,22 @@ function toolbarClick(args) {
 
 
 // Pregnancy 
-$("#pregnancyType").on("change", function () {
-    if ($("#pregnancyType option:selected").val() === 'Prématuré') {
-        $("#pregnancyRow").hide();
+//$("#pregnancyType").on("change", function () {
+//    if ($("#pregnancyType option:selected").val() === 'Prématuré') {
+//        $("#pregnancyRow").hide();
+//    } else {
+//        $("#pregnancyRow").show();
+//    }
+//});
+
+function valueChange() {
+    var listObj = document.getElementById('pregnancyType').ej2_instances[0];
+
+    var pregnancyRow = document.getElementById('pregnancyRow');
+
+    if (listObj.value === 'Prématuré') {
+        pregnancyRow.style.display = 'none';
     } else {
-        $("#pregnancyRow").show();
+        pregnancyRow.style.display = 'inherit';
     }
-});
+}
