@@ -24,10 +24,6 @@ namespace Infrastructure.Data
         public CabinetContext(DbContextOptions<CabinetContext> options) : base(options)
         {
         }
-        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        //{
-        //    optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=Cabinet;Trusted_Connection=True;");
-        //}
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -43,6 +39,10 @@ namespace Infrastructure.Data
 
             modelBuilder.Entity<Patient>()
             .HasMany(p => p.Consultations)
+            .WithOne(b => b.Patient);
+
+            modelBuilder.Entity<Patient>()
+            .HasMany(p => p.Siblings)
             .WithOne(b => b.Patient);
         }
     }

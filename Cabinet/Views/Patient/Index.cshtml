@@ -6,12 +6,12 @@
 @section ControlsSection{
     @{
 
-        List<object> toolbarItems = new List<object>() { "Add", "Edit", "Update", "Delete", "Print", "Search", new { text = "Informations", tooltipText = "Edit Informations", prefixIcon = "e-expand", id = "editall" }, new { text = "Famille", tooltipText = "Edit Family", prefixIcon = "e-expand", id = "editFamily" } };
+        List<object> toolbarItems = new List<object>() { "Add", "Edit", "Update", "Delete", "Print", "Search", new { text = "Informations", tooltipText = "Edit Informations", prefixIcon = "e-expand", id = "editInformations" }, new { text = "Famille", tooltipText = "Edit Family", prefixIcon = "e-expand", id = "editFamily" } };
     }
 
     <div>
         <div>
-            <ejs-grid id="Grid" toolbar=toolbarItems toolbarClick="toolbarClick" allowPaging="true" allowSorting="true" allowFiltering="true" allowGrouping="true">
+            <ejs-grid id="Grid" locale="fr-FR" toolbar=toolbarItems toolbarClick="toolbarClick" allowPaging="true" allowSorting="true" allowFiltering="true" allowGrouping="true">
                 <e-data-manager url="/Patient/Patients" insertUrl="/Patient/Insert" updateUrl="/Patient/Update" removeUrl="/Patient/Delete" adaptor="UrlAdaptor"></e-data-manager>
                 <e-grid-editSettings allowAdding="true" allowDeleting="true" allowEditing="true" mode="Dialog" showConfirmDialog="true" showDeleteConfirmDialog="true"></e-grid-editSettings>
                 <e-grid-selectionsettings type="Single" mode="Row"></e-grid-selectionsettings>
@@ -27,11 +27,4 @@
         </div>
     </div>
 }
-@section Scripts {
-
-
-
-}
-
-@**@
 

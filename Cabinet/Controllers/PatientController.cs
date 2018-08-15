@@ -93,30 +93,8 @@ namespace Cabinet.Controllers
             return View();
         }
 
-        [HttpGet("[controller]/[action]/{id}")]
-        public async Task<IActionResult> EditPatient([FromRoute] int id)
-        {
-            var patientViewModel = await _patientViewModelService.GetPatient(id);
-            return View(patientViewModel);
-        }
+       
 
-        [HttpPost("[controller]/[action]")]
-        public IActionResult EditPatient()
-        {
-            return View();
-        }
-
-        [HttpGet("[controller]/[action]/{id}")]
-        public async Task<IActionResult> EditFamily([FromRoute] int id)
-        {
-            var patientModel = await _patientViewModelService.GetPatient(id);
-            return View(patientModel);
-        }
-
-        [HttpPost("[controller]/[action]")]
-        public IActionResult EditFamily()
-        {
-            return View();
-        }
+      
     }
 }
