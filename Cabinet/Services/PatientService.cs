@@ -25,6 +25,19 @@ namespace Cabinet.Services
             _mapper = mapper;
         }
 
+        public async Task Add(PatientViewModel patientViewModel)
+        {
+            try
+            {
+                var patient = _mapper.Map<PatientViewModel, Patient>(patientViewModel);
+                var entity = await _itemRepository.AddAsync(patient);
+            }
+            catch (Exception exp)
+            {
+                Console.WriteLine(exp);
+            }
+        }
+
         public async Task<PatientViewModel> GetPatient(int patientId)
         {
             var patient = await _itemRepository.GetByIdAsync(patientId);
@@ -34,13 +47,21 @@ namespace Cabinet.Services
 
         public async Task<PatientIndexViewModel> GetPatientItems()
         {
-            //_logger.LogInformation("GetCatalogItems called.");
-            var patientSpecification = new PatientSpecification();
-            var patients = await _itemRepository.ListAsync(patientSpecification);
-            var patientViewModelList = _mapper.Map<List<Patient>, List<PatientViewModel>>(patients);
-            PatientIndexViewModel patientIndexViewModel = new PatientIndexViewModel();
-            patientIndexViewModel.PatientItems = patientViewModelList;
-            return patientIndexViewModel;
+            try
+            {
+                //_logger.LogInformation("GetCatalogItems called.");
+                var patientSpecification = new PatientSpecification();
+                var patients = await _itemRepository.ListAsync(patientSpecification);
+                var patientViewModelList = _mapper.Map<List<Patient>, List<PatientViewModel>>(patients);
+                PatientIndexViewModel patientIndexViewModel = new PatientIndexViewModel();
+                patientIndexViewModel.PatientItems = patientViewModelList;
+                return patientIndexViewModel;
+            }
+            catch(Exception exp)
+            {
+                Console.WriteLine(exp);
+                return null;
+            }
         }
     }
 }

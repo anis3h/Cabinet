@@ -9,7 +9,5 @@ namespace Cabinet.Models
     public class PatientIndexViewModel
     {
         public IEnumerable<PatientViewModel> PatientItems { get; set; }
-
-        public PaginationInfoViewModel PaginationInfo { get; set; }
     }
 }

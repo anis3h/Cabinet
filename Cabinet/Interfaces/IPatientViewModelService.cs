@@ -12,5 +12,6 @@ namespace Cabinet.Interfaces
         Task<PatientIndexViewModel> GetPatientItems();
 
         Task<PatientViewModel> GetPatient(int patientId);
-     }
+        Task Add(PatientViewModel patientViewModel);
+    }
 }

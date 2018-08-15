@@ -13,13 +13,14 @@ namespace Cabinet.Models.CabinetViewModel
         public string FirstName { get; set; }
         public DateTime DateOfBirth { get; set; }
         public string Adresse { get; set; }
-        public int Tel { get; set; }
+        public int? Tel { get; set; }
         public FatherViewModel Father { get; set; }
         public MotherViewModel Mother { get; set; }
-        public int Fraternity { get; set; }
+        public int? Fraternity { get; set; }
         public Age Age { get; set; }
         public BornViewModel Born {get; set;}
-        
-       // public List<Consultation> Consultations { get; set; }
+        public PregnancyViewModel Pregnancy { get; set; }
+        public List<SiblingViewModel> Siblings { get; set; }
+        public List<ConsultationViewModel> Consultations { get; set; }
     }
 }

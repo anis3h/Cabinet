@@ -1,12 +1,14 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Cabinet.Interfaces;
 using Cabinet.Models;
+using Cabinet.Models.CabinetViewModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-
+using Syncfusion.EJ2.Base;
 
 namespace Cabinet.Controllers
 {
@@ -21,13 +23,47 @@ namespace Cabinet.Controllers
         }
 
         // GET: /<controller>/
-
-        [HttpGet]
-        [HttpPost]
-        public async Task<IActionResult> Index(int? patientFilterApplied, int? typesFilterApplied, int? page)
+        [Authorize]
+        public IActionResult Index()
         {
-            var patientModel = await _patientViewModelService.GetPatientItems();
-            return View(patientModel);
+            return  View();
+        }
+       
+        public async Task<IActionResult> Patients([FromBody]DataManagerRequest dm)
+        {
+            var patientViewModel = await _patientViewModelService.GetPatientItems();
+            //  return Json(patientViewModel);
+
+            IEnumerable<PatientViewModel> DataSource = patientViewModel.PatientItems;
+            DataOperations operation = new DataOperations();
+            if (dm.Search != null && dm.Search.Count > 0)
+            {
+                DataSource = operation.PerformSearching(DataSource, dm.Search);  //Search
+            }
+            if (dm.Sorted != null && dm.Sorted.Count > 0) //Sorting
+            {
+                DataSource = operation.PerformSorting(DataSource, dm.Sorted);
+            }
+            if (dm.Where != null && dm.Where.Count > 0) //Filtering
+            {
+                DataSource = operation.PerformFiltering(DataSource, dm.Where, dm.Where[0].Operator);
+            }
+            int count = DataSource.Cast<PatientViewModel>().Count();
+            if (dm.Skip != 0)
+            {
+                DataSource = operation.PerformSkip(DataSource, dm.Skip);         //Paging
+            }
+            if (dm.Take != 0)
+            {
+                DataSource = operation.PerformTake(DataSource, dm.Take);
+            }
+            return dm.RequiresCounts ? Json(new { result = DataSource, count = count }) : Json(DataSource);
+        }
+
+        public async Task<ActionResult> Insert([FromBody]CRUDModel<PatientViewModel> value)
+        {
+            await _patientViewModelService.Add(value.Value);
+            return View("Index");
         }
 
         [HttpGet("Error")]
@@ -39,8 +75,8 @@ namespace Cabinet.Controllers
         [HttpGet("[controller]/[action]/{id}")]
         public async Task<IActionResult> EditPatient([FromRoute] int id)
         {
-            var patientModel = await _patientViewModelService.GetPatient(id);
-            return View(patientModel);
+            var patientViewModel = await _patientViewModelService.GetPatient(id);
+            return View(patientViewModel);
         }
 
         [HttpPost("[controller]/[action]")]

@@ -12,9 +12,10 @@ using System;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(CabinetContext))]
-    partial class CabinetContextModelSnapshot : ModelSnapshot
+    [Migration("20180815040542_TestMigration6")]
+    partial class TestMigration6
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -129,7 +130,7 @@ namespace Infrastructure.Migrations
 
                     b.Property<string>("Name");
 
-                    b.Property<int?>("PregnancyId");
+                    b.Property<int?>("PreganancyId");
 
                     b.Property<int?>("Tel");
 
@@ -139,7 +140,7 @@ namespace Infrastructure.Migrations
 
                     b.HasIndex("MotherId");
 
-                    b.HasIndex("PregnancyId");
+                    b.HasIndex("PreganancyId");
 
                     b.ToTable("Patients");
                 });
@@ -252,9 +253,9 @@ namespace Infrastructure.Migrations
                         .WithMany()
                         .HasForeignKey("MotherId");
 
-                    b.HasOne("Core.Entities.Pregnancy", "Pregnancy")
+                    b.HasOne("Core.Entities.Pregnancy", "Preganancy")
                         .WithMany()
-                        .HasForeignKey("PregnancyId");
+                        .HasForeignKey("PreganancyId");
                 });
 
             modelBuilder.Entity("Core.Entities.Sibling", b =>

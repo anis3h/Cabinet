@@ -12,7 +12,7 @@ namespace Core.Specifications
             AddInclude(patient => patient.Father);
             AddInclude(patient => patient.Mother);
             AddInclude(patient => patient.Consultations);
-            AddInclude(patient => patient.Preganancy);
+            AddInclude(patient => patient.Pregnancy);
         }
     }
 }

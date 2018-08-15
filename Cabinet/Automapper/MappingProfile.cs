@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Cabinet.Models.CabinetViewModel;
+using Cabinet.Models.CabinetVIewModel;
 using Core.Entities;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,8 @@ namespace Cabinet.Automapper
             CreateMap<Father, FatherViewModel>();
             CreateMap<Mother, MotherViewModel>();
             CreateMap<Patient, PatientViewModel>();
+            CreateMap<Consultation, ConsultationViewModel>();
+            CreateMap<Born, BornViewModel>();
         }
     }
 }

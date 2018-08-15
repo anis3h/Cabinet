@@ -15,6 +15,7 @@ using Infrastructure.Data;
 using Core.Interfaces;
 using Cabinet.Interfaces;
 using AutoMapper;
+using Newtonsoft.Json.Serialization;
 
 namespace Cabinet
 {
@@ -47,7 +48,7 @@ namespace Cabinet
 
             services.AddScoped<IPatientViewModelService, PatientService>();
             services.AddScoped<PatientService>();
-            services.AddMvc();
+            services.AddMvc().AddJsonOptions(options => options.SerializerSettings.ContractResolver = new DefaultContractResolver());
             services.AddAutoMapper();
         }
 
