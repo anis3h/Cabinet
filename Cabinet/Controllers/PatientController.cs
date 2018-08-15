@@ -66,6 +66,27 @@ namespace Cabinet.Controllers
             return View("Index");
         }
 
+        public async Task<ActionResult> Update([FromBody]CRUDModel<PatientViewModel> value)
+        {
+            await _patientViewModelService.Update(value.Value);
+            return View("Index");
+        }
+
+        public async Task<ActionResult> Delete([FromBody]CRUDModel<PatientViewModel> value)
+        {
+            try
+            {
+                // Value in Syncfusion = null --> Syncfusion Bug
+                await _patientViewModelService.Delete((int)(Int64)value.Key);
+                return View("Index");
+            }
+            catch(Exception exp)
+            {
+                Console.WriteLine(exp);
+                throw (exp);
+            }
+        }
+
         [HttpGet("Error")]
         public IActionResult Error()
         {

@@ -6,18 +6,18 @@
 @section ControlsSection{
     @{
 
-        List<object> toolbarItems = new List<object>() { "Add", "Edit", "Update", "Print", "Search", new { text = "Informations", tooltipText = "Edit Informations", prefixIcon = "e-expand", id = "editall" }, new { text = "Famille", tooltipText = "Edit Family", prefixIcon = "e-expand", id = "editFamily" } };
+        List<object> toolbarItems = new List<object>() { "Add", "Edit", "Update", "Delete", "Print", "Search", new { text = "Informations", tooltipText = "Edit Informations", prefixIcon = "e-expand", id = "editall" }, new { text = "Famille", tooltipText = "Edit Family", prefixIcon = "e-expand", id = "editFamily" } };
     }
 
     <div>
         <div>
             <ejs-grid id="Grid" toolbar=toolbarItems toolbarClick="toolbarClick" allowPaging="true" allowSorting="true" allowFiltering="true" allowGrouping="true">
                 <e-data-manager url="/Patient/Patients" insertUrl="/Patient/Insert" updateUrl="/Patient/Update" removeUrl="/Patient/Delete" adaptor="UrlAdaptor"></e-data-manager>
-                <e-grid-editSettings allowAdding="true" allowDeleting="true" allowEditing="true" mode="Normal" showConfirmDialog="true"></e-grid-editSettings>
+                <e-grid-editSettings allowAdding="true" allowDeleting="true" allowEditing="true" mode="Dialog" showConfirmDialog="true" showDeleteConfirmDialog="true"></e-grid-editSettings>
                 <e-grid-selectionsettings type="Single" mode="Row"></e-grid-selectionsettings>
                 <e-grid-pagesettings pageCount="4" pageSizes="true"></e-grid-pagesettings>
                 <e-grid-columns>
-                    @*<e-grid-column field="Id" headerText="Patient ID" validationRules="@(new { required=true})" isPrimaryKey="true" textAlign="Right" width="100"></e-grid-column>*@
+                    <e-grid-column field="Id" headerText="Patient ID" visible="false" isPrimaryKey="true" textAlign="Right" validationRules="@(new { required=true})" width="100"></e-grid-column>
                     @*<e-grid-column id="Test" field="Id" headerText="Customer ID" width="150" textAlign="Center"></e-grid-column>*@
                     <e-grid-column field="Name" validationRules="@(new { required=true})" headerText="Nom" textAlign="Center" width="120"></e-grid-column>
                     <e-grid-column field="FirstName" validationRules="@(new { required=true})" headerText="Prenom" textAlign="Center" width="120"></e-grid-column>

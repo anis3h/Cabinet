@@ -10,8 +10,10 @@ namespace Cabinet.Interfaces
     public interface IPatientViewModelService
     {
         Task<PatientIndexViewModel> GetPatientItems();
-
         Task<PatientViewModel> GetPatient(int patientId);
         Task Add(PatientViewModel patientViewModel);
+        Task Update(PatientViewModel patientViewModel);
+        Task Delete(PatientViewModel patientViewModel);
+        Task Delete(int key);
     }
 }
