@@ -2,8 +2,8 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @using Syncfusion.EJ2
-@using Cabinet.Models.CabinetViewModel
-@model PatientViewModel
+@using Cabinet.Models.CabinetVIewModel
+@model InformationViewModel
 
 <div class="col-lg-12 control-section">
     <div class="content-wrapper">
@@ -15,48 +15,48 @@
         <div class="row">
             <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6">
                 <div class="e-float-input">
-                    <input required="" type="text" asp-for="Name">
+                    <input required="" type="text" asp-for="Patient.Name">
                     <span class="e-float-line"></span>
-                    <label class="e-float-text" asp-for="Name">Nom</label>
+                    <label class="e-float-text" asp-for="Patient.Name">Nom</label>
                 </div>
             </div>
             <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6">
                 <div class="e-float-input">
-                    <input required="" type="text" asp-for="FirstName">
+                    <input required="" type="text" asp-for="Patient.FirstName">
                     <span class="e-float-line"></span>
-                    <label class="e-float-text" asp-for="FirstName">Prénom</label>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6">
-                <div class="e-float-input">
-                    <input required="" type="date" asp-for="DateOfBirth">
-                    <span class="e-float-line"></span>
-                    <label class="e-float-text" asp-for="DateOfBirth">Date de Naissance</label>
-                </div>
-            </div>
-            <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6">
-                <div class="e-float-input">
-                    <input required="" type="text" asp-for="Age.FullAge">
-                    <span class="e-float-line"></span>
-                    <label class="e-float-text" asp-for="Age.FullAge">Age</label>
+                    <label class="e-float-text" asp-for="Patient.FirstName">Prénom</label>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6">
                 <div class="e-float-input">
-                    <input required="" type="text" asp-for="Adresse">
+                    <input required="" type="date" asp-for="Patient.DateOfBirth">
                     <span class="e-float-line"></span>
-                    <label class="e-float-text" asp-for="Adresse">Adresse</label>
+                    <label class="e-float-text" asp-for="Patient.DateOfBirth">Date de Naissance</label>
                 </div>
             </div>
             <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6">
                 <div class="e-float-input">
-                    <input required="" type="tel" asp-for="Tel">
+                    <input required="" type="text" asp-for="Patient.Age.FullAge">
                     <span class="e-float-line"></span>
-                    <label class="e-float-text" asp-for="Tel">Tel</label>
+                    <label class="e-float-text" asp-for="Patient.Age.FullAge">Age</label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6">
+                <div class="e-float-input">
+                    <input required="" type="text" asp-for="Patient.Adresse">
+                    <span class="e-float-line"></span>
+                    <label class="e-float-text" asp-for="Patient.Adresse">Adresse</label>
+                </div>
+            </div>
+            <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6">
+                <div class="e-float-input">
+                    <input required="" type="tel" asp-for="Patient.Tel">
+                    <span class="e-float-line"></span>
+                    <label class="e-float-text" asp-for="Patient.Tel">Tel</label>
                 </div>
             </div>
         </div>
@@ -75,13 +75,14 @@
                 <b>Grossesse</b>
             </div>
         </div>
-        @*<div class="row">
+        <div class="row">
             <div class="col-xs-4 col-sm-4 col-lg-4 col-md-4">
-                <ejs-combobox id="games" dataSource="@Model.Pregnancy.TypPregnancyList" placeholder="Select a game" popupHeight="220px">
+                <ejs-combobox id="pregnancyType" dataSource="@Model.TypPregnancyList" placeholder="Select" popupHeight="220px">
+ 
                 </ejs-combobox>
             </div>
-        </div>*@
-        <div class="row">
+        </div>
+        <div id="pregnancyRow" class="row">
             <div class="col-xs-4 col-sm-4 col-lg-4 col-md-4">
                 <div class="e-float-input">
                     <input required="" type="number">
@@ -114,16 +115,16 @@
         <div class="row">
             <div class="col-xs-4 col-sm-4 col-lg-4 col-md-4">
                 <div class="e-float-input">
-                    <input required="" type="number" asp-for="Born.BirthWeight">
+                    <input required="" type="number" asp-for="Patient.Born.BirthWeight">
                     <span class="e-float-line"></span>
-                    <label class="e-float-text" asp-for="Born.BirthWeight">Poids de naissance en gr.</label>
+                    <label class="e-float-text" asp-for="Patient.Born.BirthWeight">Poids de naissance en gr.</label>
                 </div>
             </div>
             <div class="col-xs-4 col-sm-4 col-lg-4 col-md-4">
                 <div class="e-float-input">
-                    <input required="" type="checkbox" asp-for="Born.Cry">
+                    <input required="" type="checkbox" asp-for="Patient.Born.Cry">
                     <span class="e-float-input"></span>
-                    <label class="e-float-text" asp-for="Born.Cry">Cri immédiat</label>
+                    <label class="e-float-text" asp-for="Patient.Born.Cry">Cri immédiat</label>
                 </div>
             </div>
         </div>

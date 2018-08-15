@@ -4,17 +4,17 @@ function toolbarClick(args) {
 
     if (args.item.id === 'editInformations') {
         
-        var grid = document.getElementById("Grid").ej2_instances[0];
-        var row = grid.getSelectedRecords();
-        window.location.href = 'Informations/Informations' + '/' + row[0].Id;
+        var gridInformation = document.getElementById("Grid").ej2_instances[0];
+        var rowInformation = gridInformation.getSelectedRecords();
+        window.location.href = 'Informations/Informations' + '/' + rowInformation[0].Id;
     }
 
     if (args.item.id === 'editFamily') {
         var test = document.getElementById('#Grid')
-        var grid = document.getElementById("Grid").ej2_instances[0];
-        var row = grid.getSelectedRecords();
+        var gridFamily = document.getElementById("Grid").ej2_instances[0];
+        var rowFamily = gridFamily.getSelectedRecords();
 
-        window.location.href = 'Family/Family' + '/' + row[0].Id;
+        window.location.href = 'Family/Family' + '/' + rowFamily[0].Id;
     }
 
     //if (args.item.id === "collapseall") {
@@ -22,3 +22,12 @@ function toolbarClick(args) {
     //}
 }
 
+
+// Pregnancy 
+$("#pregnancyType").on("change", function () {
+    if ($("#pregnancyType option:selected").val() === 'Prématuré') {
+        $("#pregnancyRow").hide();
+    } else {
+        $("#pregnancyRow").show();
+    }
+});

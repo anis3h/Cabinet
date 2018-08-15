@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Cabinet.Interfaces;
+using Cabinet.Models.CabinetVIewModel;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Cabinet.Controllers
@@ -19,8 +20,9 @@ namespace Cabinet.Controllers
         [HttpGet("[controller]/[action]/{id}")]
         public async Task<IActionResult> Informations([FromRoute] int id)
         {
-            var patientViewModel = await _patientViewModelService.GetPatient(id);
-            return View(patientViewModel);
+            var informationViewModel = new InformationViewModel();
+            informationViewModel.Patient = await _patientViewModelService.GetPatient(id);
+            return View(informationViewModel);
         }
 
         [HttpPost("[controller]/[action]")]

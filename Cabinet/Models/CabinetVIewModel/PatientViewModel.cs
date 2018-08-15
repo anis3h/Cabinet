@@ -23,8 +23,26 @@ namespace Cabinet.Models.CabinetViewModel
         public List<SiblingViewModel> Siblings { get; set; }
         public List<ConsultationViewModel> Consultations { get; set; }
 
-        public PatientViewModel() {
-            Pregnancy = new PregnancyViewModel();
-        }
+
+        //public List<TypPregnancy> TypPregnancy { get; set; }
+
+        //public PatientViewModel() {
+
+        //    TypPregnancy = GetDataSourceTypes();
+        //    //TypPregnancyList = GetDataSourceTypes();
+        //}
+
+        //public List<TypPregnancy> GetDataSourceTypes() {
+        //    return EnumUtil.GetValues<TypPregnancy>().ToList();
+        //    //return Enum.GetValues(typeof(TypPregnancy));
+
+        //}
+
+        //public static class EnumUtil {
+        //    public static IEnumerable<T> GetValues<T>() {
+        //        return Enum.GetValues(typeof(T)).Cast<T>();
+        //    }
+        //}
+
     }
 }

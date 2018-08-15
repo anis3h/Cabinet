@@ -44,6 +44,20 @@ namespace Infrastructure.Data
             modelBuilder.Entity<Patient>()
             .HasMany(p => p.Siblings)
             .WithOne(b => b.Patient);
+
+            modelBuilder
+                .Entity<Pregnancy>()
+                .Property(e => e.TypPregnancy)
+                .HasConversion(
+                    v => v.ToString(),
+                    v => (TypPregnancy)Enum.Parse(typeof(TypPregnancy), v));
+
+            modelBuilder
+                .Entity<Pregnancy>()
+                .Property(e => e.TypPosition)
+                .HasConversion(
+                    v => v.ToString(),
+                    v => (TypPosition)Enum.Parse(typeof(TypPosition), v));
         }
     }
 }

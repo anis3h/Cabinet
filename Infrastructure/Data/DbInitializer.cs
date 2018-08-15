@@ -40,13 +40,28 @@ namespace Infrastructure.Data
             {
                 context.Parents.Add(parent);
             }
+
             context.SaveChanges();
+
+            var pregnancys = new Pregnancy[]
+            {
+                new Pregnancy { TypPregnancy = TypPregnancy.Aterm, Day = 1, TypPosition = TypPosition.Siège, Week = 22 }
+
+            };
+
+            foreach (Pregnancy pregnancy in pregnancys) {
+                context.Pregnanicies.Add(pregnancy);
+            }
+
+            context.SaveChanges();
+
             var patients = new Patient[]
             {
                 new Patient { Name = "Patient1Nachname",   FirstName = "Patient1Vorname",
                     DateOfBirth = DateTime.Parse("2010-09-01"), 
                     Mother = parents.FirstOrDefault(row => row.FirstName == "Mutter1Vorname") as Mother,
                     Father = parents.FirstOrDefault(row => row.FirstName == "Vater1Vorname") as Father,
+                    Pregnancy = pregnancys.FirstOrDefault(row => row.TypPregnancy == TypPregnancy.Aterm)
                 },
                 //new Patient { Name = "TestNachname",   FirstName = "Julieta",
                 //    DateOfBirth = DateTime.Parse("2010-09-01"), Fraternity = 1 },

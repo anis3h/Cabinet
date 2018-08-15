@@ -16,15 +16,8 @@ namespace Cabinet.Models.CabinetViewModel
         // Babispositionierung
         public TypPosition Position { get; set; }
 
-        public List<string> TypPregnancyList { get; set; }
+        //public List<string> TypPregnancyList { get; set; }
 
-        public PregnancyViewModel() {
 
-            TypPregnancyList = GetDataSourceTypes();
-        }
-
-        public List<string> GetDataSourceTypes() {
-            return Enum.GetNames(typeof(TypPregnancy)).ToList();
-        }
     }
 }
