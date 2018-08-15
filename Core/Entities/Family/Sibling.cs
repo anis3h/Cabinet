@@ -13,7 +13,7 @@ namespace Core.Entities
         public bool Health { get; set; }
         // Maladie 
         public bool Information { get; set; }
-
         public DateTime DateOfBirth { get; set; }
-}
+        public Patient Patient { get; set; }
+    }
 }

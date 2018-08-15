@@ -38,6 +38,32 @@ namespace Cabinet.Services
             }
         }
 
+        public async Task Update(PatientViewModel patientViewModel)
+        {
+            try
+            {
+                var patient = _mapper.Map<PatientViewModel, Patient>(patientViewModel);
+                await _itemRepository.UpdateAsync(patient);
+            }
+            catch (Exception exp)
+            {
+                Console.WriteLine(exp);
+            }
+        }
+
+        public async Task Delete(PatientViewModel patientViewModel)
+        {
+            try
+            {
+                var patient = _mapper.Map<PatientViewModel, Patient>(patientViewModel);
+                await _itemRepository.DeleteAsync(patient);
+            }
+            catch (Exception exp)
+            {
+                Console.WriteLine(exp);
+            }
+        }
+
         public async Task<PatientViewModel> GetPatient(int patientId)
         {
             var patient = await _itemRepository.GetByIdAsync(patientId);
@@ -50,8 +76,8 @@ namespace Cabinet.Services
             try
             {
                 //_logger.LogInformation("GetCatalogItems called.");
-                var patientSpecification = new PatientSpecification();
-                var patients = await _itemRepository.ListAsync(patientSpecification);
+              //  var patientSpecification = new PatientSpecification();
+                var patients = await _itemRepository.ListAllAsync();
                 var patientViewModelList = _mapper.Map<List<Patient>, List<PatientViewModel>>(patients);
                 PatientIndexViewModel patientIndexViewModel = new PatientIndexViewModel();
                 patientIndexViewModel.PatientItems = patientViewModelList;
@@ -60,7 +86,21 @@ namespace Cabinet.Services
             catch(Exception exp)
             {
                 Console.WriteLine(exp);
-                return null;
+                throw (exp);
+            }
+        }
+
+        public async Task Delete(int key)
+        {
+            try
+            {
+                // I get the patient beacause Value.Value = null. This a Syncfusion Bug!
+                var patient = await _itemRepository.GetByIdAsync(key);
+                await _itemRepository.DeleteAsync(patient);
+            }
+            catch (Exception exp)
+            {
+                Console.WriteLine(exp);
             }
         }
     }
