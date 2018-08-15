@@ -23,16 +23,9 @@ function toolbarClick(args) {
 }
 
 
-// Pregnancy 
-//$("#pregnancyType").on("change", function () {
-//    if ($("#pregnancyType option:selected").val() === 'Prématuré') {
-//        $("#pregnancyRow").hide();
-//    } else {
-//        $("#pregnancyRow").show();
-//    }
-//});
+// Pregnancy Value Change
 
-function valueChange() {
+function pregnancyValueChange() {
     var listObj = document.getElementById('pregnancyType').ej2_instances[0];
 
     var pregnancyRow = document.getElementById('pregnancyRow');
