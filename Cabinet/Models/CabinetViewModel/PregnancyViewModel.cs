@@ -7,12 +7,24 @@ namespace Cabinet.Models.CabinetViewModel
 {
     public class PregnancyViewModel
     {
-        public Age Age;
-        // En bonne santé
-        public bool Health { get; set; }
-        // Maladie 
-        public bool Information { get; set; }
+        public TypPregnancy TypPregnancy { get; set; }
+        // Semaine
+        public int Week { get; set; }
+        // Jour
+        public int Day { get; set; }
+        // Position de naissance
+        // Babispositionierung
+        public TypPosition Position { get; set; }
 
-        public DateTime DateOfBirth { get; set; }
+        public List<string> TypPregnancyList { get; set; }
+
+        public PregnancyViewModel() {
+
+            TypPregnancyList = GetDataSourceTypes();
+        }
+
+        public List<string> GetDataSourceTypes() {
+            return Enum.GetNames(typeof(TypPregnancy)).ToList();
+        }
     }
 }

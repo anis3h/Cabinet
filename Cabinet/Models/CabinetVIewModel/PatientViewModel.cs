@@ -22,5 +22,9 @@ namespace Cabinet.Models.CabinetViewModel
         public PregnancyViewModel Pregnancy { get; set; }
         public List<SiblingViewModel> Siblings { get; set; }
         public List<ConsultationViewModel> Consultations { get; set; }
+
+        public PatientViewModel() {
+            Pregnancy = new PregnancyViewModel();
+        }
     }
 }

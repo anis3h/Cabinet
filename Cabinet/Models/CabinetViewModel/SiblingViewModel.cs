@@ -7,13 +7,12 @@ namespace Cabinet.Models.CabinetViewModel
 {
     public class SiblingViewModel
     {
-        public TypPregnancy TypPregnancy { get; set; }
-        // Semaine
-        public int Week { get; set; }
-        // Jour
-        public int Day { get; set; }
-        // Position de naissance
-        // Babispositionierung
-        public TypPosition Position { get; set; }
+        public Age Age;
+        // En bonne santé
+        public bool Health { get; set; }
+        // Maladie 
+        public bool Information { get; set; }
+
+        public DateTime DateOfBirth { get; set; }
     }
 }
