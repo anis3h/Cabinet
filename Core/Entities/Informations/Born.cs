@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Core.Entities
+namespace Core.Entities.Informations
 {
     public class Born : EntityBase
     {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
 
-namespace Core.Entities
+namespace Core.Entities.Informations
 {
     // Grossesse
     // Schwangerschaft

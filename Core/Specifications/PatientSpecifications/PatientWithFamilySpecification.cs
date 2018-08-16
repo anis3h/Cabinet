@@ -16,6 +16,8 @@ namespace Core.Specifications.PatientSpecifications
         {
             AddInclude(patient => patient.Father);
             AddInclude(patient => patient.Mother);
+            AddInclude(patient => patient.Siblings);
+            AddInclude(patient => patient.Mother);
         }
     }
 }

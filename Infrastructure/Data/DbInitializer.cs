@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Linq;
 using Core.Entities;
+using Core.Entities.Family;
+using Core.Entities.Informations;
 using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;

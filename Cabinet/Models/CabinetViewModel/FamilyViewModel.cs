@@ -7,5 +7,6 @@ namespace Cabinet.Models.CabinetViewModel
 {
     public class FamilyViewModel
     {
+        public PatientViewModel Patient { get; internal set; }
     }
 }

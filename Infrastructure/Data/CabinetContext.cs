@@ -3,7 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Core.Entities;
-
+using Core.Entities.Consultations;
+using Core.Entities.Family;
+using Core.Entities.Informations;
 
 namespace Infrastructure.Data
 {

@@ -9,10 +9,11 @@ namespace Cabinet.Models.CabinetViewModel
     {
         public Age Age;
         // En bonne santé
-        public bool Health { get; set; }
+        public bool? Health { get; set; }
         // Maladie 
-        public bool Information { get; set; }
+        public string Information { get; set; }
 
-        public DateTime DateOfBirth { get; set; }
+        public DateTime? DateOfBirth { get; set; }
+        public PatientViewModel Patient { get; set; }
     }
 }

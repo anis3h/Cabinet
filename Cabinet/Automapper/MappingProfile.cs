@@ -2,6 +2,9 @@
 using Cabinet.Models.CabinetViewModel;
 using Cabinet.Models.CabinetVIewModel;
 using Core.Entities;
+using Core.Entities.Consultations;
+using Core.Entities.Family;
+using Core.Entities.Informations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +23,7 @@ namespace Cabinet.Automapper
             CreateMap<Consultation, ConsultationViewModel>();
             CreateMap<Born, BornViewModel>();
             CreateMap<Pregnancy, PregnancyViewModel>();
+            CreateMap<Sibling, SiblingViewModel>();
         }
     }
 }
