@@ -10,7 +10,7 @@ namespace Core.Entities
         public DateTime DateOfBirth { get; set; }
         public Father Father { get; set; }
         public Mother Mother { get; set; }
-        Born Born { get; set; }
+        public Born Born { get; set; }
         // Schwangerschaft
         // Grossesse
         public Pregnancy Pregnancy { get; set; }

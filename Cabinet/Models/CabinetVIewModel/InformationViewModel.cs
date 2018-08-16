@@ -10,7 +10,8 @@ namespace Cabinet.Models.CabinetVIewModel {
 
         public PatientViewModel Patient { get; set; }
 
-
+        public PregnancyViewModel Pregnancy { get; set; }
+        public BornViewModel Born { get; set; }
         public List<string> TypPregnancyList { get; set; }
 
         public InformationViewModel() {

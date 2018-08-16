@@ -40,6 +40,7 @@ namespace Infrastructure.Data
             modelBuilder.Entity<Patient>()
             .HasMany(p => p.Consultations)
             .WithOne(b => b.Patient);
+                
 
             modelBuilder.Entity<Patient>()
             .HasMany(p => p.Siblings)

@@ -21,7 +21,7 @@ namespace Cabinet.Controllers
         public async Task<IActionResult> Informations([FromRoute] int id)
         {
             var informationViewModel = new InformationViewModel();
-            informationViewModel.Patient = await _patientViewModelService.GetPatient(id);
+            informationViewModel.Patient = await _patientViewModelService.GetPatientWithInformation(id);
             return View(informationViewModel);
         }
 

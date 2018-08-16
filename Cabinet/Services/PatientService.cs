@@ -6,6 +6,7 @@ using Core.Entities;
 using Core.Interfaces;
 using Core.Services;
 using Core.Specifications;
+using Core.Specifications.PatientSpecifications;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -102,6 +103,31 @@ namespace Cabinet.Services
             {
                 Console.WriteLine(exp);
             }
+        }
+        public async Task<PatientViewModel> GetPatientWithAllData(int patientId)
+        {
+            var patientSpecification = new PatientWithAllDataSpecification(row => row.Id == patientId);
+            return await MapPatient(patientSpecification);
+        }
+
+        public async Task<PatientViewModel> GetPatientWithFamily(int patientId)
+        {
+            var patientSpecification = new PatientWithFamilySpecification(row => row.Id == patientId);
+            return await MapPatient(patientSpecification);
+        }
+      
+        public async Task<PatientViewModel> GetPatientWithInformation(int patientId)
+        {
+            var patientSpecification = new PatientWithInformationsSpecification(row => row.Id == patientId);
+            return await MapPatient(patientSpecification);
+        }
+
+        private async Task<PatientViewModel> MapPatient(PatientBaseSpecification patientSpecification)
+        {
+            patientSpecification.AddIncludePatient();
+            var patient = (await _itemRepository.ListAsync(patientSpecification)).FirstOrDefault();
+            var patientViewModel = _mapper.Map<Patient, PatientViewModel>(patient);
+            return patientViewModel;
         }
     }
 }

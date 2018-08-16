@@ -18,7 +18,7 @@ namespace Cabinet.Controllers
         [HttpGet("[controller]/[action]/{id}")]
         public async Task<IActionResult> Family([FromRoute] int id)
         {
-            var patientModel = await _patientViewModelService.GetPatient(id);
+            var patientModel = await _patientViewModelService.GetPatientWithFamily(id);
             return View(patientModel);
         }
 
