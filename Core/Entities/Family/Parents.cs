@@ -4,11 +4,9 @@ using System.Text;
 
 namespace Core.Entities.Family
 {
-    public class Sister : Sibling
+    public class Parents
     {
-        public Sister() : base()
-        {
-
-        }
+        public Mother Mother { get; set; }
+        public Father Father { get; set; }
     }
 }

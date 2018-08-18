@@ -6,5 +6,9 @@ namespace Core.Entities.Family
 {
     public class Brother : Sibling
     {
+        public Brother () : base()
+        {
+
+        }
     }
 }

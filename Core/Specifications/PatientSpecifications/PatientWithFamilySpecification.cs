@@ -1,4 +1,5 @@
 ﻿using Core.Entities;
+using Core.Entities.Family;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
@@ -14,10 +15,12 @@ namespace Core.Specifications.PatientSpecifications
         }
         public override void AddIncludePatient()
         {
-            AddInclude(patient => patient.Father);
-            AddInclude(patient => patient.Mother);
-            AddInclude(patient => patient.Siblings);
-            AddInclude(patient => patient.Mother);
+
+            AddInclude(row => row.PatientParents);
+            AddInclude($"{nameof(Patient.PatientParents)}.{nameof(PatientParent.Parent)}");
+          //  AddInclude(patient => patient.Mother);
+          //  AddInclude(patient => patient.Brothers);
+           // AddInclude(patient => patient.Sisters);
         }
     }
 }

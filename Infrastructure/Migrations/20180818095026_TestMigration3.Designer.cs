@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(CabinetContext))]
-    [Migration("20180816221429_TestMigration12")]
-    partial class TestMigration12
+    [Migration("20180818095026_TestMigration3")]
+    partial class TestMigration3
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -93,6 +93,25 @@ namespace Infrastructure.Migrations
                     b.HasDiscriminator<string>("ParentsType").HasValue("Parent");
                 });
 
+            modelBuilder.Entity("Core.Entities.Family.PatientParent", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("ParentId");
+
+                    b.Property<int>("PatientId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ParentId");
+
+                    b.HasIndex("PatientId");
+
+                    b.ToTable("PatientParent");
+                });
+
             modelBuilder.Entity("Core.Entities.Family.Sibling", b =>
                 {
                     b.Property<int>("Id")
@@ -105,7 +124,7 @@ namespace Infrastructure.Migrations
 
                     b.Property<string>("Information");
 
-                    b.Property<int?>("PatientId");
+                    b.Property<int>("PatientId");
 
                     b.Property<string>("SiblingType")
                         .IsRequired();
@@ -255,11 +274,25 @@ namespace Infrastructure.Migrations
                         .HasForeignKey("ConsultationId");
                 });
 
+            modelBuilder.Entity("Core.Entities.Family.PatientParent", b =>
+                {
+                    b.HasOne("Core.Entities.Family.Parent", "Parent")
+                        .WithMany("PatientParents")
+                        .HasForeignKey("ParentId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Core.Entities.Patient", "Patient")
+                        .WithMany("PatientParents")
+                        .HasForeignKey("PatientId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
             modelBuilder.Entity("Core.Entities.Family.Sibling", b =>
                 {
                     b.HasOne("Core.Entities.Patient", "Patient")
                         .WithMany("Siblings")
-                        .HasForeignKey("PatientId");
+                        .HasForeignKey("PatientId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Core.Entities.Patient", b =>

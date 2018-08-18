@@ -7,5 +7,6 @@ namespace Core.Entities.Family
     public class Mother: Parent
     {
         public string MaidenName { get; set; }
+        public Mother() : base() { }
     }
 }

@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(CabinetContext))]
-    [Migration("20180815171628_TestMigration9")]
-    partial class TestMigration9
+    [Migration("20180817234404_TestMigration2")]
+    partial class TestMigration2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -21,30 +21,7 @@ namespace Infrastructure.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("Core.Entities.Born", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Allaitement");
-
-                    b.Property<int>("Apgar1mn");
-
-                    b.Property<int>("Apgar5mn");
-
-                    b.Property<int>("BirthWeight");
-
-                    b.Property<bool>("Cry");
-
-                    b.Property<string>("RemarqueAllaitement");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Borns");
-                });
-
-            modelBuilder.Entity("Core.Entities.Consultation", b =>
+            modelBuilder.Entity("Core.Entities.Consultations.Consultation", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -73,7 +50,7 @@ namespace Infrastructure.Migrations
                     b.ToTable("Consultations");
                 });
 
-            modelBuilder.Entity("Core.Entities.Illness", b =>
+            modelBuilder.Entity("Core.Entities.Consultations.Illness", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -90,7 +67,7 @@ namespace Infrastructure.Migrations
                     b.ToTable("Illness");
                 });
 
-            modelBuilder.Entity("Core.Entities.Parent", b =>
+            modelBuilder.Entity("Core.Entities.Family.ParentBase", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -105,83 +82,34 @@ namespace Infrastructure.Migrations
                     b.Property<string>("ParentsType")
                         .IsRequired();
 
+                    b.Property<int>("PatientId");
+
                     b.Property<string>("Profession");
 
                     b.Property<int?>("Tel");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("PatientId");
+
                     b.ToTable("Parents");
 
-                    b.HasDiscriminator<string>("ParentsType").HasValue("Parent");
+                    b.HasDiscriminator<string>("ParentsType").HasValue("ParentBase");
                 });
 
-            modelBuilder.Entity("Core.Entities.Patient", b =>
+            modelBuilder.Entity("Core.Entities.Family.Sibling", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Adresse");
+                    b.Property<DateTime?>("DateOfBirth");
 
-                    b.Property<DateTime>("DateOfBirth");
+                    b.Property<bool?>("Health");
 
-                    b.Property<int?>("FatherId");
+                    b.Property<string>("Information");
 
-                    b.Property<string>("FirstName");
-
-                    b.Property<int?>("MotherId");
-
-                    b.Property<string>("Name");
-
-                    b.Property<int?>("PregnancyId");
-
-                    b.Property<int?>("Tel");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("FatherId");
-
-                    b.HasIndex("MotherId");
-
-                    b.HasIndex("PregnancyId");
-
-                    b.ToTable("Patients");
-                });
-
-            modelBuilder.Entity("Core.Entities.Pregnancy", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("Day");
-
-                    b.Property<int>("Position");
-
-                    b.Property<string>("TypPregnancy")
-                        .IsRequired();
-
-                    b.Property<int>("Week");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Pregnanicies");
-                });
-
-            modelBuilder.Entity("Core.Entities.Sibling", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("DateOfBirth");
-
-                    b.Property<bool>("Health");
-
-                    b.Property<bool>("Information");
-
-                    b.Property<int?>("PatientId");
+                    b.Property<int>("PatientId");
 
                     b.Property<string>("SiblingType")
                         .IsRequired();
@@ -195,9 +123,82 @@ namespace Infrastructure.Migrations
                     b.HasDiscriminator<string>("SiblingType").HasValue("Sibling");
                 });
 
-            modelBuilder.Entity("Core.Entities.Father", b =>
+            modelBuilder.Entity("Core.Entities.Informations.Born", b =>
                 {
-                    b.HasBaseType("Core.Entities.Parent");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Allaitement");
+
+                    b.Property<int>("Apgar1mn");
+
+                    b.Property<int>("Apgar5mn");
+
+                    b.Property<int>("BirthWeight");
+
+                    b.Property<bool>("Cry");
+
+                    b.Property<string>("RemarqueAllaitement");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Borns");
+                });
+
+            modelBuilder.Entity("Core.Entities.Informations.Pregnancy", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("Day");
+
+                    b.Property<string>("TypPosition")
+                        .IsRequired();
+
+                    b.Property<string>("TypPregnancy")
+                        .IsRequired();
+
+                    b.Property<int>("Week");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Pregnanicies");
+                });
+
+            modelBuilder.Entity("Core.Entities.Patient", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Adresse");
+
+                    b.Property<int?>("BornId");
+
+                    b.Property<DateTime>("DateOfBirth");
+
+                    b.Property<string>("FirstName");
+
+                    b.Property<string>("Name");
+
+                    b.Property<int?>("PregnancyId");
+
+                    b.Property<int?>("Tel");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BornId");
+
+                    b.HasIndex("PregnancyId");
+
+                    b.ToTable("Patients");
+                });
+
+            modelBuilder.Entity("Core.Entities.Family.Father", b =>
+                {
+                    b.HasBaseType("Core.Entities.Family.ParentBase");
 
 
                     b.ToTable("Father");
@@ -205,9 +206,9 @@ namespace Infrastructure.Migrations
                     b.HasDiscriminator().HasValue("Father");
                 });
 
-            modelBuilder.Entity("Core.Entities.Mother", b =>
+            modelBuilder.Entity("Core.Entities.Family.Mother", b =>
                 {
-                    b.HasBaseType("Core.Entities.Parent");
+                    b.HasBaseType("Core.Entities.Family.ParentBase");
 
                     b.Property<string>("MaidenName");
 
@@ -216,9 +217,9 @@ namespace Infrastructure.Migrations
                     b.HasDiscriminator().HasValue("Mother");
                 });
 
-            modelBuilder.Entity("Core.Entities.Brother", b =>
+            modelBuilder.Entity("Core.Entities.Family.Brother", b =>
                 {
-                    b.HasBaseType("Core.Entities.Sibling");
+                    b.HasBaseType("Core.Entities.Family.Sibling");
 
 
                     b.ToTable("Brother");
@@ -226,9 +227,9 @@ namespace Infrastructure.Migrations
                     b.HasDiscriminator().HasValue("Brother");
                 });
 
-            modelBuilder.Entity("Core.Entities.Sister", b =>
+            modelBuilder.Entity("Core.Entities.Family.Sister", b =>
                 {
-                    b.HasBaseType("Core.Entities.Sibling");
+                    b.HasBaseType("Core.Entities.Family.Sibling");
 
 
                     b.ToTable("Sister");
@@ -236,40 +237,45 @@ namespace Infrastructure.Migrations
                     b.HasDiscriminator().HasValue("Sister");
                 });
 
-            modelBuilder.Entity("Core.Entities.Consultation", b =>
+            modelBuilder.Entity("Core.Entities.Consultations.Consultation", b =>
                 {
                     b.HasOne("Core.Entities.Patient", "Patient")
                         .WithMany("Consultations")
                         .HasForeignKey("PatientId");
                 });
 
-            modelBuilder.Entity("Core.Entities.Illness", b =>
+            modelBuilder.Entity("Core.Entities.Consultations.Illness", b =>
                 {
-                    b.HasOne("Core.Entities.Consultation")
+                    b.HasOne("Core.Entities.Consultations.Consultation")
                         .WithMany("IllnessList")
                         .HasForeignKey("ConsultationId");
                 });
 
-            modelBuilder.Entity("Core.Entities.Patient", b =>
+            modelBuilder.Entity("Core.Entities.Family.ParentBase", b =>
                 {
-                    b.HasOne("Core.Entities.Father", "Father")
-                        .WithMany()
-                        .HasForeignKey("FatherId");
-
-                    b.HasOne("Core.Entities.Mother", "Mother")
-                        .WithMany()
-                        .HasForeignKey("MotherId");
-
-                    b.HasOne("Core.Entities.Pregnancy", "Pregnancy")
-                        .WithMany()
-                        .HasForeignKey("PregnancyId");
+                    b.HasOne("Core.Entities.Patient", "Patient")
+                        .WithMany("ParentBaseList")
+                        .HasForeignKey("PatientId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("Core.Entities.Sibling", b =>
+            modelBuilder.Entity("Core.Entities.Family.Sibling", b =>
                 {
                     b.HasOne("Core.Entities.Patient", "Patient")
                         .WithMany("Siblings")
-                        .HasForeignKey("PatientId");
+                        .HasForeignKey("PatientId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Core.Entities.Patient", b =>
+                {
+                    b.HasOne("Core.Entities.Informations.Born", "Born")
+                        .WithMany()
+                        .HasForeignKey("BornId");
+
+                    b.HasOne("Core.Entities.Informations.Pregnancy", "Pregnancy")
+                        .WithMany()
+                        .HasForeignKey("PregnancyId");
                 });
 #pragma warning restore 612, 618
         }

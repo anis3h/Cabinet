@@ -7,5 +7,6 @@ namespace Core.Entities.Family
     public abstract class Parent : Person
     {
         public string Profession { get; set; }
+        public List<PatientParent> PatientParents { get; set; }
     }
 }

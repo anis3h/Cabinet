@@ -4,6 +4,7 @@ using Core.Entities.Family;
 using Core.Entities.Informations;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 
@@ -12,52 +13,66 @@ namespace Core.Entities
     public class Patient : Person
     {
         public DateTime DateOfBirth { get; set; }
-        public Father Father { get; set; }
-        public Mother Mother { get; set; }
+        public List<PatientParent> PatientParents { get; set; }
         public Born Born { get; set; }
         // Schwangerschaft
         // Grossesse
         public Pregnancy Pregnancy { get; set; }
         public List<Sibling> Siblings { get; set; }
-        public int? BrothersCount
+        [NotMapped]
+        public List<Brother> Brothers { get; set; }
+        [NotMapped]
+        public List<Sister> Sisters { get; set; }
+
+        public Father Father
         {
             get
             {
-                if (Siblings != null)
-                {
-                    return Siblings.Count(row => row is Brother);
-                }
+                if (PatientParents != null)
+                    return PatientParents.Where(row => row.Parent is Father && row.Patient == this)
+                                         .Select(row => row.Parent)
+                                         .SingleOrDefault() as Father;
                 else return null;
             }
         }
-        public int? SistersCount
+        public Mother Mother
         {
             get
             {
-                if (Siblings != null)
-                {
-                    return Siblings.Count(row => row is Sister);
-                }
+                if (PatientParents != null)
+                    return PatientParents.Where(row => row.Parent is Mother && row.Patient == this)
+                                         .Select(row => row.Parent)
+                                         .SingleOrDefault() as Mother;
                 else return null;
+            }
+        }
+
+        public int BrothersCount
+        {
+            get
+            {
+                if (Brothers != null)
+                {
+                    return Brothers.Count();
+                }
+                else return 0;
+            }
+        }
+        public int SistersCount
+        {
+            get
+            {
+                if (Sisters != null)
+                {
+                    return Sisters.Count();
+                }
+                else return 0;
             }
         }
         public int? Fraternity
         {
             get {
-                if (BrothersCount == null && SistersCount == null)
-                    return null;
-                else if (BrothersCount == null)
-                {
-                    return SistersCount;
-                }
-                else if (SistersCount == null)
-                {
-                    return BrothersCount;
-                }
-                else
-                {
-                    return BrothersCount + SistersCount;
-                }
+                return BrothersCount + SistersCount; 
             }
         }
         

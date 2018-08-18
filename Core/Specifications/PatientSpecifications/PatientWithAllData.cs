@@ -14,8 +14,7 @@ namespace Core.Specifications.PatientSpecifications
         }
         public override void AddIncludePatient()
         {
-            AddInclude(patient => patient.Father);
-            AddInclude(patient => patient.Mother);
+            AddInclude(patient => patient.PatientParents);
             AddInclude(patient => patient.Consultations);
             AddInclude(patient => patient.Pregnancy);
             AddInclude(patient => patient.Born);

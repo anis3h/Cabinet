@@ -20,10 +20,17 @@ namespace Cabinet.Controllers
         [HttpGet("[controller]/[action]/{id}")]
         public async Task<IActionResult> Family([FromRoute] int id)
         {
-            var familyViewModel = new FamilyViewModel();
-            familyViewModel.Patient = await _patientViewModelService.GetPatientWithFamily(id);
+            try
+            {
+                var familyViewModel = new FamilyViewModel();
+                familyViewModel.Patient = await _patientViewModelService.GetPatientWithFamily(id);
 
-            return View(familyViewModel);
+                return View(familyViewModel);
+            }
+            catch(Exception exp)
+            {
+                throw (exp);
+            }
         }
 
         [HttpPost("[controller]/[action]")]
