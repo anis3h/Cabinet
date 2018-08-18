@@ -24,25 +24,34 @@ namespace Core.Entities
         [NotMapped]
         public List<Sister> Sisters { get; set; }
 
+        private Father _father;
         public Father Father
         {
             get
             {
-                if (PatientParents != null)
-                    return PatientParents.Where(row => row.Parent is Father && row.Patient == this)
+                if (PatientParents != null && _father == null)
+                {
+                    _father = PatientParents.Where(row => row.Parent is Father && row.Patient == this)
                                          .Select(row => row.Parent)
                                          .SingleOrDefault() as Father;
+                    return _father;
+                }
                 else return null;
             }
         }
+
+        private Mother _mother;
         public Mother Mother
         {
             get
             {
-                if (PatientParents != null)
-                    return PatientParents.Where(row => row.Parent is Mother && row.Patient == this)
+                if (PatientParents != null && _mother == null)
+                {
+                    _mother = PatientParents.Where(row => row.Parent is Mother && row.Patient == this)
                                          .Select(row => row.Parent)
                                          .SingleOrDefault() as Mother;
+                    return _mother;
+                }
                 else return null;
             }
         }

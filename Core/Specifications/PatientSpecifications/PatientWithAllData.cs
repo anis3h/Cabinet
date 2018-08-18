@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Text;
 using Core.Entities;
+using Core.Entities.Family;
 
 namespace Core.Specifications.PatientSpecifications
 {
@@ -15,6 +16,7 @@ namespace Core.Specifications.PatientSpecifications
         public override void AddIncludePatient()
         {
             AddInclude(patient => patient.PatientParents);
+            AddInclude($"{nameof(Patient.PatientParents)}.{nameof(PatientParent.Parent)}");
             AddInclude(patient => patient.Consultations);
             AddInclude(patient => patient.Pregnancy);
             AddInclude(patient => patient.Born);
