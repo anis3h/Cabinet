@@ -20,28 +20,10 @@ namespace Cabinet.Models.CabinetViewModel
         public Age Age { get; set; }
         public BornViewModel Born {get; set;}
         public PregnancyViewModel Pregnancy { get; set; }
+        public List<SisterViewModel> Sisters;
+        public List<BrotherViewModel> Brothers;
         public List<SiblingViewModel> Siblings { get; set; }
         public List<ConsultationViewModel> Consultations { get; set; }
-
-        //public List<TypPregnancy> TypPregnancy { get; set; }
-
-        //public PatientViewModel() {
-
-        //    TypPregnancy = GetDataSourceTypes();
-        //    //TypPregnancyList = GetDataSourceTypes();
-        //}
-
-        //public List<TypPregnancy> GetDataSourceTypes() {
-        //    return EnumUtil.GetValues<TypPregnancy>().ToList();
-        //    //return Enum.GetValues(typeof(TypPregnancy));
-
-        //}
-
-        //public static class EnumUtil {
-        //    public static IEnumerable<T> GetValues<T>() {
-        //        return Enum.GetValues(typeof(T)).Cast<T>();
-        //    }
-        //}
 
     }
 }

@@ -31,7 +31,7 @@ public class Age
     {
         get
         {
-            return "Days: " + Days.ToString() + " Months: " + Months.ToString() + " Years: " + Years.ToString();
+            return "Years: " + Years.ToString() + "  Months: " + Months.ToString() + "  Days: " + Days.ToString();
         }
     }
 
