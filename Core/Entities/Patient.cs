@@ -77,7 +77,6 @@ namespace Core.Entities
                 _mother = value;
             }
         }
-
         public int BrothersCount
         {
             get
@@ -100,10 +99,13 @@ namespace Core.Entities
                 else return 0;
             }
         }
+
         public int? Fraternity
         {
             get {
-                return BrothersCount + SistersCount; 
+                if (Siblings != null)
+                    return Siblings.Count();
+                else return null;
             }
         }
         

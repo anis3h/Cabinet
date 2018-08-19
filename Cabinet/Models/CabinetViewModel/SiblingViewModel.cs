@@ -7,6 +7,7 @@ namespace Cabinet.Models.CabinetViewModel
 {
     public class SiblingViewModel
     {
+        public int Id { get; set; }
         public Age Age;
         // En bonne santé
         public bool? Health { get; set; }
@@ -14,6 +15,6 @@ namespace Cabinet.Models.CabinetViewModel
         public string Information { get; set; }
 
         public DateTime? DateOfBirth { get; set; }
-        public PatientViewModel Patient { get; set; }
+      //  public PatientViewModel Patient { get; set; }
     }
 }

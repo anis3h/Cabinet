@@ -7,6 +7,7 @@ using Cabinet.Models.CabinetViewModel;
 using Cabinet.Models.CabinetVIewModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Syncfusion.EJ2.Base;
 
 namespace Cabinet.Controllers
 {
@@ -26,7 +27,7 @@ namespace Cabinet.Controllers
             {
                 var familyViewModel = new FamilyViewModel();
                 familyViewModel.Patient = await _patientViewModelService.GetPatientWithFamily(id);
-
+                ViewBag.Data = familyViewModel.Patient.Siblings;
                 return View(familyViewModel);
             }
             catch (Exception exp)
@@ -52,5 +53,7 @@ namespace Cabinet.Controllers
                 throw (exp);
             }
         }
+
+      
     }
 }

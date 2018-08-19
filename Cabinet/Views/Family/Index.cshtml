@@ -175,17 +175,17 @@
                 <div class="row">
                     <div>
                         <div>
-                            <ejs-grid id="GridSibling" locale="fr-FR" toolbar=toolbarItems toolbarClick="toolbarClick" allowPaging="true" allowSorting="true" allowFiltering="true" allowGrouping="true">
-                                <e-data-manager url="/Patient/Patients" insertUrl="/Patient/Insert" updateUrl="/Patient/Update" removeUrl="/Patient/Delete" adaptor="UrlAdaptor"></e-data-manager>
+                            <ejs-grid id="GridSibling" dataSource="@Model.Patient.Siblings.ToList()" locale="fr-FR" toolbar=toolbarItems toolbarClick="toolbarClick" allowPaging="true" allowSorting="true" allowFiltering="true" allowGrouping="true">
+                                @*<e-data-manager url="/Family/Index" insertUrl="/Family/Insert" updateUrl="/Family/Update" removeUrl="/Family/Delete" adaptor="UrlAdaptor"></e-data-manager>*@
                                 <e-grid-editSettings allowAdding="true" allowDeleting="true" allowEditing="true" mode="Normal" showConfirmDialog="true" showDeleteConfirmDialog="true"></e-grid-editSettings>
                                 <e-grid-selectionsettings type="Single" mode="Row"></e-grid-selectionsettings>
                                 <e-grid-pagesettings pageCount="4" pageSizes="true"></e-grid-pagesettings>
                                 <e-grid-columns>
-                                    <e-grid-column field="Patient." headerText="Patient ID" visible="false" isPrimaryKey="true" textAlign="Right" validationRules="@(new { required=true})" width="100"></e-grid-column>
+                                    <e-grid-column field="Id" headerText="Sibling ID" visible="false" isPrimaryKey="true" textAlign="Right" validationRules="@(new { required=true})" width="100"></e-grid-column>
                                     @*<e-grid-column id="Test" field="Id" headerText="Customer ID" width="150" textAlign="Center"></e-grid-column>*@
-                                    <e-grid-column field="Patient.Sibling."  headerText="Nom" textAlign="Center" width="120"></e-grid-column>
-                                    <e-grid-column field="FirstName"  headerText="Prenom" textAlign="Center" width="120"></e-grid-column>
-                                    <e-grid-column field="DateOfBirth" headerText="Date de naissance" width="130" textAlign="Center" editType="datepickeredit" format="yMd"></e-grid-column>
+                                    <e-grid-column field="DateOfBirth"  headerText="Nom" textAlign="Center" width="120"></e-grid-column>
+                                    <e-grid-column field="Patient.Sibling.Information"  headerText="Prenom" textAlign="Center" width="120"></e-grid-column>
+                                    <e-grid-column field="Health" headerText="Date de naissance" width="130" textAlign="Center" editType="boolean" ></e-grid-column>
                                 </e-grid-columns>
                             </ejs-grid>
                         </div>
