@@ -14,7 +14,7 @@ function toolbarClick(args) {
         var gridFamily = document.getElementById("Grid").ej2_instances[0];
         var rowFamily = gridFamily.getSelectedRecords();
 
-        window.location.href = 'Family/Family' + '/' + rowFamily[0].Id;
+        window.location.href = 'Family/Index' + '/' + rowFamily[0].Id;
     }
 
     //if (args.item.id === "collapseall") {

@@ -23,7 +23,6 @@ namespace Cabinet.Models.CabinetViewModel
         public List<SiblingViewModel> Siblings { get; set; }
         public List<ConsultationViewModel> Consultations { get; set; }
 
-
         //public List<TypPregnancy> TypPregnancy { get; set; }
 
         //public PatientViewModel() {

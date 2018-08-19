@@ -12,11 +12,12 @@ namespace Infrastructure.Data
     public class CabinetContext:DbContext
     {
         public DbSet<Consultation> Consultations { get; set; }
-      //  public DbSet<Father> Fathers { get; set; }
+       //public DbSet<Father> Fathers { get; set; }
         public DbSet<Parent> Parents { get; set; }
-      //  public DbSet<Mother> Mothers { get; set; }
-     //   public DbSet<Sister> Sisters { get; set; }
-     //   public DbSet<Brother> Brothers { get; set; }
+        public DbSet<PatientParent> PatientParents { get; set; }
+        // public DbSet<Mother> Mothers { get; set; }
+        //   public DbSet<Sister> Sisters { get; set; }
+        //   public DbSet<Brother> Brothers { get; set; }
         public DbSet<Sibling> Siblings { get; set; }
         public DbSet<Patient> Patients { get; set; }
         public DbSet<Pregnancy> Pregnanicies { get; set; }
@@ -57,10 +58,15 @@ namespace Infrastructure.Data
             //modelBuilder.Entity<ParentBase>()
             //    .Property<int>("PatientId");
 
+            // Use the shadow property as a foreign key
+           
             modelBuilder.Entity<PatientParent>()
              .Property<int>("PatientId");
             modelBuilder.Entity<PatientParent>()
             .Property<int>("ParentId");
+
+            modelBuilder.Entity<PatientParent>()
+                .HasAlternateKey("PatientId", "ParentId");
 
             modelBuilder.Entity<PatientParent>()
                 .HasOne(pp => pp.Patient)
@@ -72,7 +78,9 @@ namespace Infrastructure.Data
                 .WithMany(p => p.PatientParents)
                 .HasForeignKey("ParentId");
 
+            //var navigation = modelBuilder.Entity<Patient>().Metadata.FindNavigation(nameof(Patient.PatientParents));
 
+           // navigation.SetPropertyAccessMode(PropertyAccessMode.Field);
 
             modelBuilder
                 .Entity<Pregnancy>()

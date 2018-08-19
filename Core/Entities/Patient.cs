@@ -13,7 +13,7 @@ namespace Core.Entities
     public class Patient : Person
     {
         public DateTime DateOfBirth { get; set; }
-        public List<PatientParent> PatientParents { get; set; }
+        public List<PatientParent> PatientParents { get; internal set; }
         public Born Born { get; set; }
         // Schwangerschaft
         // Grossesse
@@ -24,7 +24,21 @@ namespace Core.Entities
         [NotMapped]
         public List<Sister> Sisters { get; set; }
 
+        private List<Parent> _parents = new List<Parent>();
+
+        [NotMapped]
+        public List<Parent> Parents 
+        {
+            get
+            {
+                if (Father != null) _parents.Add(Father);
+                if (Mother != null) _parents.Add(Mother);
+                return _parents;
+            }
+        }
+
         private Father _father;
+        [NotMapped]
         public Father Father
         {
             get
@@ -36,11 +50,15 @@ namespace Core.Entities
                                          .SingleOrDefault() as Father;
                     return _father;
                 }
-                else return null;
+                else return _father;
+            }
+            set {
+                _father = value;
             }
         }
 
         private Mother _mother;
+        [NotMapped]
         public Mother Mother
         {
             get
@@ -52,7 +70,11 @@ namespace Core.Entities
                                          .SingleOrDefault() as Mother;
                     return _mother;
                 }
-                else return null;
+                else return _mother;
+            }
+            set
+            {
+                _mother = value;
             }
         }
 
@@ -98,6 +120,33 @@ namespace Core.Entities
             }
         }
 
+        // Call if the Father and Mother are modified
+        public void UpdatePatientParents()
+        {            
+            if (PatientParents == null)
+                PatientParents = new List<PatientParent>();
+          
+            foreach (Parent parent in Parents)
+            {
+                if (!PatientParents.Any(row => row.Parent.Id == parent.Id && row.Parent.Id != 0))
+                {
+                    PatientParents.Add(new PatientParent() { Parent = parent, Patient = this });
+                }
+                else
+                {
+                    Parent parentOld = PatientParents.FirstOrDefault(row => row.Parent.Id == parent.Id).Parent;
+                    parentOld.FirstName = parent.FirstName;
+                    parentOld.Name = parent.Name;
+                    parentOld.Tel = parent.Tel;
+                    parent.Adresse = parent.Adresse;
+                    parent.Profession = parent.Profession;
+                    if(parentOld is Mother)
+                    {
+                        (parentOld as Mother).MaidenName = (parent as Mother).MaidenName;
+                    }
+                }
+            }
+        }
         public Patient() { }
     }
 }

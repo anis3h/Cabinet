@@ -64,7 +64,7 @@ namespace Cabinet
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
+                app.UseExceptionHandler("/Patient/Error");
             }
 
             app.UseStaticFiles();

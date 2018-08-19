@@ -19,11 +19,17 @@ namespace Cabinet.Automapper
             // Add as many of these lines as you need to map your objects
             CreateMap<Father, FatherViewModel>();
             CreateMap<Mother, MotherViewModel>();
+            CreateMap<FatherViewModel, Father>();
+            CreateMap<MotherViewModel, Mother>();
+            CreateMap<Mother, MotherViewModel>();
             CreateMap<Patient, PatientViewModel>();
+            CreateMap<PatientViewModel, Patient>().ForMember(row => row.PatientParents, opt => opt.Ignore());
             CreateMap<Consultation, ConsultationViewModel>();
             CreateMap<Born, BornViewModel>();
             CreateMap<Pregnancy, PregnancyViewModel>();
             CreateMap<Sibling, SiblingViewModel>();
+            CreateMap<Brother, BrotherViewModel > ();
+            CreateMap<Sister, SisterViewModel>();
         }
     }
 }

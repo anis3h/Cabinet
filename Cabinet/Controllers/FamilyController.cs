@@ -5,10 +5,12 @@ using System.Threading.Tasks;
 using Cabinet.Interfaces;
 using Cabinet.Models.CabinetViewModel;
 using Cabinet.Models.CabinetVIewModel;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Cabinet.Controllers
 {
+    //  [Authorize]
     public class FamilyController : Controller
     {
         IPatientViewModelService _patientViewModelService;
@@ -18,7 +20,7 @@ namespace Cabinet.Controllers
             _patientViewModelService = patientViewModelService;
         }
         [HttpGet("[controller]/[action]/{id}")]
-        public async Task<IActionResult> Family([FromRoute] int id)
+        public async Task<IActionResult> Index([FromRoute] int id)
         {
             try
             {
@@ -27,16 +29,28 @@ namespace Cabinet.Controllers
 
                 return View(familyViewModel);
             }
-            catch(Exception exp)
+            catch (Exception exp)
             {
                 throw (exp);
             }
         }
 
-        [HttpPost("[controller]/[action]")]
-        public IActionResult Family()
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Index(int id,  FamilyViewModel familyViewModel)
         {
-            return View();
+            try
+            {
+                familyViewModel.Patient.Id = id;
+                await _patientViewModelService.UpdatePatientWithFamily(familyViewModel.Patient);
+                return View();
+            }
+           
+             catch (Exception exp)
+            {
+                throw (exp);
+            }
         }
     }
 }

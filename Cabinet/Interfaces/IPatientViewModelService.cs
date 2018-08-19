@@ -15,7 +15,9 @@ namespace Cabinet.Interfaces
         Task<PatientViewModel> GetPatientWithInformation(int patientId);
         Task Add(PatientViewModel patientViewModel);
         Task Update(PatientViewModel patientViewModel);
+        Task UpdatePatientWithFamily(PatientViewModel patientViewModel);
         Task Delete(PatientViewModel patientViewModel);
         Task Delete(int key);
+        
     }
 }

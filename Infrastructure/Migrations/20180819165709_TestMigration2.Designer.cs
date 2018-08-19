@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(CabinetContext))]
-    [Migration("20180818095322_TestMigration4")]
-    partial class TestMigration4
+    [Migration("20180819165709_TestMigration2")]
+    partial class TestMigration2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -88,7 +88,7 @@ namespace Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Parent");
+                    b.ToTable("Parents");
 
                     b.HasDiscriminator<string>("ParentsType").HasValue("Parent");
                 });
@@ -105,11 +105,11 @@ namespace Infrastructure.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasAlternateKey("PatientId", "ParentId");
+
                     b.HasIndex("ParentId");
 
-                    b.HasIndex("PatientId");
-
-                    b.ToTable("PatientParent");
+                    b.ToTable("PatientParents");
                 });
 
             modelBuilder.Entity("Core.Entities.Family.Sibling", b =>
@@ -194,11 +194,7 @@ namespace Infrastructure.Migrations
 
                     b.Property<DateTime>("DateOfBirth");
 
-                    b.Property<int?>("FatherId");
-
                     b.Property<string>("FirstName");
-
-                    b.Property<int?>("MotherId");
 
                     b.Property<string>("Name");
 
@@ -209,10 +205,6 @@ namespace Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("BornId");
-
-                    b.HasIndex("FatherId");
-
-                    b.HasIndex("MotherId");
 
                     b.HasIndex("PregnancyId");
 
@@ -300,14 +292,6 @@ namespace Infrastructure.Migrations
                     b.HasOne("Core.Entities.Informations.Born", "Born")
                         .WithMany()
                         .HasForeignKey("BornId");
-
-                    b.HasOne("Core.Entities.Family.Father", "Father")
-                        .WithMany()
-                        .HasForeignKey("FatherId");
-
-                    b.HasOne("Core.Entities.Family.Mother", "Mother")
-                        .WithMany()
-                        .HasForeignKey("MotherId");
 
                     b.HasOne("Core.Entities.Informations.Pregnancy", "Pregnancy")
                         .WithMany()

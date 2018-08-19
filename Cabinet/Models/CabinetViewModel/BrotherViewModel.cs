@@ -5,8 +5,7 @@ using System.Threading.Tasks;
 
 namespace Cabinet.Models.CabinetViewModel
 {
-    public class FamilyViewModel
+    public class BrotherViewModel
     {
-        public PatientViewModel Patient { get; set; }
     }
 }

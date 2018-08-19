@@ -103,11 +103,11 @@ namespace Infrastructure.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasAlternateKey("PatientId", "ParentId");
+
                     b.HasIndex("ParentId");
 
-                    b.HasIndex("PatientId");
-
-                    b.ToTable("PatientParent");
+                    b.ToTable("PatientParents");
                 });
 
             modelBuilder.Entity("Core.Entities.Family.Sibling", b =>

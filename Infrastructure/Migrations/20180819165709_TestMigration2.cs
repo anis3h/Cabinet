@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Infrastructure.Migrations
 {
-    public partial class TestMigration : Migration
+    public partial class TestMigration2 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -24,6 +24,25 @@ namespace Infrastructure.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Borns", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Parents",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Name = table.Column<string>(nullable: true),
+                    FirstName = table.Column<string>(nullable: true),
+                    Tel = table.Column<int>(nullable: true),
+                    Adresse = table.Column<string>(nullable: true),
+                    Profession = table.Column<string>(nullable: true),
+                    ParentsType = table.Column<string>(nullable: false),
+                    MaidenName = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Parents", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -54,9 +73,7 @@ namespace Infrastructure.Migrations
                     Adresse = table.Column<string>(nullable: true),
                     DateOfBirth = table.Column<DateTime>(nullable: false),
                     BornId = table.Column<int>(nullable: true),
-                    PregnancyId = table.Column<int>(nullable: true),
-                    FatherId = table.Column<int>(nullable: true),
-                    MotherId = table.Column<int>(nullable: true)
+                    PregnancyId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -102,26 +119,27 @@ namespace Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Parents",
+                name: "PatientParents",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Name = table.Column<string>(nullable: true),
-                    FirstName = table.Column<string>(nullable: true),
-                    Tel = table.Column<int>(nullable: true),
-                    Adresse = table.Column<string>(nullable: true),
-                    Profession = table.Column<string>(nullable: true),
-                    PatientParentForeignKey = table.Column<int>(nullable: false),
-                    ParentsType = table.Column<string>(nullable: false),
-                    MaidenName = table.Column<string>(nullable: true)
+                    PatientId = table.Column<int>(nullable: false),
+                    ParentId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Parents", x => x.Id);
+                    table.PrimaryKey("PK_PatientParents", x => x.Id);
+                    table.UniqueConstraint("AK_PatientParents_PatientId_ParentId", x => new { x.PatientId, x.ParentId });
                     table.ForeignKey(
-                        name: "FK_Parents_Patients_PatientParentForeignKey",
-                        column: x => x.PatientParentForeignKey,
+                        name: "FK_PatientParents_Parents_ParentId",
+                        column: x => x.ParentId,
+                        principalTable: "Parents",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_PatientParents_Patients_PatientId",
+                        column: x => x.PatientId,
                         principalTable: "Patients",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -136,10 +154,8 @@ namespace Infrastructure.Migrations
                     Health = table.Column<bool>(nullable: true),
                     Information = table.Column<string>(nullable: true),
                     DateOfBirth = table.Column<DateTime>(nullable: true),
-                    PatientSiblingForeignKey = table.Column<int>(nullable: false),
-                    SiblingType = table.Column<string>(nullable: false),
-                    PatientId = table.Column<int>(nullable: true),
-                    Sister_PatientId = table.Column<int>(nullable: true)
+                    PatientId = table.Column<int>(nullable: false),
+                    SiblingType = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -149,19 +165,7 @@ namespace Infrastructure.Migrations
                         column: x => x.PatientId,
                         principalTable: "Patients",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Siblings_Patients_PatientSiblingForeignKey",
-                        column: x => x.PatientSiblingForeignKey,
-                        principalTable: "Patients",
-                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Siblings_Patients_Sister_PatientId",
-                        column: x => x.Sister_PatientId,
-                        principalTable: "Patients",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -195,24 +199,14 @@ namespace Infrastructure.Migrations
                 column: "ConsultationId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Parents_PatientParentForeignKey",
-                table: "Parents",
-                column: "PatientParentForeignKey");
+                name: "IX_PatientParents_ParentId",
+                table: "PatientParents",
+                column: "ParentId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Patients_BornId",
                 table: "Patients",
                 column: "BornId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Patients_FatherId",
-                table: "Patients",
-                column: "FatherId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Patients_MotherId",
-                table: "Patients",
-                column: "MotherId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Patients_PregnancyId",
@@ -223,42 +217,15 @@ namespace Infrastructure.Migrations
                 name: "IX_Siblings_PatientId",
                 table: "Siblings",
                 column: "PatientId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Siblings_PatientSiblingForeignKey",
-                table: "Siblings",
-                column: "PatientSiblingForeignKey");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Siblings_Sister_PatientId",
-                table: "Siblings",
-                column: "Sister_PatientId");
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_Patients_Parents_FatherId",
-                table: "Patients",
-                column: "FatherId",
-                principalTable: "Parents",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Restrict);
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_Patients_Parents_MotherId",
-                table: "Patients",
-                column: "MotherId",
-                principalTable: "Parents",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Restrict);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropForeignKey(
-                name: "FK_Parents_Patients_PatientParentForeignKey",
-                table: "Parents");
-
             migrationBuilder.DropTable(
                 name: "Illness");
+
+            migrationBuilder.DropTable(
+                name: "PatientParents");
 
             migrationBuilder.DropTable(
                 name: "Siblings");
@@ -267,13 +234,13 @@ namespace Infrastructure.Migrations
                 name: "Consultations");
 
             migrationBuilder.DropTable(
+                name: "Parents");
+
+            migrationBuilder.DropTable(
                 name: "Patients");
 
             migrationBuilder.DropTable(
                 name: "Borns");
-
-            migrationBuilder.DropTable(
-                name: "Parents");
 
             migrationBuilder.DropTable(
                 name: "Pregnanicies");
