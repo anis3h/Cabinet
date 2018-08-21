@@ -9,15 +9,19 @@ namespace Cabinet.Models.CabinetVIewModel {
     public class InformationViewModel {
 
         public PatientViewModel Patient { get; set; }
+
         public List<string> TypPregnancyList { get; set; }
+
+        public List<string> TypPositionList { get; set; }
 
         public InformationViewModel() {
 
-            TypPregnancyList = GetDataSourceTypes();
+            GetEnumTypesToString();
         }
 
-        public List<string> GetDataSourceTypes() {
-            return Enum.GetNames(typeof(TypPregnancy)).ToList();
+        public void GetEnumTypesToString() {
+            TypPregnancyList = Enum.GetNames(typeof(TypPregnancy)).ToList();
+            TypPositionList = Enum.GetNames(typeof(TypPosition)).ToList();          
         }
     }
 }

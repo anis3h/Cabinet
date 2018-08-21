@@ -19,11 +19,25 @@ namespace Cabinet.Models.CabinetViewModel
         public int? Fraternity { get; set; }
         public Age Age { get; set; }
         public BornViewModel Born {get; set;}
-        public PregnancyViewModel Pregnancy { get; set; }
+      
         public List<SisterViewModel> Sisters;
         public List<BrotherViewModel> Brothers;
         public List<SiblingViewModel> Siblings { get; set; }
         public List<ConsultationViewModel> Consultations { get; set; }
+
+        private PregnancyViewModel _pregnancy;
+        public PregnancyViewModel Pregnancy {
+
+            get { if(_pregnancy == null) {
+                    _pregnancy = new PregnancyViewModel();
+                    return _pregnancy;
+                }
+                else {
+                    return _pregnancy;
+                }                   
+             }
+            set { _pregnancy = value; }
+        }
 
     }
 }
