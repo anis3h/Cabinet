@@ -22,11 +22,6 @@ namespace Cabinet.Models.CabinetViewModel
         public TypPosition? Position { get; set; }
 
 
-        public PregnancyViewModel() {
-          
-        }
-        //public List<string> TypPregnancyList { get; set; }
-
 
     }
 }

@@ -9,7 +9,7 @@ namespace Core.Entities.Informations
     // Schwangerschaft
     public class Pregnancy : EntityBase
     {
-        public TypPregnancy? TypPregnancy { get; set; }
+        public TypPregnancy TypPregnancy { get; set; }
         // Semaine
         public int? Week { get; set; }
         // Jour
@@ -24,16 +24,12 @@ namespace Core.Entities.Informations
 // Schwangerschafttyp
 public enum TypPregnancy
 {
-    [Description("Aterm")]
     Aterm,
     // Noch nicht reif
-    [Description("Prématuré")]
     Prématuré,
     // Zwilling
-    [Description("Gemulaire")]
     Gemulaire,
     // Drilling
-    [Description("AtermTriplé")]
     Triplé
 }
 

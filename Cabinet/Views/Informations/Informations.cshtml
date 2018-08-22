@@ -77,13 +77,13 @@
         </div>
         <div class="row">
             <div class="col-xs-4 col-sm-4 col-lg-4 col-md-4">
-                
-                <ejs-combobox id="pregnancyType" dataSource="@Model.TypPregnancyList" value="@Model.Patient.Pregnancy.TypPregnancy.ToString()" placeholder="Select" popupHeight="220px" change="pregnancyValueChange" >
+
+                <ejs-combobox id="pregnancyType" dataSource="@Model.TypPregnancyList" value="@Model.Patient.Pregnancy.TypPregnancy.ToString()" placeholder="Select" popupHeight="220px" change="pregnancyValueChange">
                 </ejs-combobox>
             </div>
         </div>
 
-        <div id="pregnancyRow" class="row">
+        <div id="pregnancyRow" class="row" hidden="hidden">
             <div class="col-xs-4 col-sm-4 col-lg-4 col-md-4">
                 <div class="e-float-input">
                     <input required="" type="number" asp-for="Patient.Pregnancy.Week">
@@ -105,7 +105,7 @@
                 </div>
             </div>
         </div>
-     
+
         <div class="row">
             <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6">
                 <b>Naissance</b>
