@@ -11,12 +11,12 @@ namespace Core.Entities.Informations
     {
         public TypPregnancy TypPregnancy { get; set; }
         // Semaine
-        public int Week { get; set; }
+        public int? Week { get; set; }
         // Jour
-        public int Day { get; set; }
+        public int? Day { get; set; }
         // Position de naissance
         // Babispositionierung
-        public TypPosition TypPosition {get; set;}
+        public TypPosition? TypPosition {get; set;}
         //public Patient Patient {get; set; }       
     }
 }
@@ -24,16 +24,12 @@ namespace Core.Entities.Informations
 // Schwangerschafttyp
 public enum TypPregnancy
 {
-    [Description("Aterm")]
     Aterm,
     // Noch nicht reif
-    [Description("Prématuré")]
     Prématuré,
     // Zwilling
-    [Description("Gemulaire")]
     Gemulaire,
     // Drilling
-    [Description("AtermTriplé")]
     Triplé
 }
 

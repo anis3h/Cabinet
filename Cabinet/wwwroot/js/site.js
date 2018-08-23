@@ -30,9 +30,9 @@ function pregnancyValueChange() {
 
     var pregnancyRow = document.getElementById('pregnancyRow');
 
-    if (listObj.value === 'Prématuré') {
-        pregnancyRow.style.display = 'none';
+    if (listObj.value !== 'Prématuré') {
+        pregnancyRow.hidden = true;
     } else {
-        pregnancyRow.style.display = 'inherit';
+        pregnancyRow.hidden = false;
     }
 }
