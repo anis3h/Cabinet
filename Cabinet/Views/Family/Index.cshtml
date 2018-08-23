@@ -9,175 +9,179 @@
 
         List<object> toolbarItems = new List<object>() { "Add", "Edit", "Update", "Delete" };
     }
-    <Form asp-controller="Family" asp-action="Index" method="post">
-        <div class="col-lg-12 control-section">
+<Form asp-controller="Family" asp-action="Index" method="post">
+    @*<div class="row">
+        <p> @Html.DisplayFor(model => model.Patient.DateOfBirth)</p>
+        <p> @Html.DisplayNameFor(model => model.Patient.DateOfBirth)</p>
+    </div>*@
+    <div class="col-lg-12 control-section">
 
-            <div class="content-wrapper">
-                @*asp-route-returnUrl="@ViewData["ReturnUrl"]"*@
+        <div class="content-wrapper">
+            @*asp-route-returnUrl="@ViewData["ReturnUrl"]"*@
 
-                <div class="row">
-                    <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6">
-                        <b>Patient</b>
+            <div class="row">
+                <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6">
+                    <b>Patient</b>
+                </div>
+            </div>
+            <div class="row">
+                <div>
+                    <input required="" type="hidden" asp-for="Patient.Id">
+                </div>
+                <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6">
+                    <div class="e-float-input form-group">
+                        <input required="" type="text" asp-for="Patient.Name">
+                        <span class="e-float-line"></span>
+                        <label class="e-float-text" asp-for="Patient.Name">Nom</label>
                     </div>
                 </div>
-                <div class="row">
-                    <div>
-                        <input required="" type="hidden" asp-for="Patient.Id">
-                    </div>
-                    <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6">
-                        <div class="e-float-input form-group">
-                            <input required="" type="text" asp-for="Patient.Name">
-                            <span class="e-float-line"></span>
-                            <label class="e-float-text" asp-for="Patient.Name">Nom</label>
-                        </div>
-                    </div>
-                    <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6">
-                        <div class="e-float-input form-group">
-                            <input required="" type="text" asp-for="Patient.FirstName">
-                            <span class="e-float-line"></span>
-                            <label class="e-float-text" asp-for="Patient.FirstName">Prénom</label>
-                        </div>
+                <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6">
+                    <div class="e-float-input form-group">
+                        <input required="" type="text" asp-for="Patient.FirstName">
+                        <span class="e-float-line"></span>
+                        <label class="e-float-text" asp-for="Patient.FirstName">Prénom</label>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6">
-                        <div class="e-float-input form-group">
-                            <input required="" type="date" asp-for="Patient.DateOfBirth">
-                            <span class="e-float-line"></span>
-                            <label class="e-float-text" asp-for="Patient.DateOfBirth">Date de Naissance</label>
-                        </div>
-                    </div>
-                    <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6">
-                        <div class="e-float-input form-group">
-                            <input required="" type="text" asp-for="Patient.Age.FullAge">
-                            <span class="e-float-line"></span>
-                            <label class="e-float-text" asp-for="Patient.Age.FullAge">Age</label>
-                        </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6">
+                    <div class="e-float-input form-group">
+                        <input required="" type="date" asp-for="Patient.DateOfBirth">
+                        <span class="e-float-line"></span>
+                        <label class="e-float-text" asp-for="Patient.DateOfBirth">Date de Naissance</label>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6">
-                        <div class="e-float-input form-group">
-                            <input required="" type="number" asp-for="Patient.Fraternity">
-                            <span class="e-float-line"></span>
-                            <label class="e-float-text" asp-for="Patient.Fraternity">Fraternité</label>
-                        </div>
+                <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6">
+                    <div class="e-float-input form-group">
+                        <input required="" type="text" asp-for="Patient.Age.FullAge">
+                        <span class="e-float-line"></span>
+                        <label class="e-float-text" asp-for="Patient.Age.FullAge">Age</label>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6">
-                        <b>Père</b>
+            </div>
+            <div class="row">
+                <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6">
+                    <div class="e-float-input form-group">
+                        <input required="" type="number" asp-for="Patient.Fraternity">
+                        <span class="e-float-line"></span>
+                        <label class="e-float-text" asp-for="Patient.Fraternity">Fraternité</label>
                     </div>
                 </div>
-                <div class="row">
-                    <div>
-                        <input required="" type="hidden" asp-for="Patient.Father.Id">
-                    </div>
-                    <div class="col-xs-4 col-sm-4 col-lg-4 col-md-4">
-                        <div class="e-float-input">
-                            <input required="" type="text" asp-for="Patient.Father.Name">
-                            <span class="e-float-line"></span>
-                            <label class="e-float-text" asp-for="Patient.Father.Name">Nom</label>
-                        </div>
-                    </div>
-                    <div class="col-xs-4 col-sm-4 col-lg-4 col-md-4">
-                        <div class="e-float-input">
-                            <input required="" type="text" asp-for="Patient.Father.FirstName">
-                            <span class="e-float-line"></span>
-                            <label class="e-float-text" asp-for="Patient.Father.FirstName">Prénom</label>
-                        </div>
-                    </div>
-
+            </div>
+            <div class="row">
+                <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6">
+                    <b>Père</b>
                 </div>
-                <div class="row">
-                    <div class="col-xs-4 col-sm-4 col-lg-4 col-md-4">
-                        <div class="e-float-input">
-                            <input required="" type="text" asp-for="Patient.Father.Profession">
-                            <span class="e-float-line"></span>
-                            <label class="e-float-text" asp-for="Patient.Father.Profession">Profession</label>
-                        </div>
-                    </div>
-                    <div class="col-xs-4 col-sm-4 col-lg-4 col-md-4">
-                        <div class="e-float-input">
-                            <input required="" type="text" asp-for="Patient.Father.Adresse">
-                            <span class="e-float-line"></span>
-                            <label class="e-float-text" asp-for="Patient.Father.Adresse">Adresse</label>
-                        </div>
-                    </div>
-                    <div class="col-xs-4 col-sm-4 col-lg-4 col-md-4">
-                        <div class="e-float-input">
-                            <input required="" type="tel" asp-for="Patient.Father.Tel">
-                            <span class="e-float-line"></span>
-                            <label class="e-float-text" asp-for="Patient.Father.Tel">Tel</label>
-                        </div>
+            </div>
+            <div class="row">
+                <div>
+                    <input required="" type="hidden" asp-for="Patient.Father.Id">
+                </div>
+                <div class="col-xs-4 col-sm-4 col-lg-4 col-md-4">
+                    <div class="e-float-input">
+                        <input required="" type="text" asp-for="Patient.Father.Name">
+                        <span class="e-float-line"></span>
+                        <label class="e-float-text" asp-for="Patient.Father.Name">Nom</label>
                     </div>
                 </div>
-
-                <div class="row">
-                    <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6">
-                        <b>Mère</b>
+                <div class="col-xs-4 col-sm-4 col-lg-4 col-md-4">
+                    <div class="e-float-input">
+                        <input required="" type="text" asp-for="Patient.Father.FirstName">
+                        <span class="e-float-line"></span>
+                        <label class="e-float-text" asp-for="Patient.Father.FirstName">Prénom</label>
                     </div>
                 </div>
-                <div class="row">
-                    <div>
-                        <input required="" type="hidden" asp-for="Patient.Mother.Id">
-                    </div>
-                    <div class="col-xs-4 col-sm-4 col-lg-4 col-md-4">
-                        <div class="e-float-input">
-                            <input required="" type="text" asp-for="Patient.Mother.Name">
-                            <span class="e-float-line"></span>
-                            <label class="e-float-text" asp-for="Patient.Mother.Name">Nom</label>
-                        </div>
-                    </div>
-                    <div class="col-xs-4 col-sm-4 col-lg-4 col-md-4">
-                        <div class="e-float-input">
-                            <input required="" type="text" asp-for="Patient.Mother.FirstName">
-                            <span class="e-float-line"></span>
-                            <label class="e-float-text" asp-for="Patient.Mother.FirstName">Prénom</label>
-                        </div>
-                    </div>
-                    <div class="col-xs-4 col-sm-4 col-lg-4 col-md-4">
-                        <div class="e-float-input">
-                            <input required="" type="text" asp-for="Patient.Mother.MaidenName">
-                            <span class="e-float-line"></span>
-                            <label class="e-float-text" asp-for="Patient.Mother.MaidenName">Nom de jeune fille</label>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-xs-4 col-sm-4 col-lg-4 col-md-4">
-                        <div class="e-float-input">
-                            <input required="" type="text" asp-for="Patient.Mother.Profession">
-                            <span class="e-float-line"></span>
-                            <label class="e-float-text" asp-for="Patient.Mother.Profession">Profession</label>
-                        </div>
-                    </div>
-                    <div class="col-xs-4 col-sm-4 col-lg-4 col-md-4">
-                        <div class="e-float-input">
-                            <input required="" type="text" asp-for="Patient.Mother.Adresse">
-                            <span class="e-float-line"></span>
-                            <label class="e-float-text" asp-for="Patient.Mother.Adresse">Adresse</label>
-                        </div>
-                    </div>
-                    <div class="col-xs-4 col-sm-4 col-lg-4 col-md-4">
-                        <div class="e-float-input">
-                            <input required="" type="tel" asp-for="Patient.Mother.Tel">
-                            <span class="e-float-line"></span>
-                            <label class="e-float-text" asp-for="Patient.Mother.Tel">Tel</label>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6">
-                        <b>Fraternité</b>
-                    </div>
-                </div>
-
-                <button type="submit" class="btn btn-default">Register</button>
 
             </div>
+            <div class="row">
+                <div class="col-xs-4 col-sm-4 col-lg-4 col-md-4">
+                    <div class="e-float-input">
+                        <input required="" type="text" asp-for="Patient.Father.Profession">
+                        <span class="e-float-line"></span>
+                        <label class="e-float-text" asp-for="Patient.Father.Profession">Profession</label>
+                    </div>
+                </div>
+                <div class="col-xs-4 col-sm-4 col-lg-4 col-md-4">
+                    <div class="e-float-input">
+                        <input required="" type="text" asp-for="Patient.Father.Adresse">
+                        <span class="e-float-line"></span>
+                        <label class="e-float-text" asp-for="Patient.Father.Adresse">Adresse</label>
+                    </div>
+                </div>
+                <div class="col-xs-4 col-sm-4 col-lg-4 col-md-4">
+                    <div class="e-float-input">
+                        <input required="" type="tel" asp-for="Patient.Father.Tel">
+                        <span class="e-float-line"></span>
+                        <label class="e-float-text" asp-for="Patient.Father.Tel">Tel</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6">
+                    <b>Mère</b>
+                </div>
+            </div>
+            <div class="row">
+                <div>
+                    <input required="" type="hidden" asp-for="Patient.Mother.Id">
+                </div>
+                <div class="col-xs-4 col-sm-4 col-lg-4 col-md-4">
+                    <div class="e-float-input">
+                        <input required="" type="text" asp-for="Patient.Mother.Name">
+                        <span class="e-float-line"></span>
+                        <label class="e-float-text" asp-for="Patient.Mother.Name">Nom</label>
+                    </div>
+                </div>
+                <div class="col-xs-4 col-sm-4 col-lg-4 col-md-4">
+                    <div class="e-float-input">
+                        <input required="" type="text" asp-for="Patient.Mother.FirstName">
+                        <span class="e-float-line"></span>
+                        <label class="e-float-text" asp-for="Patient.Mother.FirstName">Prénom</label>
+                    </div>
+                </div>
+                <div class="col-xs-4 col-sm-4 col-lg-4 col-md-4">
+                    <div class="e-float-input">
+                        <input required="" type="text" asp-for="Patient.Mother.MaidenName">
+                        <span class="e-float-line"></span>
+                        <label class="e-float-text" asp-for="Patient.Mother.MaidenName">Nom de jeune fille</label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-4 col-sm-4 col-lg-4 col-md-4">
+                    <div class="e-float-input">
+                        <input required="" type="text" asp-for="Patient.Mother.Profession">
+                        <span class="e-float-line"></span>
+                        <label class="e-float-text" asp-for="Patient.Mother.Profession">Profession</label>
+                    </div>
+                </div>
+                <div class="col-xs-4 col-sm-4 col-lg-4 col-md-4">
+                    <div class="e-float-input">
+                        <input required="" type="text" asp-for="Patient.Mother.Adresse">
+                        <span class="e-float-line"></span>
+                        <label class="e-float-text" asp-for="Patient.Mother.Adresse">Adresse</label>
+                    </div>
+                </div>
+                <div class="col-xs-4 col-sm-4 col-lg-4 col-md-4">
+                    <div class="e-float-input">
+                        <input required="" type="tel" asp-for="Patient.Mother.Tel">
+                        <span class="e-float-line"></span>
+                        <label class="e-float-text" asp-for="Patient.Mother.Tel">Tel</label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6">
+                    <b>Fraternité</b>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-default">Register</button>
+
         </div>
-    </Form>
+    </div>
+</Form>
 }
 
 <style>
