@@ -22,7 +22,7 @@ namespace Cabinet.Automapper
             CreateMap<FatherViewModel, Father>();
             CreateMap<MotherViewModel, Mother>();
             CreateMap<Mother, MotherViewModel>();
-         
+        
           
             CreateMap<Consultation, ConsultationViewModel>();
             CreateMap<Born, BornViewModel>();
