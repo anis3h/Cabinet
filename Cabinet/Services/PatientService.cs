@@ -93,7 +93,7 @@ namespace Cabinet.Services
                 var patientSpecification = new PatientWithFamilySpecification(row => row.Id == patientViewModel.Id);
                 var patient = await GetPatientWithPatientSpecification(patientSpecification);
                 _mapper.Map(patientViewModel, patient);
-                patient.UpdatePatientParents(); 
+                patient.AddPatientParents(); 
                 await _patientRepository.UpdateAsync(patient);
             }
             catch (Exception exp)

@@ -7,7 +7,7 @@
 @section ControlsSection{
     @{
 
-        List<object> toolbarItems = new List<object>() { "Add", "Edit", "Update", "Delete"};
+        List<object> toolbarItems = new List<object>() { "Add", "Edit", "Update", "Delete" };
     }
     <Form asp-controller="Family" asp-action="Index" method="post">
         <div class="col-lg-12 control-section">
@@ -172,114 +172,117 @@
                         <b>Fraternité</b>
                     </div>
                 </div>
-                <div class="row">
-                    <div>
-                        <div>
-                            <ejs-grid id="GridSibling" dataSource="@Model.Patient.Siblings.ToList()" locale="fr-FR" toolbar=toolbarItems toolbarClick="toolbarClick" allowPaging="true" allowSorting="true" allowFiltering="true" allowGrouping="true">
-                                @*<e-data-manager url="/Family/Index" insertUrl="/Family/Insert" updateUrl="/Family/Update" removeUrl="/Family/Delete" adaptor="UrlAdaptor"></e-data-manager>*@
-                                <e-grid-editSettings allowAdding="true" allowDeleting="true" allowEditing="true" mode="Normal" showConfirmDialog="true" showDeleteConfirmDialog="true"></e-grid-editSettings>
-                                <e-grid-selectionsettings type="Single" mode="Row"></e-grid-selectionsettings>
-                                <e-grid-pagesettings pageCount="4" pageSizes="true"></e-grid-pagesettings>
-                                <e-grid-columns>
-                                    <e-grid-column field="Id" headerText="Sibling ID" visible="false" isPrimaryKey="true" textAlign="Right" validationRules="@(new { required=true})" width="100"></e-grid-column>
-                                    @*<e-grid-column id="Test" field="Id" headerText="Customer ID" width="150" textAlign="Center"></e-grid-column>*@
-                                    <e-grid-column field="DateOfBirth"  headerText="Nom" textAlign="Center" width="120"></e-grid-column>
-                                    <e-grid-column field="Patient.Sibling.Information"  headerText="Prenom" textAlign="Center" width="120"></e-grid-column>
-                                    <e-grid-column field="Health" headerText="Date de naissance" width="130" textAlign="Center" editType="boolean" ></e-grid-column>
-                                </e-grid-columns>
-                            </ejs-grid>
-                        </div>
-                    </div>
-                </div>
+
                 <button type="submit" class="btn btn-default">Register</button>
 
             </div>
         </div>
     </Form>
+}
+
+<style>
+    .e-input-picture::before {
+        content: '\e7b3';
+        font-family: e-icons;
     }
 
-    <style>
-        .e-input-picture::before {
-            content: '\e7b3';
-            font-family: e-icons;
+    .e-input-calendar::before {
+        content: '\e901';
+        font-family: e-icons;
+        font-size: 13px;
+    }
+
+    .content-wrapper {
+        width: 90%;
+        margin: 0 auto;
+        min-width: 85px;
+    }
+
+        .content-wrapper div.row {
+            padding: 15px 0px;
         }
 
-        .e-input-calendar::before {
-            content: '\e901';
-            font-family: e-icons;
-            font-size: 13px;
-        }
+    .custom-padding-05 {
+        padding-top: 5px;
+    }
 
+    @@media only screen and (max-width: 480px) {
         .content-wrapper {
-            width: 90%;
-            margin: 0 auto;
-            min-width: 85px;
+            width: 92%;
         }
 
-            .content-wrapper div.row {
-                padding: 15px 0px;
-            }
-
-        .custom-padding-05 {
-            padding-top: 5px;
+        .col-xs-6,
+        .col-xs-4,
+        .col-xs-12 {
+            padding: 10px 5px;
+            width: 100%;
         }
 
-        @@media only screen and (max-width: 480px) {
-            .content-wrapper {
-                width: 92%;
-            }
-
-            .col-xs-6,
-            .col-xs-4,
-            .col-xs-12 {
-                padding: 10px 5px;
-                width: 100%;
-            }
-
-            .content-wrapper div.row {
-                padding: 0px;
-            }
+        .content-wrapper div.row {
+            padding: 0px;
         }
-
-        #description td {
-            vertical-align: top;
-        }
-    </style>
-
-    @section Scripts {
-        <script>
-            var inputObject = {};
-            var input = document.querySelectorAll('.e-input-group .e-input,.e-float-input.e-input-group input');
-            var inputIcon = document.querySelectorAll('.e-input-group-icon');
-            var focusFn = function (index) {
-                return function () {
-                    getParentNode(input[index]).classList.add('e-input-focus');
-                };
-            };
-            var blurFn = function (index) {
-                return function () { getParentNode(input[index]).classList.remove('e-input-focus'); };
-            };
-            var mouseupFn = function () {
-                var ele = this; setTimeout(function () {
-                    ele.classList.remove('e-input-btn-ripple');
-                }, 500);
-            };
-            for (var i = 0; i < input.length; i++) {
-                input[i].addEventListener('focus', focusFn(i));
-                input[i].addEventListener('blur', blurFn(i));
-            }
-            for (var j = 0; j < inputIcon.length; j++) {
-                inputIcon[j].addEventListener('mousedown', function () {
-                    this.classList.add('e-input-btn-ripple');
-                });
-                inputIcon[j].addEventListener('mouseup', mouseupFn);
-            }
-            function getParentNode(element) {
-                var parentNode = element.parentNode;
-                if (parentNode.classList.contains('e-input-in-wrap')) {
-                    return parentNode.parentNode;
-                }
-                return parentNode;
-            }
-        </script>
     }
+
+    #description td {
+        vertical-align: top;
+    }
+</style>
+
+@section Scripts {
+    <script>
+        var inputObject = {};
+        var input = document.querySelectorAll('.e-input-group .e-input,.e-float-input.e-input-group input');
+        var inputIcon = document.querySelectorAll('.e-input-group-icon');
+        var focusFn = function (index) {
+            return function () {
+                getParentNode(input[index]).classList.add('e-input-focus');
+            };
+        };
+        var blurFn = function (index) {
+            return function () { getParentNode(input[index]).classList.remove('e-input-focus'); };
+        };
+        var mouseupFn = function () {
+            var ele = this; setTimeout(function () {
+                ele.classList.remove('e-input-btn-ripple');
+            }, 500);
+        };
+        for (var i = 0; i < input.length; i++) {
+            input[i].addEventListener('focus', focusFn(i));
+            input[i].addEventListener('blur', blurFn(i));
+        }
+        for (var j = 0; j < inputIcon.length; j++) {
+            inputIcon[j].addEventListener('mousedown', function () {
+                this.classList.add('e-input-btn-ripple');
+            });
+            inputIcon[j].addEventListener('mouseup', mouseupFn);
+        }
+        function getParentNode(element) {
+            var parentNode = element.parentNode;
+            if (parentNode.classList.contains('e-input-in-wrap')) {
+                return parentNode.parentNode;
+            }
+            return parentNode;
+        }
+    </script>
+}
+
+
+@*<div class="row">
+    <div>
+        <div>
+            <ejs-grid id="GridSibling" dataSource="@Model.Patient.Siblings.ToList()" locale="fr-FR" toolbar=toolbarItems toolbarClick="toolbarClick" allowPaging="true" allowSorting="true" allowFiltering="true" allowGrouping="true">*@
+                @*<e-data-manager url="/Family/Index" insertUrl="/Family/Insert" updateUrl="/Family/Update" removeUrl="/Family/Delete" adaptor="UrlAdaptor"></e-data-manager>*@
+                @*<e-grid-editSettings allowAdding="true" allowDeleting="true" allowEditing="true" mode="Normal" showConfirmDialog="true" showDeleteConfirmDialog="true"></e-grid-editSettings>
+                <e-grid-selectionsettings type="Single" mode="Row"></e-grid-selectionsettings>
+                <e-grid-pagesettings pageCount="4" pageSizes="true"></e-grid-pagesettings>
+                <e-grid-columns>
+                    <e-grid-column field="Id" headerText="Sibling ID" visible="false" isPrimaryKey="true" textAlign="Right" validationRules="@(new { required=true})" width="100"></e-grid-column>*@
+                    @*<e-grid-column id="Test" field="Id" headerText="Customer ID" width="150" textAlign="Center"></e-grid-column>*@
+                    @*<e-grid-column field="DateOfBirth" headerText="Nom" textAlign="Center" width="120"></e-grid-column>
+                    <e-grid-column field="Patient.Sibling.Information" headerText="Prenom" textAlign="Center" width="120"></e-grid-column>
+                    <e-grid-column field="Health" headerText="Date de naissance" width="130" textAlign="Center" editType="boolean"></e-grid-column>
+                </e-grid-columns>
+            </ejs-grid>
+        </div>
+    </div>
+</div>*@

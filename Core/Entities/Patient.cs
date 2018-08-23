@@ -23,19 +23,8 @@ namespace Core.Entities
         public List<Brother> Brothers { get; set; }
         [NotMapped]
         public List<Sister> Sisters { get; set; }
-
-        private List<Parent> _parents = new List<Parent>();
-
         [NotMapped]
-        public List<Parent> Parents 
-        {
-            get
-            {
-                if (Father != null) _parents.Add(Father);
-                if (Mother != null) _parents.Add(Mother);
-                return _parents;
-            }
-        }
+        public List<Parent> Parents { get; set; } = new List<Parent>();
 
         private Father _father;
         [NotMapped]
@@ -123,32 +112,43 @@ namespace Core.Entities
         }
 
         // Call if the Father and Mother are modified
-        public void UpdatePatientParents()
-        {            
+        public void AddPatientParents()
+        {
             if (PatientParents == null)
                 PatientParents = new List<PatientParent>();
-          
+            if (Father != null)
+            {
+                Parents.Add(Father);
+            }
+            if (Mother != null)
+            {
+                Parents.Add(Mother);
+            }
             foreach (Parent parent in Parents)
             {
                 if (!PatientParents.Any(row => row.Parent.Id == parent.Id && row.Parent.Id != 0))
                 {
                     PatientParents.Add(new PatientParent() { Parent = parent, Patient = this });
                 }
-                else
-                {
-                    Parent parentOld = PatientParents.FirstOrDefault(row => row.Parent.Id == parent.Id).Parent;
-                    parentOld.FirstName = parent.FirstName;
-                    parentOld.Name = parent.Name;
-                    parentOld.Tel = parent.Tel;
-                    parent.Adresse = parent.Adresse;
-                    parent.Profession = parent.Profession;
-                    if(parentOld is Mother)
-                    {
-                        (parentOld as Mother).MaidenName = (parent as Mother).MaidenName;
-                    }
-                }
             }
-        }
+                //    else
+                //    {
+                //        Parent parentOld = PatientParents.FirstOrDefault(row => row.Parent.Id == parent.Id).Parent;
+
+                //        parentOld.FirstName = parent.FirstName;
+                //        parentOld.Name = parent.Name;
+                //        parentOld.Tel = parent.Tel;
+                //        parentOld.Adresse = parent.Adresse;
+                //        parentOld.Profession = parent.Profession;
+                //        if (parentOld is Mother)
+                //        {
+                //            (parentOld as Mother).MaidenName = (parent as Mother).MaidenName;
+                //        }
+                //    }
+                //}
+            }
+
+
         public Patient() { }
     }
 }

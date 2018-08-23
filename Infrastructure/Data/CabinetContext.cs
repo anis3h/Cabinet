@@ -53,7 +53,6 @@ namespace Infrastructure.Data
                 .WithMany(p => p.Siblings)
                 .HasForeignKey("PatientId");
 
-
             // Use the shadow property as a foreign key
             //modelBuilder.Entity<ParentBase>()
             //    .Property<int>("PatientId");
@@ -78,9 +77,11 @@ namespace Infrastructure.Data
                 .WithMany(p => p.PatientParents)
                 .HasForeignKey("ParentId");
 
-            //var navigation = modelBuilder.Entity<Patient>().Metadata.FindNavigation(nameof(Patient.PatientParents));
+            //var navigation = modelBuilder.Entity<Patient>().Metadata.FindNavigation(nameof(Patient.Parents));
 
-           // navigation.SetPropertyAccessMode(PropertyAccessMode.Field);
+            //navigation.SetPropertyAccessMode(PropertyAccessMode.Field);
+
+
 
             modelBuilder
                 .Entity<Pregnancy>()

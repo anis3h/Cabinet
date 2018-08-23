@@ -4,14 +4,16 @@ using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(CabinetContext))]
-    partial class CabinetContextModelSnapshot : ModelSnapshot
+    [Migration("20180821203135_TestMigration3")]
+    partial class TestMigration3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -132,11 +134,15 @@ namespace Infrastructure.Migrations
                     b.Property<string>("ParentsType")
                         .IsRequired();
 
+                    b.Property<int?>("PatientId");
+
                     b.Property<string>("Profession");
 
                     b.Property<int?>("Tel");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("PatientId");
 
                     b.ToTable("Parents");
 
@@ -314,6 +320,13 @@ namespace Infrastructure.Migrations
                     b.HasOne("Core.Entities.Consultations.Consultation")
                         .WithMany("IllnessList")
                         .HasForeignKey("ConsultationId");
+                });
+
+            modelBuilder.Entity("Core.Entities.Family.Parent", b =>
+                {
+                    b.HasOne("Core.Entities.Patient")
+                        .WithMany("Parents")
+                        .HasForeignKey("PatientId");
                 });
 
             modelBuilder.Entity("Core.Entities.Family.PatientParent", b =>

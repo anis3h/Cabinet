@@ -15,8 +15,11 @@ namespace Core.Specifications.PatientSpecifications
         }
         public override void AddIncludePatient()
         {
+            // Include Tabelle 1:n Tabelle PatientParent
             AddInclude(row => row.PatientParents);
-            AddInclude(row => row.Siblings);
+            // Include Tabelle 1:n Sibling
+            AddInclude(row => (row.Siblings));
+            // Include n:m Tabelle Parent
             AddInclude($"{nameof(Patient.PatientParents)}.{nameof(PatientParent.Parent)}");
         }
     }
