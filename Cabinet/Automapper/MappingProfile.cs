@@ -22,14 +22,24 @@ namespace Cabinet.Automapper
             CreateMap<FatherViewModel, Father>();
             CreateMap<MotherViewModel, Mother>();
             CreateMap<Mother, MotherViewModel>();
-            CreateMap<Patient, PatientViewModel>();
-            CreateMap<PatientViewModel, Patient>().ForMember(row => row.PatientParents, opt => opt.Ignore());
+         
+          
             CreateMap<Consultation, ConsultationViewModel>();
             CreateMap<Born, BornViewModel>();
             CreateMap<Pregnancy, PregnancyViewModel>();
+            CreateMap<PregnancyViewModel, Pregnancy>();
             CreateMap<Sibling, SiblingViewModel>();
             CreateMap<Brother, BrotherViewModel > ();
             CreateMap<Sister, SisterViewModel>();
+            // CreateMap<(MotherViewModel, PatientVIewModel), List < PatientParent(Patient, Parent) > ();
+
+            CreateMap<Patient, InformationPatientViewModel>();
+            CreateMap<Patient, FamilyPatientViewModel>();
+            CreateMap<Patient, PatientViewModel>();
+
+            CreateMap<PatientViewModel, Patient>().ForMember(row => row.PatientParents, opt => opt.Ignore());
+            CreateMap<FamilyPatientViewModel, Patient>().ForMember(row => row.PatientParents, opt => opt.Ignore());
+            CreateMap<InformationPatientViewModel, Patient>().ForMember(row => row.PatientParents, opt => opt.Ignore());
         }
     }
 }

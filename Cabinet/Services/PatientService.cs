@@ -58,19 +58,19 @@ namespace Cabinet.Services
         public async Task<PatientViewModel> GetPatientWithAllData(int patientId)
         {
             var patientSpecification = new PatientWithAllDataSpecification(row => row.Id == patientId);
-            return await MapPatient(patientSpecification);
+            return await MapPatient<PatientViewModel>(patientSpecification);
         }
 
-        public async Task<PatientViewModel> GetPatientWithFamily(int patientId)
+        public async Task<FamilyPatientViewModel> GetPatientWithFamily(int patientId)
         {
             var patientSpecification = new PatientWithFamilySpecification(row => row.Id == patientId);
-            return await MapPatient(patientSpecification);
+            return (await MapPatient<FamilyPatientViewModel>(patientSpecification)) ;
         }
       
-        public async Task<PatientViewModel> GetPatientWithInformation(int patientId)
+        public async Task<InformationPatientViewModel> GetPatientWithInformation(int patientId)
         {
             var patientSpecification = new PatientWithInformationsSpecification(row => row.Id == patientId);
-            return await MapPatient(patientSpecification);
+            return await MapPatient<InformationPatientViewModel>(patientSpecification);
         }
     
         public async Task Add(PatientViewModel patientViewModel)
@@ -86,14 +86,18 @@ namespace Cabinet.Services
             }
         }
 
-        public async Task UpdatePatientWithFamily(PatientViewModel patientViewModel)
+        public async Task UpdatePatientWithFamily(FamilyPatientViewModel patientViewModel)
         {
             try
             {
                 var patientSpecification = new PatientWithFamilySpecification(row => row.Id == patientViewModel.Id);
                 var patient = await GetPatientWithPatientSpecification(patientSpecification);
                 _mapper.Map(patientViewModel, patient);
-                patient.AddPatientParents(); 
+                // Add new Parents
+                if (patient.PatientParents == null && patient.PatientParents.Count == 0)
+                {
+                    patient.AddPatientParents();
+                }
                 await _patientRepository.UpdateAsync(patient);
             }
             catch (Exception exp)
@@ -142,10 +146,10 @@ namespace Cabinet.Services
             }
         }
 
-        private async Task<PatientViewModel> MapPatient(PatientBaseSpecification patientSpecification)
+        private async Task<TViewModel> MapPatient<TViewModel>(PatientBaseSpecification patientSpecification)
         {
             var patient = await GetPatientWithPatientSpecification(patientSpecification);
-            var patientViewModel = _mapper.Map<Patient, PatientViewModel>(patient);
+            var patientViewModel = _mapper.Map<Patient, TViewModel>(patient);
             return patientViewModel;
         }
 

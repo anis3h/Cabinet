@@ -8,14 +8,14 @@ namespace Cabinet.Models.CabinetVIewModel {
 
     public class InformationViewModel {
 
-        public PatientViewModel Patient { get; set; }
+        public InformationPatientViewModel Patient { get; set; }
 
         public List<string> TypPregnancyList { get; set; }
 
         public List<string> TypPositionList { get; set; }
 
         public InformationViewModel() {
-
+             
             GetEnumTypesToString();
         }
 

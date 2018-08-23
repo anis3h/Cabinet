@@ -112,6 +112,8 @@ namespace Core.Entities
         }
 
         // Call if the Father and Mother are modified
+        // TODo Mit Gerry die Function in Automapper verschieben 
+        // => Initial PatientPArent List PatientParent in Automapper 
         public void AddPatientParents()
         {
             if (PatientParents == null)

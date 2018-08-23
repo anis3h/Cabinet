@@ -18,11 +18,11 @@ namespace Cabinet.Interfaces
         Task Delete(int key);
 
         // Patient With Family
-        Task<PatientViewModel> GetPatientWithFamily(int patientId);
-        Task UpdatePatientWithFamily(PatientViewModel patientViewModel);
+        Task<FamilyPatientViewModel> GetPatientWithFamily(int patientId);
+        Task UpdatePatientWithFamily(FamilyPatientViewModel patientViewModel);
 
         // PatientWith Information
-        Task<PatientViewModel> GetPatientWithInformation(int patientId);
+        Task<InformationPatientViewModel> GetPatientWithInformation(int patientId);
         // TO DO Gerry
         //Task UpdatePatientWithInformation(PatientViewModel patientViewModel);
 

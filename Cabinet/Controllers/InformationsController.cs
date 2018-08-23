@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Cabinet.Interfaces;
+using Cabinet.Models.CabinetViewModel;
 using Cabinet.Models.CabinetVIewModel;
 using Microsoft.AspNetCore.Mvc;
 
