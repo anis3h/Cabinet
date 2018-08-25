@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Cabinet.Models.CabinetViewModel
 {
-    public class InformationPatientViewModel : PatientBaseViewModel
+    public class InformationPatientViewModel : PatientViewModel
     {
         //[DisplayFormat(DataFormatString = "{0:d}")]
         //[DisplayName("Geburtsdatum")]
