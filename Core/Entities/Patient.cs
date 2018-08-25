@@ -15,6 +15,7 @@ namespace Core.Entities
         public DateTime DateOfBirth { get; set; }
         public List<PatientParent> PatientParents { get; internal set; }
         public Born Born { get; set; }
+        public int FileNumber { get; set; }
         // Schwangerschaft
         // Grossesse
         public Pregnancy Pregnancy { get; set; }
@@ -25,7 +26,7 @@ namespace Core.Entities
         public List<Sister> Sisters { get; set; }
         [NotMapped]
         public List<Parent> Parents { get; set; } = new List<Parent>();
-
+    
         private Father _father;
         [NotMapped]
         public Father Father

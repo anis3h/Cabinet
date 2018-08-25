@@ -15,7 +15,7 @@ namespace Cabinet.Models.CabinetViewModel
         public string FirstName { get; set; }
         public DateTime DateOfBirth { get; set; }
         public string Adresse { get; set; }
-        public int? Tel { get; set; }     
+        public string Tel { get; set; }     
         public Age Age { get; set; }       
         public List<ConsultationViewModel> Consultations { get; set; }
     }

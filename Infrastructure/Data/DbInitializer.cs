@@ -26,24 +26,24 @@ namespace Infrastructure.Data
             {             
                  new Father {
                     Adresse = "TestAdresse", FirstName = "Vater2Vorname", Name = "Vater2Nachname",
-                              Tel = 0123456789, Profession = "Informatiker" },
+                              Tel = "0123456789", Profession = "Informatiker" },
                 new Father {
                     Adresse = "TestAdresse", FirstName = "Vater1Vorname", Name = "Vater1Nachname",
-                              Tel = 0123456789, Profession = "Arzt"
+                              Tel = "0123456789", Profession = "Arzt"
                 }
             };
              var mothers = new List<Mother>
             {
                  new Mother {
                     MaidenName = "Mother2", Adresse = "TestAdresse", FirstName = "Mutter2Vorname", Name = "Mutter2Nachname",
-                              Tel = 0123456789, Profession = "Erzieherin"},
+                              Tel = "0123456789", Profession = "Erzieherin"},
                   new Mother
                   {
                       MaidenName = "Mother1",
                       Adresse = "TestAdresse",
                       FirstName = "Mutter1Vorname",
                       Name = "Mutter1Nachname",
-                      Tel = 0123456789,
+                      Tel = "0123456789",
                       Profession = "Hasufrau"
                   }
             };
