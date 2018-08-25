@@ -1,0 +1,51 @@
+﻿@using Syncfusion.EJ2
+
+@using Cabinet.Models.CabinetViewModel
+
+
+@model PatientBaseViewModel
+
+<div class="row">
+    <div>
+        <input required="" type="hidden" asp-for="Id">
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6">
+        <b>Patient</b>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6">
+        <div class="e-float-input">
+            <input required="" type="text" asp-for="Name">
+            <span class="e-float-line"></span>
+            <label class="e-float-text" asp-for="Name">Nom</label>
+        </div>
+    </div>
+    <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6">
+        <div class="e-float-input">
+            <input required="" type="text" asp-for="FirstName">
+            <span class="e-float-line"></span>
+            <label class="e-float-text" asp-for="FirstName">Prénom</label>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6">
+        <div class="e-float-input">
+            <input required="" type="date" asp-for="DateOfBirth">
+            <span class="e-float-line"></span>
+            <label class="e-float-text" asp-for="DateOfBirth">Date de Naissance</label>
+        </div>
+    </div>
+    <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6">
+        <div class="e-float-input">
+            <input required="" type="text" asp-for="Age.FullAge">
+            <span class="e-float-line"></span>
+            <label class="e-float-text" asp-for="Age.FullAge">Age</label>
+        </div>
+    </div>
+</div>
+
+
