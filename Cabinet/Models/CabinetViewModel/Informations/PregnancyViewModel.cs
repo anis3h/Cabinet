@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Cabinet.Models.CabinetViewModel
+namespace Cabinet.Models.CabinetViewModel.Informations
 {
     public class PregnancyViewModel
     {

@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Cabinet.Models;
-using Cabinet.Models.CabinetViewModel;
+using Cabinet.Models.CabinetViewModel.Family;
+using Cabinet.Models.CabinetViewModel.Informations;
+using Cabinet.Models.CabinetViewModel.Patient;
 
 namespace Cabinet.Interfaces
 {

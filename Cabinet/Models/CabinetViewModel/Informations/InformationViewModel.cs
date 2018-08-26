@@ -1,14 +1,29 @@
 ﻿using Cabinet.Models.CabinetViewModel;
+using Cabinet.Models.CabinetViewModel.Patient;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Cabinet.Models.CabinetVIewModel {
+namespace Cabinet.Models.CabinetViewModel.Informations
+{
 
-    public class InformationViewModel {
-
+    public class InformationViewModel 
+    {
         public InformationPatientViewModel Patient { get; set; }
+        //public InformationPatientViewModel _patient;
+        //public override PatientBaseViewModel Patient
+        //{
+        //    get
+        //    {
+        //        return _patient as InformationPatientViewModel;
+        //    }
+        //    set
+        //    {
+        //        _patient = value as InformationPatientViewModel;
+        //    }
+        //}
+
 
         public List<string> TypPregnancyList { get; set; }
 

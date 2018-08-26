@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace Cabinet.Models.CabinetViewModel.Patient
 {
-    public class PatientViewModel : PatientBaseViewModel
+    public abstract class BaseViewModel
     {
-
+        public virtual PatientBaseViewModel Patient { get;
+            set; }
     }
 }

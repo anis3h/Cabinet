@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Cabinet.Interfaces;
-using Cabinet.Models.CabinetViewModel;
-using Cabinet.Models.CabinetVIewModel;
+using Cabinet.Models.CabinetViewModel.Family;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Syncfusion.EJ2.Base;
@@ -39,13 +38,13 @@ namespace Cabinet.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Index(int id,  FamilyViewModel familyViewModel)
+        public async Task<IActionResult> Index(int id, FamilyViewModel familyViewModel)
         {
             try
             {
                 familyViewModel.Patient.Id = id;
                 await _patientViewModelService.UpdatePatientWithFamily(familyViewModel.Patient);
-                return View();
+                return RedirectToAction("Index", "Patient");
             }
            
              catch (Exception exp)

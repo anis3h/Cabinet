@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using Cabinet.Models.CabinetViewModel;
-using Cabinet.Models.CabinetVIewModel;
+using Cabinet.Models.CabinetViewModel.Family;
+using Cabinet.Models.CabinetViewModel.Informations;
+using Cabinet.Models.CabinetViewModel.Patient;
 using Core.Entities;
 using Core.Entities.Consultations;
 using Core.Entities.Family;
@@ -38,7 +40,10 @@ namespace Cabinet.Automapper
             CreateMap<Patient, PatientViewModel>();
 
             CreateMap<PatientViewModel, Patient>().ForMember(row => row.PatientParents, opt => opt.Ignore());
-            CreateMap<FamilyPatientViewModel, Patient>().ForMember(row => row.PatientParents, opt => opt.Ignore());
+            CreateMap<FamilyPatientViewModel, Patient>()
+                .ForMember(row => row.PatientParents, opt => opt.Ignore());
+              //  .ForMember(row => row.Adresse, opt => opt.Ignore())
+              //  .ForMember(row => row.Tel, opt => opt.Ignore()); ;
             CreateMap<InformationPatientViewModel, Patient>().ForMember(row => row.PatientParents, opt => opt.Ignore());
         }
     }

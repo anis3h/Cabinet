@@ -1,10 +1,11 @@
 ﻿using Cabinet.Models.CabinetViewModel;
+using Cabinet.Models.CabinetViewModel.Patient;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Cabinet.Models.CabinetVIewModel
+namespace Cabinet.Models.CabinetViewModel
 {
     public class ConsultationViewModel
     {

@@ -2,13 +2,13 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @using Syncfusion.EJ2
-@using Cabinet.Models.CabinetVIewModel
+@using Cabinet.Models.CabinetViewModel.Informations
 @model InformationViewModel
 
 <div class="col-lg-12 control-section">
     <div class="content-wrapper">
 
-         @Html.Partial("../Shared/_PatientPartialView.cshtml", Model.Patient)
+         @await Html.PartialAsync("../Shared/_PatientPartialView.cshtml", Model.Patient)
         
         <div class="row">
             <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6">

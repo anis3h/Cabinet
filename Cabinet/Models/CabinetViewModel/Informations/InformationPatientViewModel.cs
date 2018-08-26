@@ -1,4 +1,5 @@
-﻿using Cabinet.Models.CabinetVIewModel;
+﻿
+using Cabinet.Models.CabinetViewModel.Patient;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -6,7 +7,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Cabinet.Models.CabinetViewModel
+namespace Cabinet.Models.CabinetViewModel.Informations
 {
     public class InformationPatientViewModel : PatientViewModel
     {
@@ -15,7 +16,8 @@ namespace Cabinet.Models.CabinetViewModel
         //public override DateTime DateOfBirth { get; set; }
 
         public BornViewModel Born { get; set; }
-
+        public string Adresse { get; set; }
+        public string Tel { get; set; }
         private PregnancyViewModel _pregnancy;
         public PregnancyViewModel Pregnancy
         {

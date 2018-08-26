@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Cabinet.Interfaces;
 using Cabinet.Models;
 using Cabinet.Models.CabinetViewModel;
+using Cabinet.Models.CabinetViewModel.Patient;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Syncfusion.EJ2.Base;

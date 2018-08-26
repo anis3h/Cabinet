@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
 using Cabinet.Interfaces;
 using Cabinet.Models;
-using Cabinet.Models.CabinetViewModel;
+using Cabinet.Models.CabinetViewModel.Family;
+using Cabinet.Models.CabinetViewModel.Informations;
+using Cabinet.Models.CabinetViewModel.Patient;
 using Core.Entities;
 using Core.Entities.Family;
 using Core.Interfaces;
@@ -94,7 +96,7 @@ namespace Cabinet.Services
                 var patient = await GetPatientWithPatientSpecification(patientSpecification);
                 _mapper.Map(patientViewModel, patient);
                 // Add new Parents
-                if (patient.PatientParents == null && patient.PatientParents.Count == 0)
+                if (patient.PatientParents == null || patient.PatientParents.Count == 0)
                 {
                     patient.AddPatientParents();
                 }

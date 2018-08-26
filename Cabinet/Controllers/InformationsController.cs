@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Cabinet.Interfaces;
 using Cabinet.Models.CabinetViewModel;
-using Cabinet.Models.CabinetVIewModel;
+using Cabinet.Models.CabinetViewModel.Informations;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Cabinet.Controllers
