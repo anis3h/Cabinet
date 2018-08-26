@@ -10,11 +10,18 @@ function toolbarClick(args) {
     }
 
     if (args.item.id === 'editFamily') {
-        var test = document.getElementById('#Grid')
         var gridFamily = document.getElementById("Grid").ej2_instances[0];
         var rowFamily = gridFamily.getSelectedRecords();
 
         window.location.href = 'Family/Index' + '/' + rowFamily[0].Id;
+    }
+
+    if (args.item.id === 'editConsultations') {
+       
+        var gridConsultations = document.getElementById("Grid").ej2_instances[0];
+        var rowConsultations = gridConsultations.getSelectedRecords();
+
+        window.location.href = 'Consultations/Index' + '/' + rowConsultations[0].Id;
     }
 
     //if (args.item.id === "collapseall") {

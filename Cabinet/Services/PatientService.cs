@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Cabinet.Interfaces;
 using Cabinet.Models;
+using Cabinet.Models.CabinetViewModel.Consultations;
 using Cabinet.Models.CabinetViewModel.Family;
 using Cabinet.Models.CabinetViewModel.Informations;
 using Cabinet.Models.CabinetViewModel.Patient;
@@ -165,6 +166,12 @@ namespace Cabinet.Services
             }
         }
 
+        public async Task<ConsultationsPatientViewModel> GetPatientWithConsultations(int patientId)
+        {
+            var patientSpecification = new PatientWithConsultationsSpecification(row => row.Id == patientId);
+            return await MapPatient<ConsultationsPatientViewModel>(patientSpecification);
+        }
+
         private async Task<TViewModel> MapPatient<TViewModel>(PatientBaseSpecification patientSpecification)
         {
             var patient = await GetPatientWithPatientSpecification(patientSpecification);
@@ -178,6 +185,6 @@ namespace Cabinet.Services
             return (await _patientRepository.ListAsync(patientSpecification)).FirstOrDefault();
         }
 
- 
+       
     }
 }
