@@ -28,6 +28,7 @@ namespace Cabinet.Automapper
           
             CreateMap<Consultation, ConsultationViewModel>();
             CreateMap<Born, BornViewModel>();
+            CreateMap<BornViewModel, Born>();
             CreateMap<Pregnancy, PregnancyViewModel>();
             CreateMap<PregnancyViewModel, Pregnancy>();
             CreateMap<Sibling, SiblingViewModel>();

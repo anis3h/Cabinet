@@ -8,21 +8,22 @@ using System.Threading.Tasks;
 namespace Cabinet.Models.CabinetViewModel.Informations
 {
 
-    public class InformationViewModel 
+    public class InformationViewModel : BaseViewModel
     {
-        public InformationPatientViewModel Patient { get; set; }
-        //public InformationPatientViewModel _patient;
-        //public override PatientBaseViewModel Patient
-        //{
-        //    get
-        //    {
-        //        return _patient as InformationPatientViewModel;
-        //    }
-        //    set
-        //    {
-        //        _patient = value as InformationPatientViewModel;
-        //    }
-        //}
+
+        public InformationPatientViewModel _patient;
+
+        public new InformationPatientViewModel Patient {
+
+            get {
+                return _patient;
+            }
+            set {
+                base.Patient = value as PatientBaseViewModel;
+                _patient = value;
+
+            }
+        }
 
 
         public List<string> TypPregnancyList { get; set; }

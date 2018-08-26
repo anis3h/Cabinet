@@ -38,11 +38,10 @@ namespace Cabinet.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Index(int id, FamilyViewModel familyViewModel)
+        public async Task<IActionResult> Index(FamilyViewModel familyViewModel)
         {
             try
             {
-                familyViewModel.Patient.Id = id;
                 await _patientViewModelService.UpdatePatientWithFamily(familyViewModel.Patient);
                 return RedirectToAction("Index", "Patient");
             }

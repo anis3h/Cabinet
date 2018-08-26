@@ -26,10 +26,17 @@ namespace Cabinet.Controllers
             return View(informationViewModel);
         }
 
-        [HttpPost("[controller]/[action]")]
-        public IActionResult Informations()
-        {
-            return View();
+        [HttpPost]
+        public async Task<IActionResult> Informations(InformationViewModel informationViewModel) {
+
+            try {
+                await _patientViewModelService.UpdatePatientWithInformation(informationViewModel.Patient);
+                return RedirectToAction("Index", "Patient");
+            }
+
+            catch (Exception exp) {
+                throw (exp);
+            }
         }
     }
 }

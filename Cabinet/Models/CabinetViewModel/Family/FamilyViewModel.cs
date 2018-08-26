@@ -9,6 +9,7 @@ namespace Cabinet.Models.CabinetViewModel.Family
     public class FamilyViewModel : BaseViewModel
     {
         FamilyPatientViewModel _patient;
+
         public new FamilyPatientViewModel Patient {
             get
             {

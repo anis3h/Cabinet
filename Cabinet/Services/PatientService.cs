@@ -74,7 +74,24 @@ namespace Cabinet.Services
             var patientSpecification = new PatientWithInformationsSpecification(row => row.Id == patientId);
             return await MapPatient<InformationPatientViewModel>(patientSpecification);
         }
-    
+
+        public async Task UpdatePatientWithInformation(InformationPatientViewModel informationPatientViewModel) {
+
+            try {
+
+                //var patient = _mapper.Map<InformationPatientViewModel, Patient>(informationPatientViewModel);
+                var patientSpecification = new PatientWithInformationsSpecification(row => row.Id == informationPatientViewModel.Id);
+                var patient = await GetPatientWithPatientSpecification(patientSpecification);
+                _mapper.Map(informationPatientViewModel, patient);
+
+
+                await _patientRepository.UpdateAsync(patient);
+            }
+            catch (Exception exp) {
+                Console.WriteLine(exp);
+            }
+        }
+
         public async Task Add(PatientViewModel patientViewModel)
         {
             try
@@ -160,5 +177,7 @@ namespace Cabinet.Services
             patientSpecification.AddIncludePatient();
             return (await _patientRepository.ListAsync(patientSpecification)).FirstOrDefault();
         }
+
+ 
     }
 }

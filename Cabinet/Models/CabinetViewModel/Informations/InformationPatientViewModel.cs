@@ -15,27 +15,35 @@ namespace Cabinet.Models.CabinetViewModel.Informations
         //[DisplayName("Geburtsdatum")]
         //public override DateTime DateOfBirth { get; set; }
 
-        public BornViewModel Born { get; set; }
         public string Adresse { get; set; }
         public string Tel { get; set; }
+
         private PregnancyViewModel _pregnancy;
+
         public PregnancyViewModel Pregnancy
         {
-
             get
             {
-                if (_pregnancy == null)
-                {
+                if (_pregnancy == null) {
                     _pregnancy = new PregnancyViewModel();
-                    return _pregnancy;
                 }
-                else
-                {
-                    return _pregnancy;
-                }
+                return _pregnancy;
             }
             set { _pregnancy = value; }
         }
 
+        private BornViewModel _born;
+
+        public BornViewModel Born {
+
+            get {
+                if (_born == null) {
+                    _born = new BornViewModel();
+                }
+                    return _born;
+
+            }
+            set { _born = value; }
+        }
     }
 }

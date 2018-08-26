@@ -21,12 +21,6 @@
                 <div class="content-wrapper">
                     @*asp-route-returnUrl="@ViewData["ReturnUrl"]"*@
 
-                    <div class="row">
-                        <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6">
-                            <b>Patient</b>
-                        </div>
-                    </div>
-
                     @await Html.PartialAsync("../Shared/_PatientPartialView.cshtml", Model)
 
 

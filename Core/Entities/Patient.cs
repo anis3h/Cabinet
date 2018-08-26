@@ -152,6 +152,7 @@ namespace Core.Entities
             }
 
 
+
         public Patient() { }
     }
 }

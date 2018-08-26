@@ -6,209 +6,210 @@
 @model InformationViewModel
 
 <div class="col-lg-12 control-section">
-    <div class="content-wrapper">
 
-         @await Html.PartialAsync("../Shared/_PatientPartialView.cshtml", Model.Patient)
-        
-        <div class="row">
-            <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6">
-                <div class="e-float-input">
-                    <input required="" type="text" asp-for="Patient.Adresse">
-                    <span class="e-float-line"></span>
-                    <label class="e-float-text" asp-for="Patient.Adresse">Adresse</label>
-                </div>
-            </div>
-            <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6">
-                <div class="e-float-input">
-                    <input required="" type="tel" asp-for="Patient.Tel">
-                    <span class="e-float-line"></span>
-                    <label class="e-float-text" asp-for="Patient.Tel">Tel</label>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12">
-                <div class="e-float-input e-input-group">
-                    <input required="" type="text">
-                    <span class="e-float-line"></span>
-                    <label class="e-float-text">Consultations</label>
-                    <span class="e-input-group-icon e-spin-down"></span>
-                </div>
-            </div>
-        </div>
+    <Form asp-controller="Informations" asp-action="Informations" method="post">
+        <div class="content-wrapper">
 
-        <div class="row">
-            <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6">
-                <b>Grossesse</b>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-4 col-sm-4 col-lg-4 col-md-4">
+            @await Html.PartialAsync("../Shared/_PatientPartialView.cshtml", Model)
 
-                <ejs-combobox id="pregnancyType" dataSource="@Model.TypPregnancyList" value="@Model.Patient.Pregnancy.TypPregnancy.ToString()" placeholder="Select" popupHeight="220px" change="pregnancyValueChange">
-                </ejs-combobox>
-            </div>
-        </div>
-
-        <div id="pregnancyRow" class="row" hidden="hidden">
-            <div class="col-xs-4 col-sm-4 col-lg-4 col-md-4">
-                <div class="e-float-input">
-                    <input required="" type="number" asp-for="Patient.Pregnancy.Week">
-                    <span class="e-float-line"></span>
-                    <label class="e-float-text">Semaine</label>
+            <div class="row">
+                <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6">
+                    <div class="e-float-input">
+                        <input required="" type="text" asp-for="Patient.Adresse">
+                        <span class="e-float-line"></span>
+                        <label class="e-float-text" asp-for="Patient.Adresse">Adresse</label>
+                    </div>
                 </div>
-            </div>
-            <div class="col-xs-4 col-sm-4 col-lg-4 col-md-4">
-                <div class="e-float-input">
-                    <input required="" type="number" asp-for="Patient.Pregnancy.Day">
-                    <span class="e-float-line"></span>
-                    <label class="e-float-text">Jour</label>
-                </div>
-            </div>
-            <div class="col-xs-4 col-sm-4 col-lg-4 col-md-4">
-                <div class="e-float-input">
-                    <ejs-combobox id="positionType" dataSource="@Model.TypPositionList" value="@Model.Patient.Pregnancy.Position.ToString()" placeholder="Select" popupHeight="220px">
-                    </ejs-combobox>
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6">
-                <b>Naissance</b>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-xs-4 col-sm-4 col-lg-4 col-md-4">
-                <div class="e-float-input">
-                    <input required="" type="number" asp-for="Patient.Born.BirthWeight">
-                    <span class="e-float-line"></span>
-                    <label class="e-float-text" asp-for="Patient.Born.BirthWeight">Poids de naissance en gr.</label>
-                </div>
-            </div>
-            <div class="col-xs-4 col-sm-4 col-lg-4 col-md-4">
-                <div class="e-float-input">
-                    <input required="" type="checkbox" asp-for="Patient.Born.Cry">
-                    <span class="e-float-input"></span>
-                    <label class="e-float-text" asp-for="Patient.Born.Cry">Cri immédiat</label>
-                </div>
-            </div>
-        </div>
-
-
-        <div class="row">
-            <div class="col-xs-4 col-sm-4 col-lg-4 col-md-4">
-                <div class="e-float-input">
-                    <input required="" type="number">
-                    <span class="e-float-line"></span>
-                    <label class="e-float-text">Allaitement</label>
-                </div>
-            </div>
-            <div class="col-xs-4 col-sm-4 col-lg-4 col-md-4">
-                <div class="e-float-input">
-                    <input required="" type="text">
-                    <span class="e-float-line"></span>
-                    <label class="e-float-text">Remarque</label>
-                </div>
-            </div>
-            <div class="col-xs-4 col-sm-4 col-lg-4 col-md-4">
-                <div class="e-float-input">
-                    <input required="" type="number">
-                    <span class="e-float-line"></span>
-                    <label class="e-float-text">Poid de Naissance</label>
-                </div>
-            </div>
-        </div>
-
-
-
-
-        <div class="row">
-            <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6">
-                <div class="e-input-group">
-                    <input class="e-input" placeholder="Password" value="password" type="password">
-                </div>
-            </div>
-            <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6">
-                <div class="e-input-group">
-                    <input class="e-input" placeholder="Enter Email" type="email">
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6">
-                <div class="e-input-group e-disabled">
-                    <input class="e-input" placeholder="Disabled" disabled="" type="text">
-                </div>
-            </div>
-            <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6">
-                <div class="e-input-group">
-                    <input class="e-input" placeholder="Enter Name" value="Readonly" readonly="" type="text">
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6">
-                <b>Validation States</b>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-4 col-sm-4 col-lg-4 col-md-4">
-                <div class="e-input-group e-success">
-                    <input class="e-input" placeholder="Success" type="text">
-                </div>
-            </div>
-            <div class="col-xs-4 col-sm-4 col-lg-4 col-md-4">
-                <div class="e-input-group e-warning">
-                    <input class="e-input" placeholder="Warning" type="text">
-                </div>
-            </div>
-            <div class="col-xs-4 col-sm-4 col-lg-4 col-md-4">
-                <div class="e-input-group e-error">
-                    <input class="e-input" placeholder="Error" type="text">
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6">
-                <b>Sizing</b>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6 custom-padding-05">
-                <div class="e-input-group e-small">
-                    <input class="e-input" placeholder="Small" type="text">
-                </div>
-            </div>
-            <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6">
-                <div class="e-input-group">
-                    <input class="e-input" placeholder="Normal" type="text">
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6">
-                <b>Input &amp; Elements</b>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6">
-                <div class="e-input-group">
-                    <input class="e-input" placeholder="Date of Birth" type="text">
-                    <span id="DOB" class="e-input-group-icon e-input-calendar"></span>
-                </div>
-            </div>
-            <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6">
-                <div class="e-input-group e-float-icon-left">
-                    <span class="e-input-group-icon e-input-picture"></span>
-                    <div class="e-input-in-wrap">
-                        <input class="e-input" placeholder="Upload Picture" type="text">
+                <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6">
+                    <div class="e-float-input">
+                        <input required="" type="tel" asp-for="Patient.Tel">
+                        <span class="e-float-line"></span>
+                        <label class="e-float-text" asp-for="Patient.Tel">Tel</label>
                     </div>
                 </div>
             </div>
+
+
+            <div class="row">
+                <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6">
+                    <b>Grossesse</b>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-4 col-sm-4 col-lg-4 col-md-4">
+
+                    <ejs-combobox id="pregnancyType" dataSource="@Model.TypPregnancyList" value="@Model.Patient.Pregnancy.TypPregnancy.ToString()" placeholder="Select" popupHeight="220px" change="pregnancyValueChange">
+                    </ejs-combobox>
+                </div>
+            </div>
+
+            <div id="pregnancyRow" class="row" hidden="hidden">
+                <div class="col-xs-4 col-sm-4 col-lg-4 col-md-4">
+                    <div class="e-float-input">
+                        <input required="" type="number" asp-for="Patient.Pregnancy.Week">
+                        <span class="e-float-line"></span>
+                        <label class="e-float-text">Semaine</label>
+                    </div>
+                </div>
+                <div class="col-xs-4 col-sm-4 col-lg-4 col-md-4">
+                    <div class="e-float-input">
+                        <input required="" type="number" asp-for="Patient.Pregnancy.Day">
+                        <span class="e-float-line"></span>
+                        <label class="e-float-text">Jour</label>
+                    </div>
+                </div>
+                <div class="col-xs-4 col-sm-4 col-lg-4 col-md-4">
+                    <div class="e-float-input">
+                        <ejs-combobox id="positionType" dataSource="@Model.TypPositionList" value="@Model.Patient.Pregnancy.Position.ToString()" placeholder="Select" popupHeight="220px">
+                        </ejs-combobox>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6">
+                    <b>Naissance</b>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-4 col-sm-4 col-lg-4 col-md-4">
+                    <div class="e-float-input">
+                        <input required="" type="number" asp-for="Patient.Born.BirthWeight">
+                        <span class="e-float-line"></span>
+                        <label class="e-float-text" asp-for="Patient.Born.BirthWeight">Poids de naissance en gr.</label>
+                    </div>
+                </div>
+                <div class="col-xs-4 col-sm-4 col-lg-4 col-md-4">
+                    <div class="e-float-input">
+                        <input required="" type="checkbox" asp-for="Patient.Born.Cry">
+                        <span class="e-float-input"></span>
+                        <label class="e-float-text" asp-for="Patient.Born.Cry">Cri immédiat</label>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-xs-4 col-sm-4 col-lg-4 col-md-4">
+                    <div class="e-float-input">
+                        <input required="" type="number" asp-for="Patient.Born.Allaitement">
+                        <span class="e-float-line"></span>
+                        <label class="e-float-text" asp-for="Patient.Born.Allaitement">Allaitement</label>
+                    </div>
+                </div>
+                <div class="col-xs-4 col-sm-4 col-lg-4 col-md-4">
+                    <div class="e-float-input">
+                        <input required="" type="text" asp-for="Patient.Born.RemarqueAllaitement">
+                        <span class="e-float-line"></span>
+                        <label class="e-float-text" asp-for="Patient.Born.RemarqueAllaitement">Remarque Allaitement</label>
+                    </div>
+                </div>
+                <div class="col-xs-4 col-sm-4 col-lg-4 col-md-4">
+                    <div class="e-float-input">
+                        <input required="" type="number">
+                        <span class="e-float-line"></span>
+                        <label class="e-float-text">Poid de Naissance</label>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            @*<div class="row">
+                <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6">
+                    <div class="e-input-group">
+                        <input class="e-input" placeholder="Password" value="password" type="password">
+                    </div>
+                </div>
+                <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6">
+                    <div class="e-input-group">
+                        <input class="e-input" placeholder="Enter Email" type="email">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6">
+                    <div class="e-input-group e-disabled">
+                        <input class="e-input" placeholder="Disabled" disabled="" type="text">
+                    </div>
+                </div>
+                <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6">
+                    <div class="e-input-group">
+                        <input class="e-input" placeholder="Enter Name" value="Readonly" readonly="" type="text">
+                    </div>
+                </div>
+            </div>*@
+            @*<div class="row">
+                <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6">
+                    <b>Validation States</b>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-4 col-sm-4 col-lg-4 col-md-4">
+                    <div class="e-input-group e-success">
+                        <input class="e-input" placeholder="Success" type="text">
+                    </div>
+                </div>
+                <div class="col-xs-4 col-sm-4 col-lg-4 col-md-4">
+                    <div class="e-input-group e-warning">
+                        <input class="e-input" placeholder="Warning" type="text">
+                    </div>
+                </div>
+                <div class="col-xs-4 col-sm-4 col-lg-4 col-md-4">
+                    <div class="e-input-group e-error">
+                        <input class="e-input" placeholder="Error" type="text">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6">
+                    <b>Sizing</b>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6 custom-padding-05">
+                    <div class="e-input-group e-small">
+                        <input class="e-input" placeholder="Small" type="text">
+                    </div>
+                </div>
+                <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6">
+                    <div class="e-input-group">
+                        <input class="e-input" placeholder="Normal" type="text">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6">
+                    <b>Input &amp; Elements</b>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6">
+                    <div class="e-input-group">
+                        <input class="e-input" placeholder="Date of Birth" type="text">
+                        <span id="DOB" class="e-input-group-icon e-input-calendar"></span>
+                    </div>
+                </div>
+                <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6">
+                    <div class="e-input-group e-float-icon-left">
+                        <span class="e-input-group-icon e-input-picture"></span>
+                        <div class="e-input-in-wrap">
+                            <input class="e-input" placeholder="Upload Picture" type="text">
+                        </div>
+                    </div>
+                </div>
+            </div>*@
+
+            <div class="row">
+                <div class="col-xs-1 col-sm-1 col-lg-1 col-md-1">
+                    <button type="submit" class="btn btn-default">Register</button>
+                </div>
+            </div>
         </div>
-    </div>
+
+    </Form>
 </div>
 
 <style>

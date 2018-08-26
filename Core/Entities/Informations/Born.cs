@@ -7,8 +7,10 @@ namespace Core.Entities.Informations
     public class Born : EntityBase
     {
         // Poids de naissance
+        // Gewicht bei der Geburt
         public int BirthWeight { get; set; }
         // Cris immediat?
+        // Sofort geschriehen
         public bool Cry { get; set; }
         // 0 - 10 Apgar 1 mn
         public int Apgar1mn { get; set; }
@@ -18,5 +20,14 @@ namespace Core.Entities.Informations
         public string Allaitement { get; set; }
         // Remarque
         public string RemarqueAllaitement { get; set; }
+       
     }
+}
+
+public enum Allaitement {
+
+    Maternelle,
+    Exclusif,
+    Mixte,
+    Artificiel
 }
