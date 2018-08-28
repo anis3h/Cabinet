@@ -19,9 +19,11 @@
                 <e-grid-columns>
                     <e-grid-column field="Id" headerText="Patient ID" visible="false" isPrimaryKey="true" textAlign="Right" validationRules="@(new { required=true})" width="100"></e-grid-column>
                     @*<e-grid-column id="Test" field="Id" headerText="Customer ID" width="150" textAlign="Center"></e-grid-column>*@
+                    <e-grid-column field="FileNumber" validationRules="@(new { required=true})" headerText="Numero de fiche" type="number" textAlign="Center" width="120"></e-grid-column>
                     <e-grid-column field="Name" validationRules="@(new { required=true})" headerText="Nom" textAlign="Center" width="120"></e-grid-column>
                     <e-grid-column field="FirstName" validationRules="@(new { required=true})" headerText="Prenom" textAlign="Center" width="120"></e-grid-column>
                     <e-grid-column field="DateOfBirth" validationRules="@(new { required=true})" headerText="Date de naissance" width="130" textAlign="Center" editType="datepickeredit" format="yMd"></e-grid-column>
+                    <e-grid-column field="Adresse" validationRules="@(new { required=true})" headerText="Ville" textAlign="Center" width="120"></e-grid-column>
                 </e-grid-columns>
             </ejs-grid>
         </div>
