@@ -9,7 +9,7 @@ namespace Core.Entities.Consultations
     {
         public DateTime Date { get; set; }
         public DateTime UpdateDate { get; set; }
-        public string Information { get; set; }
+      
         // List de maladie
         // Krankheitsliste
         public List<Illness> IllnessList { get; set; }
@@ -89,12 +89,20 @@ namespace Core.Entities.Consultations
         public bool? PalpationFoie { get; set; }
         // Palpation: Taille en TD
         public int? TailleMassePalpableFoie { get; set; }
-        /*Vessie*/
-        /*Erni*/
-        /*Testicule*/
-        /*Organes Génitaux*/
-        /*Articulation*/
-        /*Éxamen neurologique*/
+        /* Vessie*/
+        /* Erni*/
+        /* Testicule*/
+        /* Organes Génitaux*/
+        /* Articulation*/
+        /* Éxamen neurologique*/
+        /**/
+        // Synthèse (1 Phrase) Tab
+        public string Synthese{ get; set; }
+        // 3 lignes
+        // Diagnostic Détailé
+        public string Diagnostic { get; set; }
+        // 5 lignes
+        public string Traitement { get; set; }
         public Patient Patient { get; set; }
         public Consultation() : base() { }
     }
