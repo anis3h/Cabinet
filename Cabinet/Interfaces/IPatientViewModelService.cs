@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Cabinet.Models;
+using Cabinet.Models.CabinetViewModel.Consultations;
 using Cabinet.Models.CabinetViewModel.Family;
 using Cabinet.Models.CabinetViewModel.Informations;
 using Cabinet.Models.CabinetViewModel.Patient;
@@ -23,8 +24,9 @@ namespace Cabinet.Interfaces
         Task<FamilyPatientViewModel> GetPatientWithFamily(int patientId);
         Task UpdatePatientWithFamily(FamilyPatientViewModel patientViewModel);
 
-        // PatientWith Information
+        // Patient With Information
         Task<InformationPatientViewModel> GetPatientWithInformation(int patientId);
+        Task<ConsultationsPatientViewModel> GetPatientWithConsultations(int id);
 
         Task UpdatePatientWithInformation(InformationPatientViewModel informationPatientViewModel);
 

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Cabinet.Models.CabinetViewModel;
+using Cabinet.Models.CabinetViewModel.Consultations;
 using Cabinet.Models.CabinetViewModel.Family;
 using Cabinet.Models.CabinetViewModel.Informations;
 using Cabinet.Models.CabinetViewModel.Patient;
@@ -18,22 +19,22 @@ namespace Cabinet.Automapper
     {
         public MappingProfile()
         {
-            // Add as many of these lines as you need to map your objects
+            // Family
             CreateMap<Father, FatherViewModel>();
             CreateMap<Mother, MotherViewModel>();
             CreateMap<FatherViewModel, Father>();
             CreateMap<MotherViewModel, Mother>();
             CreateMap<Mother, MotherViewModel>();
-        
-          
-            CreateMap<Consultation, ConsultationViewModel>();
+            CreateMap<Sibling, SiblingViewModel>();
+            CreateMap<Brother, BrotherViewModel>();
+            CreateMap<Sister, SisterViewModel>();
+
+            
             CreateMap<Born, BornViewModel>();
             CreateMap<BornViewModel, Born>();
             CreateMap<Pregnancy, PregnancyViewModel>();
             CreateMap<PregnancyViewModel, Pregnancy>();
-            CreateMap<Sibling, SiblingViewModel>();
-            CreateMap<Brother, BrotherViewModel > ();
-            CreateMap<Sister, SisterViewModel>();
+         
             // CreateMap<(MotherViewModel, PatientVIewModel), List < PatientParent(Patient, Parent) > ();
 
             CreateMap<Patient, InformationPatientViewModel>();
@@ -41,11 +42,12 @@ namespace Cabinet.Automapper
             CreateMap<Patient, PatientViewModel>();
 
             CreateMap<PatientViewModel, Patient>().ForMember(row => row.PatientParents, opt => opt.Ignore());
-            CreateMap<FamilyPatientViewModel, Patient>()
-                .ForMember(row => row.PatientParents, opt => opt.Ignore());
-              //  .ForMember(row => row.Adresse, opt => opt.Ignore())
-              //  .ForMember(row => row.Tel, opt => opt.Ignore()); ;
+            CreateMap<FamilyPatientViewModel, Patient>().ForMember(row => row.PatientParents, opt => opt.Ignore());
             CreateMap<InformationPatientViewModel, Patient>().ForMember(row => row.PatientParents, opt => opt.Ignore());
+
+            // Consultations
+            CreateMap<Consultation, ConsultationViewModel>();
+            CreateMap<ConsultationViewModel, Consultation>();
         }
     }
 }

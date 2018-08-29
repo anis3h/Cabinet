@@ -1,18 +1,39 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace Core.Entities.Consultations
+namespace Cabinet.Models.CabinetViewModel.Consultations
 {
-    // Untersuchung
-    public class Consultation : EntityBase
+    public class ConsultationViewModel
     {
-        public DateTime Date { get; set; }
-        public DateTime UpdateDate { get; set; }
+        public int Id;
+        private DateTime _date;
+        public DateTime Date {
+            get
+            {
+                return DateTime.Now;
+            }
+            set {
+                _date = value;
+            }
+        }
+        private DateTime _updateDate;
+        public DateTime UpdateDate
+        {
+            get
+            {
+                return DateTime.Now;
+            }
+            set
+            {
+                _date = value;
+            }
+        }
+
         public string Information { get; set; }
         // List de maladie
         // Krankheitsliste
-        public List<Illness> IllnessList { get; set; }
         public int? Temperature { get; set; }
         // perimitre Cranien
         // Kopfmaße
@@ -77,7 +98,7 @@ namespace Core.Entities.Consultations
         public bool? MassePalpable { get; set; }
         // Taille en cm
         public int? TailleMassePalpableAbdomene { get; set; }
-        
+
         /* Rate */
         // Palpation: palpable: yes or not 
         public bool? PalpationRate { get; set; }
@@ -89,13 +110,6 @@ namespace Core.Entities.Consultations
         public bool? PalpationFoie { get; set; }
         // Palpation: Taille en TD
         public int? TailleMassePalpableFoie { get; set; }
-        /*Vessie*/
-        /*Erni*/
-        /*Testicule*/
-        /*Organes Génitaux*/
-        /*Articulation*/
-        /*Éxamen neurologique*/
-        public Patient Patient { get; set; }
-        public Consultation() : base() { }
+
     }
 }
