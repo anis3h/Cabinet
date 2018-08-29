@@ -26,7 +26,6 @@ namespace Cabinet.Interfaces
         // PatientWith Information
         Task<InformationPatientViewModel> GetPatientWithInformation(int patientId);
 
-        // TO DO Gerry
         Task UpdatePatientWithInformation(InformationPatientViewModel informationPatientViewModel);
 
 

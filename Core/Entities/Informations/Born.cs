@@ -17,7 +17,7 @@ namespace Core.Entities.Informations
         // 0 - 10 Apgar 5 mn
         public int Apgar5mn { get; set; }
         // maternelle exclusif/ mixte / Artificiel
-        public string Allaitement { get; set; }
+        public Allaitement Allaitement { get; set; }
         // Remarque
         public string RemarqueAllaitement { get; set; }
        
