@@ -1,5 +1,138 @@
 ﻿@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
-@{
+@using Syncfusion.EJ2
+@using Cabinet.Models.CabinetViewModel.Consultations
+@model ConsultationViewModel
+@section ControlsSection{
+    @{
+
+        
+    }
+
+    <div>
+        <Form asp-controller="Consultations" asp-action="Consultation" method="post">
+            @*<div class="row">
+                    <p> @Html.DisplayFor(model => model.Patient.DateOfBirth)</p>
+                    <p> @Html.DisplayNameFor(model => model.Patient.DateOfBirth)</p>
+                </div>*@
+            <div class="col-lg-12 control-section">
+
+                <div class="content-wrapper">
+                   
+                    <div class="row">
+                        <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6">
+                            <b>Père</b>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div>
+                            <input required="" type="hidden" asp-for="Id">
+                        </div>
+                        <div class="col-xs-4 col-sm-4 col-lg-4 col-md-4">
+                            <div class="e-float-input">
+                                <input required="" type="text" asp-for="Traitement">
+                                <span class="e-float-line"></span>
+                                <label class="e-float-text" asp-for="Traitement">Traitement:</label>
+                            </div>
+                        </div>
+                        <div class="col-xs-4 col-sm-4 col-lg-4 col-md-4">
+                            <div class="e-float-input">
+                                <input required="" type="number" asp-for="Temperature">
+                                <span class="e-float-line"></span>
+                                <label class="e-float-text" asp-for="Temperature">Temperature</label>
+                            </div>
+                        </div>                 
+                    <button type="submit" class="btn btn-default">Register</button>
+
+                </div>
+            </div>
+        </Form>
+    </div>
+}
+
+<style>
+    .e-input-picture::before {
+        content: '\e7b3';
+        font-family: e-icons;
+    }
+
+    .e-input-calendar::before {
+        content: '\e901';
+        font-family: e-icons;
+        font-size: 13px;
+    }
+
+    .content-wrapper {
+        width: 90%;
+        margin: 0 auto;
+        min-width: 85px;
+    }
+
+        .content-wrapper div.row {
+            padding: 15px 0px;
+        }
+
+    .custom-padding-05 {
+        padding-top: 5px;
+    }
+
+    @@media only screen and (max-width: 480px) {
+        .content-wrapper {
+            width: 92%;
+        }
+
+        .col-xs-6,
+        .col-xs-4,
+        .col-xs-12 {
+            padding: 10px 5px;
+            width: 100%;
+        }
+
+        .content-wrapper div.row {
+            padding: 0px;
+        }
+    }
+
+    #description td {
+        vertical-align: top;
+    }
+</style>
+
+@section Scripts {
+    <script>
+        var inputObject = {};
+        var input = document.querySelectorAll('.e-input-group .e-input,.e-float-input.e-input-group input');
+        var inputIcon = document.querySelectorAll('.e-input-group-icon');
+        var focusFn = function (index) {
+            return function () {
+                getParentNode(input[index]).classList.add('e-input-focus');
+            };
+        };
+        var blurFn = function (index) {
+            return function () { getParentNode(input[index]).classList.remove('e-input-focus'); };
+        };
+        var mouseupFn = function () {
+            var ele = this; setTimeout(function () {
+                ele.classList.remove('e-input-btn-ripple');
+            }, 500);
+        };
+        for (var i = 0; i < input.length; i++) {
+            input[i].addEventListener('focus', focusFn(i));
+            input[i].addEventListener('blur', blurFn(i));
+        }
+        for (var j = 0; j < inputIcon.length; j++) {
+            inputIcon[j].addEventListener('mousedown', function () {
+                this.classList.add('e-input-btn-ripple');
+            });
+            inputIcon[j].addEventListener('mouseup', mouseupFn);
+        }
+        function getParentNode(element) {
+            var parentNode = element.parentNode;
+            if (parentNode.classList.contains('e-input-in-wrap')) {
+                return parentNode.parentNode;
+            }
+            return parentNode;
+        }
+    </script>
 }

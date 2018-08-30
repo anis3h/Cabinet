@@ -30,8 +30,6 @@ namespace Cabinet.Models.CabinetViewModel.Consultations
                 _date = value;
             }
         }
-
-        public string Information { get; set; }
         // List de maladie
         // Krankheitsliste
         public int? Temperature { get; set; }
@@ -110,6 +108,12 @@ namespace Cabinet.Models.CabinetViewModel.Consultations
         public bool? PalpationFoie { get; set; }
         // Palpation: Taille en TD
         public int? TailleMassePalpableFoie { get; set; }
+        public string Synthese { get; set; }
+        // 3 lignes
+        // Diagnostic Détailé
+        public string Diagnostic { get; set; }
+        // 5 lignes
+        public string Traitement { get; set; }
 
     }
 }

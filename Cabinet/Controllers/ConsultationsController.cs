@@ -15,10 +15,12 @@ namespace Cabinet.Controllers
     public class ConsultationsController : Controller
     {
         IPatientViewModelService _patientViewModelService;
+        IConsultationViewModelService _consultationViewModelService;
 
-        public ConsultationsController(IPatientViewModelService patientViewModelService)
+        public ConsultationsController(IPatientViewModelService patientViewModelService, IConsultationViewModelService consultationViewModelService)
         {
             _patientViewModelService = patientViewModelService;
+            _consultationViewModelService = consultationViewModelService;
         }
         [HttpGet("[controller]/[action]/{id}")]
         public async Task<IActionResult> Index([FromRoute] int id)
@@ -35,37 +37,70 @@ namespace Cabinet.Controllers
                 throw (exp);
             }
         }
-        [HttpPost("[controller]/[action]/{id}")]
-        public async Task<IActionResult> Consultations(int id, [FromBody]DataManagerRequest dm)
-        {
-            var patientViewModel = await _patientViewModelService.GetPatientWithConsultations(id); 
-            //  return Json(patientViewModel);
 
-            IEnumerable<ConsultationViewModel> DataSource = patientViewModel.Consultations;
-            DataOperations operation = new DataOperations();
-            if (dm.Search != null && dm.Search.Count > 0)
+        [HttpGet("[controller]/[action]/{id}")]
+        public async Task<IActionResult> Consultation([FromRoute] int id)
+        {
+            try
             {
-                DataSource = operation.PerformSearching(DataSource, dm.Search);  //Search
+                var consultationViewModel = new ConsultationViewModel();
+                consultationViewModel = await _consultationViewModelService.GetConsultation(id);
+                return View(consultationViewModel);
             }
-            if (dm.Sorted != null && dm.Sorted.Count > 0) //Sorting
+            catch (Exception exp)
             {
-                DataSource = operation.PerformSorting(DataSource, dm.Sorted);
+                throw (exp);
             }
-            if (dm.Where != null && dm.Where.Count > 0) //Filtering
-            {
-                DataSource = operation.PerformFiltering(DataSource, dm.Where, dm.Where[0].Operator);
-            }
-            int count = DataSource.Cast<ConsultationViewModel>().Count();
-            if (dm.Skip != 0)
-            {
-                DataSource = operation.PerformSkip(DataSource, dm.Skip);         //Paging
-            }
-            if (dm.Take != 0)
-            {
-                DataSource = operation.PerformTake(DataSource, dm.Take);
-            }
-            return dm.RequiresCounts ? Json(new { result = DataSource, count = count }) : Json(DataSource);
         }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Consultation(ConsultationViewModel consultationViewModel)
+        {
+            try
+            {
+                await _consultationViewModelService.Update(consultationViewModel);
+                return RedirectToAction("Index", "Consultations");
+            }
+
+            catch (Exception exp)
+            {
+                throw (exp);
+            }
+        }
+
+        //[HttpPost("[controller]/[action]/{id}")]
+        //public async Task<IActionResult> Consultations(int id, [FromBody]DataManagerRequest dm)
+        //{
+        //    var patientViewModel = await _patientViewModelService.GetPatientWithConsultations(id); 
+        //    //  return Json(patientViewModel);
+
+        //    IEnumerable<ConsultationViewModel> DataSource = patientViewModel.Consultations;
+        //    DataOperations operation = new DataOperations();
+        //    if (dm.Search != null && dm.Search.Count > 0)
+        //    {
+        //        DataSource = operation.PerformSearching(DataSource, dm.Search);  //Search
+        //    }
+        //    if (dm.Sorted != null && dm.Sorted.Count > 0) //Sorting
+        //    {
+        //        DataSource = operation.PerformSorting(DataSource, dm.Sorted);
+        //    }
+        //    if (dm.Where != null && dm.Where.Count > 0) //Filtering
+        //    {
+        //        DataSource = operation.PerformFiltering(DataSource, dm.Where, dm.Where[0].Operator);
+        //    }
+        //    int count = DataSource.Cast<ConsultationViewModel>().Count();
+        //    if (dm.Skip != 0)
+        //    {
+        //        DataSource = operation.PerformSkip(DataSource, dm.Skip);         //Paging
+        //    }
+        //    if (dm.Take != 0)
+        //    {
+        //        DataSource = operation.PerformTake(DataSource, dm.Take);
+        //    }
+        //    return dm.RequiresCounts ? Json(new { result = DataSource, count = count }) : Json(DataSource);
+        //}
 
         //[HttpPost]
         //[AllowAnonymous]

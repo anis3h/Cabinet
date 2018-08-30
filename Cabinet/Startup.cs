@@ -47,6 +47,7 @@ namespace Cabinet
             services.AddScoped(typeof(IAsyncRepository<>), typeof(EfRepository<>));
 
             services.AddScoped<IPatientViewModelService, PatientService>();
+            services.AddScoped<IConsultationViewModelService, ConsultationViewModelService>();
             services.AddScoped<PatientService>();
             services.AddMvc().AddJsonOptions(options => options.SerializerSettings.ContractResolver = new DefaultContractResolver());
             services.AddAutoMapper();

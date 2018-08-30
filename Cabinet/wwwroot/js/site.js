@@ -1,6 +1,6 @@
 ﻿// Write your JavaScript code.
 
-function toolbarClick(args) {
+function toolbarClickPatient(args) {
 
     if (args.item.id === 'editInformations') {
         
@@ -41,5 +41,17 @@ function pregnancyValueChange() {
         pregnancyRow.hidden = true;
     } else {
         pregnancyRow.hidden = false;
+    }
+}
+
+function toolbarClickConsultation(args) {
+
+    if (args.item.id === 'addConsultation') {
+
+        var gridInformation = document.getElementById("GridConsultation").ej2_instances[0];
+        var rowInformation = gridInformation.getSelectedRecords();
+        //  window.location = 
+        window.location.pathname = "";
+        window.location.assign(window.location.origin + '/Consultations/Consultation' + '/' + rowInformation[0].Id);
     }
 }

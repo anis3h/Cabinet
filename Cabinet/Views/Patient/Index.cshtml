@@ -11,7 +11,7 @@
 
     <div>
         <div>
-            <ejs-grid id="Grid" locale="fr-FR" toolbar=toolbarItems toolbarClick="toolbarClick" allowPaging="true" allowSorting="true" allowFiltering="true" allowGrouping="true">
+            <ejs-grid id="Grid" locale="fr-FR" toolbar=toolbarItems toolbarClick="toolbarClickPatient" allowPaging="true" allowSorting="true" allowFiltering="true" allowGrouping="true">
                 <e-data-manager url="/Patient/Patients" insertUrl="/Patient/Insert" updateUrl="/Patient/Update" removeUrl="/Patient/Delete" adaptor="UrlAdaptor"></e-data-manager>
                 <e-grid-editSettings allowAdding="true" allowDeleting="true" allowEditing="true" mode="Dialog" showConfirmDialog="true" showDeleteConfirmDialog="true"></e-grid-editSettings>
                 <e-grid-selectionsettings type="Single" mode="Row"></e-grid-selectionsettings>
