@@ -10,10 +10,13 @@ namespace Core.Entities.Informations
     public class Pregnancy : EntityBase
     {
         public TypPregnancy TypPregnancy { get; set; }
+        // Mois
+        public int Month { get; set; }
         // Semaine
         public int? Week { get; set; }
         // Jour
         public int? Day { get; set; }
+
         // Position de naissance
         // Babispositionierung
         public TypPosition? TypPosition {get; set;}

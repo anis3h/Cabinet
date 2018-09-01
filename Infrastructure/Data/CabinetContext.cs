@@ -96,6 +96,13 @@ namespace Infrastructure.Data
                 .HasConversion(
                     v => v.ToString(),
                     v => (TypPosition)Enum.Parse(typeof(TypPosition), v));
+
+            modelBuilder
+                .Entity<Born>()
+                .Property(e => e.Allaitement)
+                .HasConversion(
+                    v => v.ToString(),
+                    v => (Allaitement)Enum.Parse(typeof(Allaitement), v));
         }
     }
 }

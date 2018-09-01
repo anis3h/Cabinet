@@ -15,7 +15,7 @@ namespace Cabinet.Models.CabinetViewModel.Informations
         //[DisplayName("Geburtsdatum")]
         //public override DateTime DateOfBirth { get; set; }
 
-        public string Adresse { get; set; }
+
         public string Tel { get; set; }
 
         private PregnancyViewModel _pregnancy;

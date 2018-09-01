@@ -10,6 +10,10 @@ namespace Cabinet.Models.CabinetViewModel.Informations
 
     public class InformationViewModel : BaseViewModel
     {
+        public InformationViewModel() {
+
+            GetEnumTypesToString();
+        }
 
         public InformationPatientViewModel _patient;
 
@@ -25,19 +29,17 @@ namespace Cabinet.Models.CabinetViewModel.Informations
             }
         }
 
-
         public List<string> TypPregnancyList { get; set; }
 
         public List<string> TypPositionList { get; set; }
 
-        public InformationViewModel() {
-             
-            GetEnumTypesToString();
-        }
+        public List<string> AllaitementList { get; set; }
+
 
         public void GetEnumTypesToString() {
             TypPregnancyList = Enum.GetNames(typeof(TypPregnancy)).ToList();
-            TypPositionList = Enum.GetNames(typeof(TypPosition)).ToList();          
+            TypPositionList = Enum.GetNames(typeof(TypPosition)).ToList();
+            AllaitementList = Enum.GetNames(typeof(Allaitement)).ToList();
         }
     }
 }

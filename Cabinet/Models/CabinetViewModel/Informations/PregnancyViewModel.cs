@@ -10,18 +10,20 @@ namespace Cabinet.Models.CabinetViewModel.Informations
     {
 
         [Required]
-        public TypPregnancy TypPregnancy { get; set; }
+        public TypPregnancy TypPregnancy { get;
+            set; }
 
+        // Mois
+        public int Month { get; set; }
         // Semaine
-        public int? Week { get; set; }
+        public int? Week { get;
+            set; }
         // Jour
         public int? Day { get; set; }
         // Position de naissance
         // Babispositionierung
-        [Required]
+  
         public TypPosition? Position { get; set; }
-
-
 
     }
 }
