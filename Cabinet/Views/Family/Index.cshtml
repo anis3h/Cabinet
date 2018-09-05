@@ -27,7 +27,7 @@
                 <div class="row">
                     <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6">
                         <div class="e-float-input form-group">
-                            <input required="" type="number" asp-for="Patient.Fraternity">
+                            <input type="number" asp-for="Patient.Fraternity">
                             <span class="e-float-line"></span>
                             <label class="e-float-text" asp-for="Patient.Fraternity">Fraternité</label>
                         </div>
@@ -40,18 +40,18 @@
                 </div>
                 <div class="row">
                     <div>
-                        <input required="" type="hidden" asp-for="Patient.Father.Id">
+                        <input type="hidden" asp-for="Patient.Father.Id">
                     </div>
                     <div class="col-xs-4 col-sm-4 col-lg-4 col-md-4">
                         <div class="e-float-input">
-                            <input required="" type="text" asp-for="Patient.Father.Name">
+                            <input type="text" asp-for="Patient.Father.Name">
                             <span class="e-float-line"></span>
                             <label class="e-float-text" asp-for="Patient.Father.Name">Nom</label>
                         </div>
                     </div>
                     <div class="col-xs-4 col-sm-4 col-lg-4 col-md-4">
                         <div class="e-float-input">
-                            <input required="" type="text" asp-for="Patient.Father.FirstName">
+                            <input type="text" asp-for="Patient.Father.FirstName">
                             <span class="e-float-line"></span>
                             <label class="e-float-text" asp-for="Patient.Father.FirstName">Prénom</label>
                         </div>
@@ -61,21 +61,21 @@
                 <div class="row">
                     <div class="col-xs-4 col-sm-4 col-lg-4 col-md-4">
                         <div class="e-float-input">
-                            <input required="" type="text" asp-for="Patient.Father.Profession">
+                            <input type="text" asp-for="Patient.Father.Profession">
                             <span class="e-float-line"></span>
                             <label class="e-float-text" asp-for="Patient.Father.Profession">Profession</label>
                         </div>
                     </div>
                     <div class="col-xs-4 col-sm-4 col-lg-4 col-md-4">
                         <div class="e-float-input">
-                            <input required="" type="text" asp-for="Patient.Father.Adresse">
+                            <input type="text" asp-for="Patient.Father.Adresse">
                             <span class="e-float-line"></span>
                             <label class="e-float-text" asp-for="Patient.Father.Adresse">Adresse</label>
                         </div>
                     </div>
                     <div class="col-xs-4 col-sm-4 col-lg-4 col-md-4">
                         <div class="e-float-input">
-                            <input required="" type="tel" asp-for="Patient.Father.Tel">
+                            <input type="tel" asp-for="Patient.Father.Tel">
                             <span class="e-float-line"></span>
                             <label class="e-float-text" asp-for="Patient.Father.Tel">Tel</label>
                         </div>
@@ -89,25 +89,25 @@
                 </div>
                 <div class="row">
                     <div>
-                        <input required="" type="hidden" asp-for="Patient.Mother.Id">
+                        <input type="hidden" asp-for="Patient.Mother.Id">
                     </div>
                     <div class="col-xs-4 col-sm-4 col-lg-4 col-md-4">
                         <div class="e-float-input">
-                            <input required="" type="text" asp-for="Patient.Mother.Name">
+                            <input type="text" asp-for="Patient.Mother.Name">
                             <span class="e-float-line"></span>
                             <label class="e-float-text" asp-for="Patient.Mother.Name">Nom</label>
                         </div>
                     </div>
                     <div class="col-xs-4 col-sm-4 col-lg-4 col-md-4">
                         <div class="e-float-input">
-                            <input required="" type="text" asp-for="Patient.Mother.FirstName">
+                            <input type="text" asp-for="Patient.Mother.FirstName">
                             <span class="e-float-line"></span>
                             <label class="e-float-text" asp-for="Patient.Mother.FirstName">Prénom</label>
                         </div>
                     </div>
                     <div class="col-xs-4 col-sm-4 col-lg-4 col-md-4">
                         <div class="e-float-input">
-                            <input required="" type="text" asp-for="Patient.Mother.MaidenName">
+                            <input  type="text" asp-for="Patient.Mother.MaidenName">
                             <span class="e-float-line"></span>
                             <label class="e-float-text" asp-for="Patient.Mother.MaidenName">Nom de jeune fille</label>
                         </div>
@@ -116,21 +116,21 @@
                 <div class="row">
                     <div class="col-xs-4 col-sm-4 col-lg-4 col-md-4">
                         <div class="e-float-input">
-                            <input required="" type="text" asp-for="Patient.Mother.Profession">
+                            <input type="text" asp-for="Patient.Mother.Profession">
                             <span class="e-float-line"></span>
                             <label class="e-float-text" asp-for="Patient.Mother.Profession">Profession</label>
                         </div>
                     </div>
                     <div class="col-xs-4 col-sm-4 col-lg-4 col-md-4">
                         <div class="e-float-input">
-                            <input required="" type="text" asp-for="Patient.Mother.Adresse">
+                            <input type="text" asp-for="Patient.Mother.Adresse">
                             <span class="e-float-line"></span>
                             <label class="e-float-text" asp-for="Patient.Mother.Adresse">Adresse</label>
                         </div>
                     </div>
                     <div class="col-xs-4 col-sm-4 col-lg-4 col-md-4">
                         <div class="e-float-input">
-                            <input required="" type="tel" asp-for="Patient.Mother.Tel">
+                            <input  type="tel" asp-for="Patient.Mother.Tel">
                             <span class="e-float-line"></span>
                             <label class="e-float-text" asp-for="Patient.Mother.Tel">Tel</label>
                         </div>
@@ -172,11 +172,11 @@
             </div>
         </div>
     </Form>
-    <div class="row">
+    @*<div class="row">
         <div class="col-md-1 offset-md-11">
             <button type="submit" class="btn btn-primary" onclick="testClickButton()">Register</button>
         </div>
-    </div>
+    </div>*@
 </div>
     
 }
