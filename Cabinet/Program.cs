@@ -17,9 +17,23 @@ namespace Cabinet
             BuildWebHost(args).Run();
         }
 
-        public static IWebHost BuildWebHost(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
+        public static IWebHost BuildWebHost(string[] args)
+        {
+            var config = new ConfigurationBuilder()
+             .AddCommandLine(args)
+             .AddJsonFile("appsettings.json", true)
+             .Build();
+
+            return WebHost.CreateDefaultBuilder(args)
+                .UseIISIntegration()
+                .UseKestrel()
+                .UseConfiguration(config)
                 .UseStartup<Startup>()
                 .Build();
+        }
+            //=>
+        //    WebHost.CreateDefaultBuilder(args)
+        //        .UseStartup<Startup>()
+        //        .Build();
     }
 }

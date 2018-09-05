@@ -15,6 +15,10 @@ namespace Cabinet.Models.CabinetViewModel.Family
         public string Information { get; set; }
 
         public DateTime? DateOfBirth { get; set; }
+
+        public virtual string FraternityType { get; }
+
+        public string Fraternity { get; set; }
       //  public PatientViewModel Patient { get; set; }
     }
 }

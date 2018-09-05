@@ -25,11 +25,19 @@ namespace Cabinet.Automapper
             CreateMap<FatherViewModel, Father>();
             CreateMap<MotherViewModel, Mother>();
             CreateMap<Mother, MotherViewModel>();
-            CreateMap<Sibling, SiblingViewModel>();
+
+            CreateMap<Sibling, SiblingViewModel>()
+                .Include<Brother, BrotherViewModel>()
+                .Include<Sister, SisterViewModel>();
             CreateMap<Brother, BrotherViewModel>();
             CreateMap<Sister, SisterViewModel>();
 
-            
+            CreateMap<SiblingViewModel, Sibling>()
+                .Include<BrotherViewModel, Brother>()
+                .Include<SisterViewModel,Sister>();
+            CreateMap<BrotherViewModel, Brother>();
+            CreateMap<SisterViewModel, Sister>();
+
             CreateMap<Born, BornViewModel>();
             CreateMap<BornViewModel, Born>();
             CreateMap<Pregnancy, PregnancyViewModel>();

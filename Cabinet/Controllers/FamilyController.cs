@@ -14,11 +14,14 @@ namespace Cabinet.Controllers
     public class FamilyController : Controller
     {
         IPatientViewModelService _patientViewModelService;
+        // 
+        private List<SiblingViewModel> _siblings;
 
         public FamilyController(IPatientViewModelService patientViewModelService)
         {
             _patientViewModelService = patientViewModelService;
         }
+
         [HttpGet("[controller]/[action]/{id}")]
         public async Task<IActionResult> Index([FromRoute] int id)
         {
@@ -26,7 +29,7 @@ namespace Cabinet.Controllers
             {
                 var familyViewModel = new FamilyViewModel();
                 familyViewModel.Patient = await _patientViewModelService.GetPatientWithFamily(id);
-                ViewBag.Data = familyViewModel.Patient.Siblings;
+               // ViewBag.Data = familyViewModel.Patient.Siblings;
                 return View(familyViewModel);
             }
             catch (Exception exp)
@@ -38,11 +41,12 @@ namespace Cabinet.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Index(FamilyViewModel familyViewModel)
+        public  async Task<IActionResult> Index(FamilyViewModel familyViewModel)
         {
             try
             {
-                await _patientViewModelService.UpdatePatientWithFamily(familyViewModel.Patient);
+                familyViewModel.Patient.Siblings = _siblings;
+                //await _patientViewModelService.UpdatePatientWithFamily(familyViewModel.Patient);
                 return RedirectToAction("Index", "Patient");
             }
            
@@ -52,6 +56,23 @@ namespace Cabinet.Controllers
             }
         }
 
-      
+
+        [HttpPost]
+        [AllowAnonymous]
+      //  [ValidateAntiForgeryToken]
+        public void SiblingsFromGrid([FromBody] List<SiblingViewModel> data)
+        {
+            try
+            {
+                _siblings = data;
+                 
+            }
+
+            catch (Exception exp)
+            {
+                throw (exp);
+            }
+        }
+
     }
 }

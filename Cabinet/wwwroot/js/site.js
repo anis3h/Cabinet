@@ -55,3 +55,38 @@ function toolbarClickConsultation(args) {
         window.location.assign(window.location.origin + '/Consultations/Consultation' + '/' + rowInformation[0].Id);
     }
 }
+
+function testClickButton(args) {
+    var gridInformation = document.getElementById("GridSiblings").ej2_instances[0];
+    var form = document.getElementById("formFamily");
+
+    var data = $('#formFamily').serialize();
+    
+
+    $.ajax({
+        type: 'POST',
+        accepts: 'application/json',
+        url: '/Family/SiblingsFromGrid',
+        contentType: 'application/json',
+        data: JSON.stringify(gridInformation.dataSource),
+        error: function (jqXHR, textStatus, errorThrown) {
+            alert('here');
+        },
+        success: function (result) {
+            getData();
+            $('#add-name').val('');
+        }
+    });
+
+
+    //$.ajax({
+    //    url: "/Family/Data",
+    //    type: "POST",
+    //    datatype: "json",
+    //    contentType: 'application/json',
+    //    data: JSON.stringify({ gid: JSON.stringify(gridInformation.dataSource) }),
+    //    success: function (result) {
+    //        debugger;
+    //    }
+    //});  
+}

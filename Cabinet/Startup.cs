@@ -33,6 +33,11 @@ namespace Cabinet
         {
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.Configure<IISOptions>(options =>
+            {
+
+                options.AutomaticAuthentication = true;
+            });
 
             services.AddDbContext<CabinetContext>(options => options.UseSqlServer(Configuration.GetConnectionString("CabinetConnection")));
 
@@ -56,7 +61,8 @@ namespace Cabinet
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("@31362e322e30gl9DaqAIDbQnW8qzhE5dNdp53oBRcySLZldFTkTflmM=");
+            //Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("@31362e322e30gl9DaqAIDbQnW8qzhE5dNdp53oBRcySLZldFTkTflmM=");
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MjA3MjRAMzEzNjJlMzIyZTMwRHFNenA4Q3M3RlJUblN5OHN5TG9hZWJQVVpPa29IM09JMW1OYnd0c04yWT0=");
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -66,7 +72,9 @@ namespace Cabinet
             else
             {
                 app.UseExceptionHandler("/Patient/Error");
+                app.UseHsts();
             }
+            app.UseHttpsRedirection();
 
             app.UseStaticFiles();
 
