@@ -13,7 +13,7 @@ using Syncfusion.EJ2.Base;
 
 namespace Cabinet.Controllers
 {
-   
+    [Authorize]
     public class PatientController : Controller
     {
         IPatientViewModelService _patientViewModelService;
@@ -24,7 +24,7 @@ namespace Cabinet.Controllers
         }
 
         // GET: /<controller>/
-        [Authorize]
+     
         public IActionResult Index()
         {
             return  View();
