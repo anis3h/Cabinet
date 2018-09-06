@@ -36,7 +36,7 @@ namespace Cabinet
             services.Configure<IISOptions>(options =>
             {
 
-                options.AutomaticAuthentication = true;
+                options.AutomaticAuthentication = false;
             });
 
             services.AddDbContext<CabinetContext>(options => options.UseSqlServer(Configuration.GetConnectionString("CabinetConnection")));
