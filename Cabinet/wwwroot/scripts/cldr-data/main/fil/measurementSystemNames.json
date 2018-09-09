@@ -1,0 +1,20 @@
+{
+  "main": {
+    "fil": {
+      "identity": {
+        "version": {
+          "_number": "$Revision: 13911 $",
+          "_cldrVersion": "33"
+        },
+        "language": "fil"
+      },
+      "localeDisplayNames": {
+        "measurementSystemNames": {
+          "metric": "Metriko",
+          "UK": "UK",
+          "US": "US"
+        }
+      }
+    }
+  }
+}

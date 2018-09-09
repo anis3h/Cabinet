@@ -1,0 +1,23 @@
+{
+  "main": {
+    "tr": {
+      "identity": {
+        "version": {
+          "_number": "$Revision: 13920 $",
+          "_cldrVersion": "33"
+        },
+        "language": "tr"
+      },
+      "contextTransforms": {
+        "relative": {
+          "stand-alone": "titlecase-firstword",
+          "uiListOrMenu": "titlecase-firstword"
+        },
+        "typographicNames": {
+          "stand-alone": "titlecase-firstword",
+          "uiListOrMenu": "titlecase-firstword"
+        }
+      }
+    }
+  }
+}

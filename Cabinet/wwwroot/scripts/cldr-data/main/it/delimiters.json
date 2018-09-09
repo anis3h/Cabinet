@@ -1,0 +1,19 @@
+{
+  "main": {
+    "it": {
+      "identity": {
+        "version": {
+          "_number": "$Revision: 13940 $",
+          "_cldrVersion": "33"
+        },
+        "language": "it"
+      },
+      "delimiters": {
+        "quotationStart": "«",
+        "quotationEnd": "»",
+        "alternateQuotationStart": "“",
+        "alternateQuotationEnd": "”"
+      }
+    }
+  }
+}

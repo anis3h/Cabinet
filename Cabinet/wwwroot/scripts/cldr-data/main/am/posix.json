@@ -1,0 +1,19 @@
+{
+  "main": {
+    "am": {
+      "identity": {
+        "version": {
+          "_number": "$Revision: 13911 $",
+          "_cldrVersion": "33"
+        },
+        "language": "am"
+      },
+      "posix": {
+        "messages": {
+          "yesstr": "አዎን:ዎ",
+          "nostr": "አይ:ይ"
+        }
+      }
+    }
+  }
+}

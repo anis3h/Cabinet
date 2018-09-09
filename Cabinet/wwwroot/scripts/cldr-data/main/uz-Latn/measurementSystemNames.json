@@ -1,0 +1,21 @@
+{
+  "main": {
+    "uz-Latn": {
+      "identity": {
+        "version": {
+          "_number": "$Revision: 13839 $",
+          "_cldrVersion": "33"
+        },
+        "language": "uz",
+        "script": "Latn"
+      },
+      "localeDisplayNames": {
+        "measurementSystemNames": {
+          "metric": "Metrik",
+          "UK": "Buyuk Britaniya",
+          "US": "AQSH"
+        }
+      }
+    }
+  }
+}

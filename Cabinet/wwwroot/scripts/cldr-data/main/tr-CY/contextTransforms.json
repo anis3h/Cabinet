@@ -1,0 +1,24 @@
+{
+  "main": {
+    "tr-CY": {
+      "identity": {
+        "version": {
+          "_number": "$Revision: 13839 $",
+          "_cldrVersion": "33"
+        },
+        "language": "tr",
+        "territory": "CY"
+      },
+      "contextTransforms": {
+        "relative": {
+          "stand-alone": "titlecase-firstword",
+          "uiListOrMenu": "titlecase-firstword"
+        },
+        "typographicNames": {
+          "stand-alone": "titlecase-firstword",
+          "uiListOrMenu": "titlecase-firstword"
+        }
+      }
+    }
+  }
+}

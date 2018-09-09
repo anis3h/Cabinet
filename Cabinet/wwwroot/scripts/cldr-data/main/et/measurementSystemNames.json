@@ -1,0 +1,20 @@
+{
+  "main": {
+    "et": {
+      "identity": {
+        "version": {
+          "_number": "$Revision: 13911 $",
+          "_cldrVersion": "33"
+        },
+        "language": "et"
+      },
+      "localeDisplayNames": {
+        "measurementSystemNames": {
+          "metric": "meetermõõdustik",
+          "UK": "inglise mõõdustik",
+          "US": "USA mõõdustik"
+        }
+      }
+    }
+  }
+}

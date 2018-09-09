@@ -17,7 +17,7 @@ namespace Infrastructure.Data
     public class EfRepository<T> : IRepository<T>, IAsyncRepository<T> where T : EntityBase
     {
         protected readonly CabinetContext _dbContext;
-
+        T entity;
         public EfRepository(CabinetContext dbContext)
         {
             _dbContext = dbContext;
@@ -87,6 +87,7 @@ namespace Infrastructure.Data
 
         public T Add(T entity)
         {
+            entity.InsertDate = DateTime.Now;
             _dbContext.Set<T>().Add(entity);
             _dbContext.SaveChanges();
 
@@ -95,6 +96,7 @@ namespace Infrastructure.Data
 
         public async Task<T> AddAsync(T entity)
         {
+            entity.InsertDate = DateTime.Now;
             _dbContext.Set<T>().Add(entity);
             await _dbContext.SaveChangesAsync();
 
@@ -103,11 +105,13 @@ namespace Infrastructure.Data
 
         public void Update(T entity)
         {
+            entity.UpdateDate = DateTime.Now;
             _dbContext.Entry(entity).State = EntityState.Modified;
             _dbContext.SaveChanges();
         }
         public async Task UpdateAsync(T entity)
         {
+            entity.UpdateDate = DateTime.Now;
             _dbContext.Entry(entity).State = EntityState.Modified;
             await _dbContext.SaveChangesAsync();
         }

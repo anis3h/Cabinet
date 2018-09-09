@@ -1,0 +1,20 @@
+{
+  "main": {
+    "is": {
+      "identity": {
+        "version": {
+          "_number": "$Revision: 13911 $",
+          "_cldrVersion": "33"
+        },
+        "language": "is"
+      },
+      "localeDisplayNames": {
+        "measurementSystemNames": {
+          "metric": "metrakerfi",
+          "UK": "breskt",
+          "US": "bandarískt"
+        }
+      }
+    }
+  }
+}

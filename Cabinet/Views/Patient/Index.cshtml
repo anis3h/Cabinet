@@ -9,22 +9,23 @@
         List<object> toolbarItems = new List<object>() { "Add", "Edit", "Update", "Delete", "Search", new { text = "Informations", tooltipText = "Edit Informations", prefixIcon = "e-expand", id = "editInformations" }, new { text = "Famille", tooltipText = "Edit Family", prefixIcon = "e-expand", id = "editFamily" }, new { text = "Consultations", tooltipText = "Edit Consultations", prefixIcon = "e-expand", id = "editConsultations" }, "Print" };
     }
 
-<div>
-    <ejs-grid id="Grid" locale="fr-FR" toolbar=toolbarItems toolbarClick="toolbarClickPatient" allowPaging="true" allowSorting="true" allowFiltering="true">
-        <e-data-manager url="/Patient/Patients" insertUrl="/Patient/Insert" updateUrl="/Patient/Update" removeUrl="/Patient/Delete" adaptor="UrlAdaptor"></e-data-manager>
-        <e-grid-editSettings allowAdding="true" allowDeleting="true" allowEditing="true" mode="Dialog" showConfirmDialog="true" showDeleteConfirmDialog="true"></e-grid-editSettings>
-        <e-grid-selectionsettings type="Single" mode="Row"></e-grid-selectionsettings>
-        <e-grid-pagesettings pageCount="4" pageSizes="true"></e-grid-pagesettings>
-        <e-grid-columns>
-            <e-grid-column field="Id" headerText="Patient ID" visible="false" isPrimaryKey="true" textAlign="Right" validationRules="@(new { required=true})" width="100"></e-grid-column>
-            @*<e-grid-column id="Test" field="Id" headerText="Customer ID" width="150" textAlign="Center"></e-grid-column>*@
-            <e-grid-column field="FileNumber" validationRules="@(new { required=true})" headerText="Numero de fiche" type="number" textAlign="Center" width="120"></e-grid-column>
-            <e-grid-column field="Name" validationRules="@(new { required=true})" headerText="Nom" textAlign="Center" width="120"></e-grid-column>
-            <e-grid-column field="FirstName" validationRules="@(new { required=true})" headerText="Prenom" textAlign="Center" width="120"></e-grid-column>
-            <e-grid-column field="DateOfBirth" validationRules="@(new { required=true})" headerText="Date de naissance" width="130" textAlign="Center" editType="datepickeredit" format="yMd"></e-grid-column>
-            <e-grid-column field="Adresse" validationRules="@(new { required=true})" headerText="Ville" textAlign="Center" width="120"></e-grid-column>
-        </e-grid-columns>
-    </ejs-grid>
-</div>
+    <div class="container">
+        <ejs-grid id="Grid" locale="fr" toolbar=toolbarItems toolbarClick="toolbarClickPatient" allowPaging="true" allowSorting="true" allowFiltering="true">
+            <e-data-manager url="/Patient/Patients" insertUrl="/Patient/Insert" updateUrl="/Patient/Update" removeUrl="/Patient/Delete" adaptor="UrlAdaptor"></e-data-manager>
+            <e-grid-editSettings allowAdding="true" allowDeleting="true" allowEditing="true" mode="Dialog" showConfirmDialog="true" showDeleteConfirmDialog="true"></e-grid-editSettings>
+            <e-grid-selectionsettings type="Single" mode="Row"></e-grid-selectionsettings>
+            <e-grid-pagesettings pageCount="4" pageSizes="true"></e-grid-pagesettings>
+            <e-grid-columns>
+                <e-grid-column field="Id" headerText="Patient ID" visible="false" isPrimaryKey="true" textAlign="Right" validationRules="@(new { required=true})" width="100"></e-grid-column>
+                @*<e-grid-column id="Test" field="Id" headerText="Customer ID" width="150" textAlign="Center"></e-grid-column>*@
+                <e-grid-column field="FileNumber" validationRules="@(new { required=true})" headerText="Numero de fiche" type="number" textAlign="Center" width="120"></e-grid-column>
+                <e-grid-column field="Name" validationRules="@(new { required=true})" headerText="Nom" textAlign="Center" width="120"></e-grid-column>
+                <e-grid-column field="FirstName" validationRules="@(new { required=true})" headerText="Prenom" textAlign="Center" width="120"></e-grid-column>
+                <e-grid-column field="DateOfBirth" validationRules="@(new { required=true})" headerText="Date de naissance" width="130" textAlign="Center" editType="datepickeredit" format="yMd"></e-grid-column>
+                <e-grid-column field="Adresse" validationRules="@(new { required=true})" headerText="Ville" textAlign="Center" width="120"></e-grid-column>
+            </e-grid-columns>
+        </ejs-grid>
+    </div>
 
 }
+@*"dd/MM/y"*@

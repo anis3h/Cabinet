@@ -1,0 +1,22 @@
+{
+  "main": {
+    "nb": {
+      "identity": {
+        "version": {
+          "_number": "$Revision: 13920 $",
+          "_cldrVersion": "33"
+        },
+        "language": "nb"
+      },
+      "contextTransforms": {
+        "relative": {
+          "stand-alone": "titlecase-firstword"
+        },
+        "typographicNames": {
+          "stand-alone": "titlecase-firstword",
+          "uiListOrMenu": "titlecase-firstword"
+        }
+      }
+    }
+  }
+}

@@ -1,4 +1,27 @@
-﻿// Write your JavaScript code.
+﻿//var json = require(['./ca-gregorian.json']);
+//debugger;
+//require(['json!ca-gregorian.json'], function (data) {
+//    debugger;
+//});
+//require(['https://ej2.syncfusion.com/16.1.24/javascript/demos/src/common/cldr-data/main/de/ca-gregorian.json'], function (data) {
+//    debugger;
+//});
+//loadCultureFiles('fr');
+//function loadCultureFiles(name) {
+//    var files = ['ca-gregorian.json', 'numbers.json', 'timeZoneNames.json'];
+//    var loader = ej.base.loadCldr;
+//    var loadCulture = function (prop) {
+//        var val, ajax;
+//        ajax = new ej.base.Ajax('ca-gregorian.json', 'GET', true);
+
+//        ajax.onSuccess = function (value) {
+//            val = value;
+//        };
+//        ajax.send().then(function (e) { debugger; });
+//        loader(JSON.parse(val));
+//    };
+//    loadCulture(0);
+//}
 
 function toolbarClickPatient(args) {
 
@@ -95,7 +118,7 @@ function testClickButton(args) {
 ej.base.L10n.load({
     // To set the culture globally
    
-    'fr-FR': {
+    'fr': {
         'grid': {
             EmptyRecord: "Aucun patient à afficher",
             GroupDropArea: "Faites glisser un en-tête de colonne ici pour groupe sa colonne",
@@ -333,6 +356,28 @@ ej.base.L10n.load({
         }
     }
 });
-
+//ej.base.loadcldr('cldr-data/main/fr/ca-gregorian.json');
+//ej.base.setCulture('fr'); 
 // copy from https://github.com/syncfusion/ej-global/tree/master/l10n
 
+loadCultureFiles('fr'); 
+
+function loadCultureFiles(name) {
+    var files = ['ca-gregorian.json', 'numbers.json', 'timeZoneNames.json'];
+    var loader = ej.base.loadCldr;
+    var loadCulture = function (prop) {
+        var val, ajax;
+        //debugger;
+        ajax = new ej.base.Ajax(location.origin + location.pathname + './scripts/cldr-data/main/' + name + '/' + files[prop], 'GET', false);
+        ajax.onSuccess = function (value) {
+            val = value;
+        };
+        ajax.send();
+        loader(JSON.parse(val));
+    };
+    for (var prop = 0; prop < files.length; prop++) {
+        loadCulture(prop);
+    }
+    ej.base.setCulture(name);
+    ej.base.setCurrencyCode('EUR');
+} 

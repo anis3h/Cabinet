@@ -1,0 +1,21 @@
+{
+  "main": {
+    "ru-KZ": {
+      "identity": {
+        "version": {
+          "_number": "$Revision: 13839 $",
+          "_cldrVersion": "33"
+        },
+        "language": "ru",
+        "territory": "KZ"
+      },
+      "localeDisplayNames": {
+        "measurementSystemNames": {
+          "metric": "Метрическая",
+          "UK": "Английская",
+          "US": "Англо-американская"
+        }
+      }
+    }
+  }
+}

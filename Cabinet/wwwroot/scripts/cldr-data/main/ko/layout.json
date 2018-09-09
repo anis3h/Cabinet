@@ -1,0 +1,19 @@
+{
+  "main": {
+    "ko": {
+      "identity": {
+        "version": {
+          "_number": "$Revision: 13920 $",
+          "_cldrVersion": "33"
+        },
+        "language": "ko"
+      },
+      "layout": {
+        "orientation": {
+          "characterOrder": "left-to-right",
+          "lineOrder": "top-to-bottom"
+        }
+      }
+    }
+  }
+}

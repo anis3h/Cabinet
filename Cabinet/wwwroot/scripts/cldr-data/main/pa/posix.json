@@ -1,0 +1,19 @@
+{
+  "main": {
+    "pa": {
+      "identity": {
+        "version": {
+          "_number": "$Revision: 13911 $",
+          "_cldrVersion": "33"
+        },
+        "language": "pa"
+      },
+      "posix": {
+        "messages": {
+          "yesstr": "ਹਾਂ",
+          "nostr": "ਨਹੀਂ:ਨ"
+        }
+      }
+    }
+  }
+}

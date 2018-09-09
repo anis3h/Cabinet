@@ -1,0 +1,21 @@
+{
+  "main": {
+    "ta-SG": {
+      "identity": {
+        "version": {
+          "_number": "$Revision: 13839 $",
+          "_cldrVersion": "33"
+        },
+        "language": "ta",
+        "territory": "SG"
+      },
+      "localeDisplayNames": {
+        "measurementSystemNames": {
+          "metric": "மெட்ரிக்",
+          "UK": "யூகே",
+          "US": "யூஎஸ்"
+        }
+      }
+    }
+  }
+}

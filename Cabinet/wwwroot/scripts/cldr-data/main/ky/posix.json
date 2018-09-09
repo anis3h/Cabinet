@@ -1,0 +1,19 @@
+{
+  "main": {
+    "ky": {
+      "identity": {
+        "version": {
+          "_number": "$Revision: 13911 $",
+          "_cldrVersion": "33"
+        },
+        "language": "ky"
+      },
+      "posix": {
+        "messages": {
+          "yesstr": "ооба:о",
+          "nostr": "жок:ж"
+        }
+      }
+    }
+  }
+}
