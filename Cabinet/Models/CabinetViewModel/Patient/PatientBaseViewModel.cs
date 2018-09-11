@@ -12,7 +12,7 @@ namespace Cabinet.Models.CabinetViewModel.Patient
         public int Id { get; set; }
         public string Name { get; set; }
         public string FirstName { get; set; }
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
+        //[DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
         public DateTime DateOfBirth { get; set; }
         public Age Age { get; set; }       
     }

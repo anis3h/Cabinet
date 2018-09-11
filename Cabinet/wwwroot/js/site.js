@@ -1,30 +1,4 @@
-﻿//var json = require(['./ca-gregorian.json']);
-//debugger;
-//require(['json!ca-gregorian.json'], function (data) {
-//    debugger;
-//});
-//require(['https://ej2.syncfusion.com/16.1.24/javascript/demos/src/common/cldr-data/main/de/ca-gregorian.json'], function (data) {
-//    debugger;
-//});
-//loadCultureFiles('fr');
-//function loadCultureFiles(name) {
-//    var files = ['ca-gregorian.json', 'numbers.json', 'timeZoneNames.json'];
-//    var loader = ej.base.loadCldr;
-//    var loadCulture = function (prop) {
-//        var val, ajax;
-//        ajax = new ej.base.Ajax('ca-gregorian.json', 'GET', true);
-
-//        ajax.onSuccess = function (value) {
-//            val = value;
-//        };
-//        ajax.send().then(function (e) { debugger; });
-//        loader(JSON.parse(val));
-//    };
-//    loadCulture(0);
-//}
-
-function toolbarClickPatient(args) {
-
+﻿function toolbarClickPatient(args) {
     if (args.item.id === 'editInformations') {
         
         var gridInformation = document.getElementById("Grid").ej2_instances[0];
@@ -79,29 +53,42 @@ function toolbarClickConsultation(args) {
     }
 }
 
-function testClickButton(args) {
+function submitSiblingsGridOnClick(args) {
+    var gridSiblings = document.getElementById("GridSiblings").ej2_instances[0];
+    $("#GridData").val(JSON.stringify(gridSiblings.dataSource));
+}
+
+function girdSiblingsOnCreated(args) {
     var gridInformation = document.getElementById("GridSiblings").ej2_instances[0];
-    var form = document.getElementById("formFamily");
+    $("#GridData").val(JSON.stringify(gridInformation.dataSource));
+}
 
-    var data = $('#formFamily').serialize();
-    
+//function testClickButton(args) {
 
-    $.ajax({
-        type: 'POST',
-        accepts: 'application/json',
-        url: '/Family/SiblingsFromGrid',
-        contentType: 'application/json',
-        data: JSON.stringify(gridInformation.dataSource),
-        error: function (jqXHR, textStatus, errorThrown) {
-            alert('here');
-        },
-        success: function (result) {
-            getData();
-            $('#add-name').val('');
-        }
-    });
+//    var gridInformation = document.getElementById("GridSiblings").ej2_instances[0];
 
+//    var siblings = (gridInformation.dataSource);
+//    //var form = document.getElementById("formFamily");
+//    //var patients = form.dataset;
+//    var data = $('#formFamily').serializeArray();
+//    // var test = JSON.stringify(siblings);
 
+//    $.ajax({
+//        type: 'POST',
+//        accepts: 'application/json',
+//        url: '/Family/SiblingsFromGrid',
+//        contentType: 'application/json',
+//        data: JSON.stringify({ ViewModel: data, Siblings: siblings }),
+//        error: function (jqXHR, textStatus, errorThrown) {
+//            alert('here');
+//        },
+//        success: function (result) {
+//            getData();
+//            $('#add-name').val('');
+//        }
+//    });
+//}
+ 
     //$.ajax({
     //    url: "/Family/Data",
     //    type: "POST",
@@ -112,7 +99,8 @@ function testClickButton(args) {
     //        debugger;
     //    }
     //});  
-}
+
+
 
 
 ej.base.L10n.load({

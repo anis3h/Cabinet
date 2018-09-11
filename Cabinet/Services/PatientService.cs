@@ -118,6 +118,9 @@ namespace Cabinet.Services
                 {
                     patient.AddPatientParents();
                 }
+              
+                patient.UpdatePatientSiblings();
+                
                 await _patientRepository.UpdateAsync(patient);
             }
             catch (Exception exp)
@@ -125,6 +128,7 @@ namespace Cabinet.Services
                 Console.WriteLine(exp);
             }
         }
+
 
         public async Task Delete(PatientViewModel patientViewModel)
         {

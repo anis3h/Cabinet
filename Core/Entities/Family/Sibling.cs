@@ -1,5 +1,4 @@
-﻿using Core.Entities.Suppport;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -16,5 +15,7 @@ namespace Core.Entities.Family
         public string Information { get; set; }
         public DateTime? DateOfBirth { get; set; }
         public Patient Patient { get; set; }
+        public string SiblingType { get; set; }
+        
     }
 }

@@ -32,9 +32,9 @@ namespace Cabinet.Automapper
             CreateMap<Brother, BrotherViewModel>();
             CreateMap<Sister, SisterViewModel>();
 
-            CreateMap<SiblingViewModel, Sibling>()
-                .Include<BrotherViewModel, Brother>()
-                .Include<SisterViewModel,Sister>();
+            //CreateMap<SiblingViewModel, Sibling>()
+            //    .Include<BrotherViewModel, Brother>()
+            //    .Include<SisterViewModel,Sister>();
             CreateMap<BrotherViewModel, Brother>();
             CreateMap<SisterViewModel, Sister>();
 
@@ -49,8 +49,10 @@ namespace Cabinet.Automapper
             CreateMap<Patient, FamilyPatientViewModel>();
             CreateMap<Patient, PatientViewModel>();
 
-            CreateMap<PatientViewModel, Patient>().ForMember(row => row.PatientParents, opt => opt.Ignore());
-            CreateMap<FamilyPatientViewModel, Patient>().ForMember(row => row.PatientParents, opt => opt.Ignore());
+            CreateMap<PatientViewModel, Patient>().ForMember(row => row.PatientParents, opt => opt.Ignore())
+                                                  .ForMember(row => row.Siblings, opt => opt.Ignore());
+            CreateMap<FamilyPatientViewModel, Patient>().ForMember(row => row.PatientParents, opt => opt.Ignore())
+                                                        .ForMember(row => row.Siblings, opt => opt.Ignore());
             CreateMap<InformationPatientViewModel, Patient>().ForMember(row => row.PatientParents, opt => opt.Ignore());
 
             // Consultations

@@ -8,7 +8,6 @@ namespace Core.Entities.Consultations
     public class Consultation : EntityBase
     {
         public DateTime Date { get; set; }
-        public DateTime UpdateDate { get; set; }
       
         // List de maladie
         // Krankheitsliste
