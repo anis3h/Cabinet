@@ -8,6 +8,14 @@ namespace Cabinet.Models.CabinetViewModel.Family
 {
     public class BrotherViewModel : SiblingViewModel
     {
-        public override string FraternityType => "Brother";
+        public BrotherViewModel()
+        {
+        }
+        public BrotherViewModel(SiblingViewModel sibling) : base(sibling)
+        {
+
+        }
+        public override string SiblingType => "Brother";
+        public override string Type => GetType().ToString();
     }
 }

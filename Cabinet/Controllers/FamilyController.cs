@@ -6,16 +6,15 @@ using Cabinet.Interfaces;
 using Cabinet.Models.CabinetViewModel.Family;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using Syncfusion.EJ2.Base;
 
 namespace Cabinet.Controllers
 {
-    //  [Authorize]
+    [Authorize]
     public class FamilyController : Controller
     {
         IPatientViewModelService _patientViewModelService;
-        // 
-        private List<SiblingViewModel> _siblings;
 
         public FamilyController(IPatientViewModelService patientViewModelService)
         {
@@ -41,38 +40,58 @@ namespace Cabinet.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public  async Task<IActionResult> Index(FamilyViewModel familyViewModel)
+        public async Task<IActionResult> Index(FamilyViewModel familyViewModel)
         {
             try
             {
-                familyViewModel.Patient.Siblings = _siblings;
-                //await _patientViewModelService.UpdatePatientWithFamily(familyViewModel.Patient);
+                familyViewModel.Patient.Siblings = GetFromFormSiblings();
+                await _patientViewModelService.UpdatePatientWithFamily(familyViewModel.Patient);
                 return RedirectToAction("Index", "Patient");
-            }
-           
+            }           
              catch (Exception exp)
             {
                 throw (exp);
             }
         }
 
-
-        [HttpPost]
-        [AllowAnonymous]
-      //  [ValidateAntiForgeryToken]
-        public void SiblingsFromGrid([FromBody] List<SiblingViewModel> data)
+        private List<SiblingViewModel> GetFromFormSiblings()
         {
-            try
+            var siblingsJson = Request.Form["GridData"];
+            var siblings = JsonConvert.DeserializeObject<List<SiblingViewModel>>(siblingsJson);
+            var siblingTarget = new List<SiblingViewModel>();
+            foreach (SiblingViewModel sibling in siblings)
             {
-                _siblings = data;
-                 
+                if (sibling.SiblingType == "Sister")
+                {
+                    siblingTarget.Add(new SisterViewModel(sibling));
+                }
+                else
+                {
+                    siblingTarget.Add(new BrotherViewModel(sibling));
+                }
             }
-
-            catch (Exception exp)
-            {
-                throw (exp);
-            }
+            return siblingTarget;
         }
+
+        // [HttpPost]
+        // [AllowAnonymous]
+        // //  [ValidateAntiForgeryToken]
+        //// public void SiblingsFromGrid(FamilyViewModel familyViewModel, [FromBody] List<SiblingViewModel> data)
+        // public void SiblingsFromGrid([FromBody] string test)
+        // {
+        //     try
+        //     {
+
+
+
+
+        //     }
+
+        //     catch (Exception exp)
+        //     {
+        //         throw (exp);
+        //     }
+        // }
 
     }
 }

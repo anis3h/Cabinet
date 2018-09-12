@@ -134,24 +134,45 @@ namespace Core.Entities
                     PatientParents.Add(new PatientParent() { Parent = parent, Patient = this });
                 }
             }
-                //    else
-                //    {
-                //        Parent parentOld = PatientParents.FirstOrDefault(row => row.Parent.Id == parent.Id).Parent;
+        }
 
-                //        parentOld.FirstName = parent.FirstName;
-                //        parentOld.Name = parent.Name;
-                //        parentOld.Tel = parent.Tel;
-                //        parentOld.Adresse = parent.Adresse;
-                //        parentOld.Profession = parent.Profession;
-                //        if (parentOld is Mother)
-                //        {
-                //            (parentOld as Mother).MaidenName = (parent as Mother).MaidenName;
-                //        }
-                //    }
-                //}
+        public void UpdatePatientSiblings()
+        {
+            if (Siblings == null)
+                Siblings = new List<Sibling>();
+
+            var SiblingsNew = new List<Sibling>();
+            if (Sisters != null && Sisters.Count != 0)
+            {
+                SiblingsNew.AddRange(Sisters);
             }
-
-
+            
+            if (Brothers != null && Brothers.Count != 0)
+            {
+                SiblingsNew.AddRange(Brothers);
+            }
+            // Insert
+            foreach (Sibling siblingNew in SiblingsNew)
+            {
+                if (!Siblings.Any(row => row.Id == siblingNew.Id && row.Id != 0))
+                {
+                    siblingNew.Patient = this;
+                    Siblings.Add(siblingNew);
+                }
+            }
+            // Delete
+            var siblingsToControl = new List<Sibling>();
+            siblingsToControl.AddRange(Siblings);
+                
+            foreach (Sibling siblingToControl  in siblingsToControl)
+            {
+                if (!SiblingsNew.Any(row => row.Id == siblingToControl.Id && row.Id != 0))
+                {
+                   
+                    Siblings.RemoveAll(row => row.Id == siblingToControl.Id);
+                }
+            }
+        }
 
         public Patient() { }
     }
