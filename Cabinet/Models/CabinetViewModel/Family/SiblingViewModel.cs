@@ -8,7 +8,7 @@ namespace Cabinet.Models.CabinetViewModel.Family
 {
     public class SiblingViewModel
     {
-        public int Id { get; set; }
+        public int? Id { get; set; }
         public Age Age;
 
         public SiblingViewModel()

@@ -160,18 +160,19 @@ namespace Core.Entities
                     Siblings.Add(siblingNew);
                 }
             }
-            // Delete
-            var siblingsToControl = new List<Sibling>();
-            siblingsToControl.AddRange(Siblings);
+            
+            // ToDo Delete
+            //var siblingsToControl = new List<Sibling>();
+            //siblingsToControl.AddRange(Siblings);
                 
-            foreach (Sibling siblingToControl  in siblingsToControl)
-            {
-                if (!SiblingsNew.Any(row => row.Id == siblingToControl.Id && row.Id != 0))
-                {
+            //foreach (Sibling siblingToControl  in siblingsToControl)
+            //{
+            //    if (!SiblingsNew.Any(row => row.Id == siblingToControl.Id && row.Id != 0))
+            //    {
                    
-                    Siblings.RemoveAll(row => row.Id == siblingToControl.Id);
-                }
-            }
+            //        Siblings.RemoveAll(row => row.Id == siblingToControl.Id);
+            //    }
+            //}
         }
 
         public Patient() { }
