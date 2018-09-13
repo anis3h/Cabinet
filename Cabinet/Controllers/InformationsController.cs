@@ -26,7 +26,9 @@ namespace Cabinet.Controllers
         [HttpPost]
         public async Task<IActionResult> Informations(InformationViewModel informationViewModel) {
 
-            if (ModelState.IsValid) { }
+            if (!ModelState.IsValid) {
+                BadRequest();
+            }
 
 
             Enum.TryParse(Request.Form["pregnancyType"], out TypPregnancy typPregnancy);

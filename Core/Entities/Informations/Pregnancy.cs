@@ -29,7 +29,7 @@ public enum TypPregnancy
 {
     Aterm,
     // Noch nicht reif
-    Prématuré,
+    Prématurité,
     // Zwilling
     Gemulaire,
     // Drilling

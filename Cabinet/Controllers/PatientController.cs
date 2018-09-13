@@ -63,12 +63,21 @@ namespace Cabinet.Controllers
 
         public async Task<ActionResult> Insert([FromBody]CRUDModel<PatientViewModel> value)
         {
+            if (!ModelState.IsValid) {
+                BadRequest();
+            }
+
             await _patientViewModelService.Add(value.Value);
             return View("Index");
+
         }
 
         public async Task<ActionResult> Update([FromBody]CRUDModel<PatientViewModel> value)
         {
+            if (!ModelState.IsValid) {
+                BadRequest();
+            }
+
             await _patientViewModelService.Update(value.Value);
             return View("Index");
         }
@@ -77,6 +86,10 @@ namespace Cabinet.Controllers
         {
             try
             {
+                if (!ModelState.IsValid) {
+                    BadRequest();
+                }
+
                 // Value in Syncfusion = null --> Syncfusion Bug
                 await _patientViewModelService.Delete((int)(Int64)value.Key);
                 return View("Index");

@@ -9,7 +9,7 @@ namespace Cabinet.Models.CabinetViewModel.Patient
 {
     public abstract class PatientBaseViewModel
     {
-        public int Id { get; set; }
+        public int? Id { get; set; }
         public string Name { get; set; }
         public string FirstName { get; set; }
         //[DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
