@@ -17,14 +17,17 @@ namespace UnitTests.Controller {
 
 
         [Fact]
-        public void Index_ReturnsAViewResult_True() {
+        public void Index_ReturnsAViewResult_ShouldShowPatientIndex() {
 
+            // Arrange
             var mockService = new Mock<IPatientViewModelService>();
             var controller = new PatientController(mockService.Object);
 
+            // Act
             var result = controller.Index();
 
-            var viewResult = Assert.IsType<ViewResult>(result);
+            // Assert
+            Assert.IsType<ViewResult>(result);
         }
 
         //[Fact]
