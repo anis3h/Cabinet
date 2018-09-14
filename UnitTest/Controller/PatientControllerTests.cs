@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace UnitTests.Controller {
+namespace ControllerUnitTests.Controller {
 
 
     public class PatientControllerTests {

@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 using Xunit;
 using IPatientViewModelService = Cabinet.Interfaces.IPatientViewModelService;
 
-namespace UnitTests.Controller {
+namespace ControllerUnitTests.Controller {
 
     public class InformationsControllerTests {
 
