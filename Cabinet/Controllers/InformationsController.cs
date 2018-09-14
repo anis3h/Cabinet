@@ -26,21 +26,23 @@ namespace Cabinet.Controllers
         [HttpPost]
         public async Task<IActionResult> Informations(InformationViewModel informationViewModel) {
 
-            if (!ModelState.IsValid) {
-                BadRequest();
-            }
-
-
-            Enum.TryParse(Request.Form["pregnancyType"], out TypPregnancy typPregnancy);
-            informationViewModel.Patient.Pregnancy.TypPregnancy = typPregnancy;
-
-            Enum.TryParse(Request.Form["positionType"], out TypPosition typPosition);
-            informationViewModel.Patient.Pregnancy.Position = typPosition;
-
-            Enum.TryParse(Request.Form["allaitementType"], out Allaitement typAllaitement);
-            informationViewModel.Patient.Born.Allaitement = typAllaitement;
-
             try {
+
+                if (!ModelState.IsValid) {
+                    return BadRequest(ModelState);
+                }
+
+
+                Enum.TryParse(Request.Form["pregnancyType"], out TypPregnancy typPregnancy);
+                informationViewModel.Patient.Pregnancy.TypPregnancy = typPregnancy;
+
+                Enum.TryParse(Request.Form["positionType"], out TypPosition typPosition);
+                informationViewModel.Patient.Pregnancy.Position = typPosition;
+
+                Enum.TryParse(Request.Form["allaitementType"], out Allaitement typAllaitement);
+                informationViewModel.Patient.Born.Allaitement = typAllaitement;
+
+            
                 await _patientViewModelService.UpdatePatientWithInformation(informationViewModel.Patient);
                 return RedirectToAction("Index", "Patient");
             }

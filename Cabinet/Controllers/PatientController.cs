@@ -64,7 +64,7 @@ namespace Cabinet.Controllers
         public async Task<ActionResult> Insert([FromBody]CRUDModel<PatientViewModel> value)
         {
             if (!ModelState.IsValid) {
-                BadRequest();
+                return BadRequest(ModelState);
             }
 
             await _patientViewModelService.Add(value.Value);
@@ -75,7 +75,7 @@ namespace Cabinet.Controllers
         public async Task<ActionResult> Update([FromBody]CRUDModel<PatientViewModel> value)
         {
             if (!ModelState.IsValid) {
-                BadRequest();
+                return BadRequest(ModelState);
             }
 
             await _patientViewModelService.Update(value.Value);
@@ -87,7 +87,7 @@ namespace Cabinet.Controllers
             try
             {
                 if (!ModelState.IsValid) {
-                    BadRequest();
+                    return BadRequest(ModelState);
                 }
 
                 // Value in Syncfusion = null --> Syncfusion Bug
@@ -106,9 +106,6 @@ namespace Cabinet.Controllers
         {
             return View();
         }
-
-       
-
       
     }
 }

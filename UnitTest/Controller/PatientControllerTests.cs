@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using Xunit;
+using Syncfusion.EJ2.Base;
 
 namespace ControllerUnitTests.Controller {
 
@@ -30,25 +31,57 @@ namespace ControllerUnitTests.Controller {
             Assert.IsType<ViewResult>(result);
         }
 
-        //[Fact]
-        //public async Task Insert_AdddPatientAndReturnsIndex_WhenModelStateIsValid() {
+        [Fact]
+        public async Task Insert_ReturnsBadRequestResult_WhenModelStateIsInvalid() {
 
-        //    var mockService = new Mock<IPatientViewModelService>();
-        //    mockService.Setup(service => service.Add(It.IsAny<PatientViewModel>()))
-        //        .Returns(Task.CompletedTask)
-        //        .Verifiable();
-        //    var controller = new PatientController(mockService.Object);
+            var mockService = new Mock<IPatientViewModelService>();
+            mockService.Setup(service => service.Add(It.IsAny<PatientViewModel>()))
+                .Returns(Task.CompletedTask)
+                .Verifiable();
+            var controller = new PatientController(mockService.Object);
+            controller.ModelState.AddModelError("Name", "Error Massage");
 
-        //    var patient = new PatientViewModel() {
-        //        Id = 1,
-        //        Name = "Max",
-        //        FirstName = "Mustermann",
-        //        DateOfBirth = DateTime.Today.AddDays(-32),
-        //        Age = new Age(DateTime.Today.AddDays(-32))
-        //    };
+            var patientViewModel = new PatientViewModel() {
+                Id = 99,
+                Name = "Test",
+                FirstName = "Mustermann",
+                DateOfBirth = DateTime.Today.AddDays(-32),
+                Age = new Age(DateTime.Today.AddDays(-32))
+            };
 
-        //    var result = await controller.Insert(patient);
-        //}
+            var crudModel = new Syncfusion.EJ2.Base.CRUDModel<PatientViewModel>();
+            crudModel.Value = patientViewModel;
+
+            var result = await controller.Insert(crudModel);
+
+            Assert.IsType<BadRequestObjectResult>(result);
+        }
+
+        [Fact]
+        public async Task Insert_AdddPatientAndReturnsIndex_WhenModelStateIsValid() {
+
+            var mockService = new Mock<IPatientViewModelService>();
+            mockService.Setup(service => service.Add(It.IsAny<PatientViewModel>()))
+                .Returns(Task.CompletedTask)
+                .Verifiable();
+            var controller = new PatientController(mockService.Object);
+
+            var patientViewModel = new PatientViewModel() {
+                Id = 1,
+                Name = "Max",
+                FirstName = "Mustermann",
+                DateOfBirth = DateTime.Today.AddDays(-32),
+                Age = new Age(DateTime.Today.AddDays(-32))
+            };
+
+            var crudModel = new Syncfusion.EJ2.Base.CRUDModel<PatientViewModel>();
+            crudModel.Value = patientViewModel;
+
+            var result = await controller.Insert(crudModel);
+
+            var viewResult = Assert.IsType<ViewResult>(result);
+            Assert.Equal("Index", viewResult.ViewName);
+        }
 
         //[Fact]
         //public async Task Patients_ReturnsADataManagerResult_WithAllPatients() {
