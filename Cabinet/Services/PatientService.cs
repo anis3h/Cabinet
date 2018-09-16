@@ -7,6 +7,7 @@ using Cabinet.Models.CabinetViewModel.Informations;
 using Cabinet.Models.CabinetViewModel.Patient;
 using Core.Entities;
 using Core.Entities.Family;
+using Core.Entities.Patients;
 using Core.Interfaces;
 using Core.Services;
 using Core.Specifications;
@@ -21,12 +22,12 @@ namespace Cabinet.Services
     public class PatientService : IPatientViewModelService
     {
        // private readonly ILogger<CatalogService> _logger;
-        private readonly IAsyncRepository<Patient> _patientRepository;
+        private readonly IPatientRepository _patientRepository;
         private readonly IAsyncRepository<PatientParent> _patientParentRepository;
         private readonly IMapper _mapper;
 
         // ToDO IUnitRepository
-        public PatientService(IAsyncRepository<Patient> patientRepository, IAsyncRepository<PatientParent> patientParentRepository, IMapper mapper)
+        public PatientService(IPatientRepository patientRepository, IAsyncRepository<PatientParent> patientParentRepository, IMapper mapper)
         {
             _patientRepository = patientRepository;
             _patientParentRepository = patientParentRepository;

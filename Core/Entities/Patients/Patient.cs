@@ -8,7 +8,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 
-namespace Core.Entities
+namespace Core.Entities.Patients
 {
     public class Patient : Person
     {

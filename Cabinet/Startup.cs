@@ -11,7 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Cabinet.Data;
 using Cabinet.Models;
 using Cabinet.Services;
-using Infrastructure.Data;
+using Infrastructure.Repositories;
 using Core.Interfaces;
 using Cabinet.Interfaces;
 using AutoMapper;
@@ -53,7 +53,7 @@ namespace Cabinet
 
             services.AddScoped<IPatientViewModelService, PatientService>();
             services.AddScoped<IConsultationViewModelService, ConsultationViewModelService>();
-            services.AddScoped<PatientService>();
+            services.AddScoped<IPatientRepository, PatientRepository>();
             services.AddMvc().AddJsonOptions(options => options.SerializerSettings.ContractResolver = new DefaultContractResolver());
             services.AddAutoMapper();
         }

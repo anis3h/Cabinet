@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Core.Entities.Patients;
 
 namespace Core.Entities.Consultations
 {

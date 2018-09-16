@@ -1,5 +1,6 @@
 ﻿using Core.Entities;
 using Core.Entities.Family;
+using Core.Entities.Patients;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;

@@ -6,8 +6,9 @@ using Core.Entities;
 using Core.Entities.Consultations;
 using Core.Entities.Family;
 using Core.Entities.Informations;
+using Core.Entities.Patients;
 
-namespace Infrastructure.Data
+namespace Infrastructure.Repositories
 {
     public class CabinetContext:DbContext
     {

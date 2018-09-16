@@ -8,6 +8,7 @@ using Core.Entities;
 using Core.Entities.Consultations;
 using Core.Entities.Family;
 using Core.Entities.Informations;
+using Core.Entities.Patients;
 using System;
 using System.Collections.Generic;
 using System.Linq;

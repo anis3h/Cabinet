@@ -4,6 +4,7 @@ using System.Linq.Expressions;
 using System.Text;
 using Core.Entities;
 using Core.Entities.Family;
+using Core.Entities.Patients;
 
 namespace Core.Specifications.PatientSpecifications
 {

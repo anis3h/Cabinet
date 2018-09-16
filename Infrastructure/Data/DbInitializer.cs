@@ -4,12 +4,13 @@ using System.Linq;
 using Core.Entities;
 using Core.Entities.Family;
 using Core.Entities.Informations;
-using Infrastructure.Data;
+using Core.Entities.Patients;
+using Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
 
-namespace Infrastructure.Data
+namespace Infrastructure.Repositories
 {
     public static class DbInitializer
     {

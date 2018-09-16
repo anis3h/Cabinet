@@ -1,4 +1,5 @@
 ﻿using Core.Entities;
+using Core.Entities.Patients;
 using Core.Interfaces;
 using System;
 using System.Collections.Generic;

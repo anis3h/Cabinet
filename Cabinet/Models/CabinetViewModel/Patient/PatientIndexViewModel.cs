@@ -9,5 +9,6 @@ namespace Cabinet.Models.CabinetViewModel.Patient
     public class PatientIndexViewModel
     {
         public IEnumerable<PatientViewModel> PatientItems { get; set; }
+
     }
 }
