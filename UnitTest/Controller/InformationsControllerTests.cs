@@ -1,15 +1,18 @@
 ﻿using Cabinet.Controllers;
 using Cabinet.Interfaces;
 using Cabinet.Models.CabinetViewModel.Informations;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Primitives;
 using Moq;
 using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xunit;
-using IPatientViewModelService = Cabinet.Interfaces.IPatientViewModelService;
+
 
 namespace ControllerUnitTests.Controller {
 
@@ -23,7 +26,7 @@ namespace ControllerUnitTests.Controller {
             int testPatientId = 2;
             var mockService = new Mock<IPatientViewModelService>();
             mockService.Setup(service => service.GetPatientWithInformation(testPatientId))
-                .Returns(Task.FromResult(GetInformationPatientViewModels().FirstOrDefault(p => p.Id == testPatientId)));
+                .Returns(Task.FromResult(GetInformationPatientViewModelList().FirstOrDefault(p => p.Id == testPatientId)));
             var controller = new InformationsController(mockService.Object);
 
             // Act
@@ -32,11 +35,6 @@ namespace ControllerUnitTests.Controller {
             // Assert
             var viewResult = Assert.IsType<ViewResult>(result);
             var model = Assert.IsType<InformationViewModel>(viewResult.ViewData.Model);
-            Assert.Equal(testPatientId, model.Patient.Id);
-            Assert.Equal("James", model.Patient.FirstName);
-            Assert.Equal("Bond", model.Patient.Name);
-            Assert.Equal(new DateTime(2018, 8, 8, 0, 0, 0), model.Patient.DateOfBirth);
-            //Assert.Equal(new Age(new DateTime(2018, 8, 8)), model.Patient.Age);
         }
 
 
@@ -44,10 +42,10 @@ namespace ControllerUnitTests.Controller {
         public async Task InformationsPOST_ReturnsBadRequestResult_WhenModelStateIsInvalid() {
 
             var mockService = new Mock<IPatientViewModelService>();
-            mockService.Setup(service => service.UpdatePatientWithInformation(GetTestPatient().Patient));
+            mockService.Setup(service => service.UpdatePatientWithInformation(GetInformationViewModel().Patient));
             var controller = new InformationsController(mockService.Object);
             controller.ModelState.AddModelError("Name", "Required");
-            var newInformationViewModel = new InformationViewModel();
+            var newInformationViewModel = GetInformationViewModel();
 
             var result = await controller.Informations(newInformationViewModel);
 
@@ -60,12 +58,15 @@ namespace ControllerUnitTests.Controller {
         public async Task InformationsPOST_ReturnsARedirectAndUpdatePatient_WhenModelStateIsValid() {
 
             var mockService = new Mock<IPatientViewModelService>();
-            //mockService.Setup(service => service.UpdatePatientWithInformation(It.IsAny<InformationPatientViewModel>()));
-            mockService.Setup(service => service.UpdatePatientWithInformation(GetTestPatient().Patient))
+            mockService.Setup(service => service.UpdatePatientWithInformation(It.IsAny<InformationPatientViewModel>()))
                 .Returns(Task.CompletedTask)
                 .Verifiable();
             var controller = new InformationsController(mockService.Object);
-            var informationViewModel = GetTestPatient();
+            // Give the controller an HttpContext.
+            controller.ControllerContext.HttpContext = new DefaultHttpContext();
+            // Request is not null anymore.
+            controller.Request.Form = GetRequestFormCollection();
+            var informationViewModel = GetInformationViewModel();
 
             var result = await controller.Informations(informationViewModel);
 
@@ -75,7 +76,17 @@ namespace ControllerUnitTests.Controller {
         }
 
 
-        private List<InformationPatientViewModel> GetInformationPatientViewModels() {
+        private FormCollection GetRequestFormCollection() {
+
+            var dic = new Dictionary<string, StringValues>();
+            dic.Add("pregnancyType", "Prématurité");
+            dic.Add("positionType", "Siège");
+            dic.Add("allaitementType", "Exclusif");
+            return new FormCollection(dic);
+        }
+
+
+        private List<InformationPatientViewModel> GetInformationPatientViewModelList() {
 
             var informationPatientViewModelList = new List<InformationPatientViewModel>();
 
@@ -106,7 +117,7 @@ namespace ControllerUnitTests.Controller {
             return informationPatientViewModelList;
         }
 
-        private InformationViewModel GetTestPatient() {
+        private InformationViewModel GetInformationViewModel() {
 
             var informationViewModel = new InformationViewModel {
 

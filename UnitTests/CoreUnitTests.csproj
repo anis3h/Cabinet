@@ -13,9 +13,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ApplicationCore\Entities\PatientTests\" />
     <Folder Include="ApplicationCore\Specifications\" />
     <Folder Include="ApplicationCore\Services\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Core\Core.csproj" />
   </ItemGroup>
 
 </Project>

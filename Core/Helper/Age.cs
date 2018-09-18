@@ -42,13 +42,12 @@ public class Age
 
     }
 
-    //public Age(DateTime Bday, DateTime Cday)
+    // Unit Test
+    public Age(DateTime Bday, DateTime Cday) {
 
-    //{
+        Count(Bday, Cday);
 
-    //    Count(Bday, Cday);
-
-    //}
+    }
 
 
 
