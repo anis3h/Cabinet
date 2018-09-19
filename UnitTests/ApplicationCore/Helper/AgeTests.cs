@@ -25,9 +25,10 @@ namespace CoreUnitTests.ApplicationCore.Helper {
 
             // Arrange
             var bDay = new DateTime(2017, 5, 9);
+            var cDay = new DateTime(2018, 9, 18);
 
             // Act
-            var age = new Age(bDay);
+            var age = new Age(bDay, cDay);
 
             // Assert
             Assert.Equal("Years: 1  Months: 4  Days: 9", age.FullAge);
