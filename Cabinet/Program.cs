@@ -14,10 +14,10 @@ namespace Cabinet
     {
         public static void Main(string[] args)
         {
-            BuildWebHost(args).Run();
+            CreateWebHostBuilder(args).Build().Run();
         }
 
-        public static IWebHost BuildWebHost(string[] args)
+        public static IWebHostBuilder CreateWebHostBuilder(string[] args)
         {
             var config = new ConfigurationBuilder()
              .AddCommandLine(args)
@@ -28,8 +28,7 @@ namespace Cabinet
                 .UseIISIntegration()
                 .UseKestrel()
                 .UseConfiguration(config)
-                .UseStartup<Startup>()
-                .Build();
+                .UseStartup<Startup>();
         }
             //=>
         //    WebHost.CreateDefaultBuilder(args)

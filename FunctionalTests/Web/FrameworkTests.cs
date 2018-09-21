@@ -28,9 +28,9 @@ namespace FunctionalTests.Web {
 
         [Theory]
         [InlineData("/")]
-        [InlineData("/Index")]
-        [InlineData("/About")]
-        [InlineData("/Contact")]
+        [InlineData("/Home/Index")]
+        [InlineData("/Home/About")]
+        [InlineData("/Home/Contact")]
         public async Task Get_EndpointsReturnSuccessAndCorrectContentType(string url) {
             // Arrange
             var client = _factory.CreateClient();
