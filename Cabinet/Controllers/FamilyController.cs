@@ -44,8 +44,13 @@ namespace Cabinet.Controllers
         {
             try
             {
+                if (!ModelState.IsValid) {
+                    return BadRequest(ModelState);
+                }
+
                 familyViewModel.Patient.Siblings = GetFromFormSiblings();
                 await _patientViewModelService.UpdatePatientWithFamily(familyViewModel.Patient);
+
                 return RedirectToAction("Index", "Patient");
             }           
              catch (Exception exp)
