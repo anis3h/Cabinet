@@ -42,8 +42,7 @@ namespace Cabinet.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Index(FamilyViewModel familyViewModel)
         {
-            try
-            {
+            try {
                 if (!ModelState.IsValid) {
                     return BadRequest(ModelState);
                 }

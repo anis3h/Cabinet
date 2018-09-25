@@ -192,7 +192,13 @@ ej.base.L10n.load({
             nextPagerTooltip: "Aller à la page suivante",
 
             previousPagerTooltip: "Aller à la page précédente"
-        }
+        },
+         'schedule': {
+                "day": "journée",
+                "week": "La semaine",
+                "workWeek": "Semaine de travail",
+                "month": "Mois"
+         }
     },
 
     'de-DE': {
@@ -356,7 +362,7 @@ function loadCultureFiles(name) {
     var loadCulture = function (prop) {
         var val, ajax;
         //debugger;
-        ajax = new ej.base.Ajax(location.origin + location.pathname + './scripts/cldr-data/main/' + name + '/' + files[prop], 'GET', false);
+        ajax = new ej.base.Ajax(location.origin + '/scripts/cldr-data/main/' + name + '/' + files[prop], 'GET', false);
         ajax.onSuccess = function (value) {
             val = value;
         };

@@ -1,0 +1,187 @@
+﻿@using Cabinet.Models.CabinetViewModel.Schedule
+
+@{
+    ViewData["Title"] = "Schedule";
+
+    @model ScheduleViewModel
+
+    var validationRules = new Dictionary<string, object>() { { "required", true } };
+    var descriptionValidationRules = new Dictionary<string, object>() { { "required", true }, { "minLength", 5 } };
+}
+
+
+<div class="container mt-3">
+
+    <div class="row">
+        <p>Schedule</p>
+    </div>
+
+    <div class="row">
+        <div class="col">
+
+            <ejs-schedule id="schedule" selectedDate="@Model.Today" popupOpen="onPopupOpen" actionBegin="onActionBegin" editorTemplate="#EventEditorTemplate" showQuickInfo="true">
+                <e-schedule-views>
+                    <e-view option="Day" displayName="journée" interval="1"></e-view>
+                    <e-view option="Week" displayName="La semaine" interval="1"></e-view>
+                    <e-view option="Month" displayName="Mois" interval="1" isSelected="true"></e-view>
+                    <e-view option="Agenda" displayName="Agenda" interval="1"></e-view>
+                </e-schedule-views>
+                <e-schedule-eventsettings dataSource="@Model.AppointmentViewModelList">
+                    <e-eventsettings-fields id="Id">
+                        @*<e-field-subject name="Subject"></e-field-subject>
+                <e-field-location name="Location"></e-field-location>
+                <e-field-description name="Description" validation="descriptionValidationRules"></e-field-description>
+                <e-field-isallday name="IsAllDay"></e-field-isallday>
+                <e-field-starttime name="StartTime"></e-field-starttime>
+                <e-field-endtime name="EndTime"></e-field-endtime>*@
+                        @*<e-field-starttimezone name="StartTimezone"></e-field-starttimezone>
+                    <e-field-endtimezone name="EndTimezone"></e-field-endtimezone>
+                <e-field-recurrencerule name="RecurrenceRule"></e-field-recurrencerule>
+                <e-field-recurrenceid name="RecurrenceId"></e-field-recurrenceid>*@
+                    </e-eventsettings-fields>
+                </e-schedule-eventsettings>
+            </ejs-schedule>
+
+        </div>
+    </div>
+</div>
+
+<style>
+    .custom-event-editor .e-textlabel {
+        padding-right: 15px;
+        text-align: right;
+    }
+
+    .custom-event-editor td {
+        padding: 7px;
+        padding-right: 16px;
+    }
+</style>
+
+<script id="EventEditorTemplate" type="text/template">
+    <table class="custom-event-editor" width="100%" cellpadding="5">
+        <tbody>
+            <tr>
+                <td class="e-textlabel">Summary</td>
+                <td colspan="4">
+                    <input id="Subject" class="e-field e-input" type="text" value="" name="Subject" style="width: 100%" />
+                </td>
+            </tr>
+            <tr>
+                <td class="e-textlabel">Status</td>
+                <td colspan="4">
+                    <input type="text" id="EventType" name="EventType" class="e-field" style="width: 100%" />
+                </td>
+            </tr>
+            <tr>
+                <td class="e-textlabel">From</td>
+                <td colspan="4">
+                    <input id="StartTime" class="e-field" type="text" name="StartTime" />
+                </td>
+            </tr>
+            <tr>
+                <td class="e-textlabel">To</td>
+                <td colspan="4">
+                    <input id="EndTime" class="e-field" type="text" name="EndTime" />
+                </td>
+            </tr>
+            <tr>
+                <td class="e-textlabel">Reason</td>
+                <td colspan="4">
+                    <textarea id="Description" class="e-field e-input" name="Description" rows="3" cols="50"
+                              style="width: 100%; height: 60px !important; resize: vertical"></textarea>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</script>
+
+<script type="text/javascript">
+
+    function onActionBegin(args) {
+
+        if (args.requestType === 'eventCreate') {
+
+            var eventData = args.data;
+            eventData.Description = document.getElementById("DescriptionValue").innerText;
+        }
+    }
+
+    function onPopupOpen(args) {
+
+        var scheduleObj = document.getElementById('schedule').ej2_instances[0];
+
+        if (args.type === 'Editor') {
+            var statusElement = args.element.querySelector('#EventType');
+
+            if (!statusElement.classList.contains('e-dropdownlist')) {
+
+                var dropDownListObject = new ej.dropdowns.DropDownList({
+                    placeholder: 'Choose status', value: statusElement.value,
+                    dataSource: ['New', 'Requested', 'Confirmed']
+                });
+                dropDownListObject.appendTo(statusElement);
+                statusElement.setAttribute('name', 'EventType');
+            }
+
+            var startElement = args.element.querySelector('#StartTime');
+
+            if (!startElement.classList.contains('e-datetimepicker')) {
+
+                new ej.calendars.DateTimePicker({ value: new Date(startElement.value) || new Date() }, startElement);
+            }
+            var endElement = args.element.querySelector('#EndTime');
+
+            if (!endElement.classList.contains('e-datetimepicker')) {
+
+                new ej.calendars.DateTimePicker({ value: new Date(endElement.value) || new Date() }, endElement);
+            }
+        }
+
+        if (args.type === 'QuickInfo') {
+
+            if (args.target.classList.contains("e-work-cells")) {
+
+                if (!args.element.querySelector('.custom-field-row')) {
+
+                    var row = ej.base.createElement('div', { className: 'custom-field-row' });
+                    var formElement = args.element.querySelector('.e-schedule-form');
+                    formElement.appendChild(row);
+                    var container = ej.base.createElement('div', { className: 'custom-field-container' });
+                    var classNames = 'e-field e-custom-description';
+
+                    var inputEle = ej.base.createElement('input', {
+
+                        className: classNames, attrs: { type: 'text', value: '', name: 'Description' }
+                    });
+
+                    container.appendChild(inputEle);
+                    row.appendChild(container);
+                    ej.inputs.Input.createInput({
+                        element: inputEle, floatLabelType: 'Auto',
+                        properties: {
+                            enableRtl: scheduleObj.enableRtl,
+                            placeholder: "Description"
+                        }
+                    });
+                    var element = document.querySelector(".e-custom-description");
+
+                    element.addEventListener("keypress", function (e) {
+
+                        document.getElementById("DescriptionValue").innerHTML = e.target.value;
+                    });
+                }
+            }
+
+            else if (args.target.classList.contains("e-appointment")) {
+
+                var eventData = args.data;
+                var row = ej.base.createElement('div', { className: 'e-event-description' });
+                row.textContent = eventData.Description;
+                var element = args.element.querySelector('.e-subject-wrap');
+                element.parentNode.insertBefore(row, element.nextSibling);
+            }
+        }
+    }
+</script>
+
