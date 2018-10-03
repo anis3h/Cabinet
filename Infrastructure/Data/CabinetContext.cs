@@ -7,6 +7,7 @@ using Core.Entities.Consultations;
 using Core.Entities.Family;
 using Core.Entities.Informations;
 using Core.Entities.Patients;
+using Core.Entities.Schedule;
 
 namespace Infrastructure.Repositories
 {
@@ -24,6 +25,10 @@ namespace Infrastructure.Repositories
         public DbSet<Pregnancy> Pregnanicies { get; set; }
         public DbSet<Born> Borns { get; set; }
         //  public DbSet<TypPregnancy> TypPregnancies { get; set; }
+
+        // Schedule
+        public DbSet<Appointment>Appointments { get; set; }
+
 
         public CabinetContext(DbContextOptions<CabinetContext> options) : base(options)
         {

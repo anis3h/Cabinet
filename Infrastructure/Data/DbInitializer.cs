@@ -5,6 +5,7 @@ using Core.Entities;
 using Core.Entities.Family;
 using Core.Entities.Informations;
 using Core.Entities.Patients;
+using Core.Entities.Schedule;
 using Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -142,6 +143,24 @@ namespace Infrastructure.Repositories
             //    context.Parents.Add(father);
             //}
             //context.SaveChanges();
+
+            List<Appointment> appointments = new List<Appointment>();
+
+            var today = DateTime.Now;
+
+            appointments.Add(new Appointment { Subject = "Explosion of Betelgeuse Star", StartTime = new DateTime(2018, today.Month, 1, 9, 30, 0), EndTime = new DateTime(2018, today.Month, 1, 12, 30, 0) });
+            appointments.Add(new Appointment { Subject = "Thule Air Crash Report", StartTime = new DateTime(2018, today.Month, 12, 5, 0, 0), EndTime = new DateTime(2018, today.Month, 12, 10, 0, 0) });
+            appointments.Add(new Appointment { Subject = "Blue Moon Eclipse", StartTime = new DateTime(2018, today.Month, 13, 9, 30, 0), EndTime = new DateTime(2018, today.Month, 13, 12, 0, 0) });
+            appointments.Add(new Appointment { Subject = "Meteor Showers in 2018", StartTime = new DateTime(2018, today.Month, 14, 0, 0, 0), EndTime = new DateTime(2018, today.Month, 14, 0, 0, 0) });
+            appointments.Add(new Appointment { Subject = "Milky Way as Melting pot", StartTime = new DateTime(2018, today.Month, 28, 12, 0, 0), EndTime = new DateTime(2018, today.Month, 28, 14, 0, 0) });
+
+
+            foreach(var appointment in appointments) {
+
+                context.Appointments.Add(appointment);
+            }
+
+            context.SaveChanges();
         }
     }
 }

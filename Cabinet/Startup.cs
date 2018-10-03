@@ -54,6 +54,9 @@ namespace Cabinet
             services.AddScoped<IPatientViewModelService, PatientService>();
             services.AddScoped<IConsultationViewModelService, ConsultationViewModelService>();
             services.AddScoped<IPatientRepository, PatientRepository>();
+            services.AddScoped<IScheduleViewModelService, ScheduleViewModelService>();
+            services.AddScoped<IScheduleRepository, ScheduleRepository>();
+
             services.AddMvc().AddJsonOptions(options => options.SerializerSettings.ContractResolver = new DefaultContractResolver());
             services.AddAutoMapper();
         }
