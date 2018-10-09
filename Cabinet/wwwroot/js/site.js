@@ -43,13 +43,18 @@ function pregnancyValueChange() {
 
 function toolbarClickConsultation(args) {
 
-    if (args.item.id === 'addConsultation') {
+    if (args.item.id === 'editConsultation') {
 
         var gridInformation = document.getElementById("GridConsultation").ej2_instances[0];
         var rowInformation = gridInformation.getSelectedRecords();
         //  window.location = 
         window.location.pathname = "";
         window.location.assign(window.location.origin + '/Consultations/Consultation' + '/' + rowInformation[0].Id);
+    }
+
+    if (args.item.id === 'addConsultation') {
+        window.location.pathname = "";
+        window.location.assign(window.location.origin + '/Consultations/Consultation');
     }
 }
 

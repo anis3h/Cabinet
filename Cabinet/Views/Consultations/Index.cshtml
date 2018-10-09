@@ -6,7 +6,7 @@
 @section ControlsSection{
     @{
 
-        List<object> toolbarItems = new List<object>() {"Add", new { text = "Edit", tooltipText = "Editer Consultation", prefixIcon = "e-expand", id = "addConsultation" }, "Delete", "Print", "Search" };
+        List<object> toolbarItems = new List<object>() { new { text = "Ajouter", tooltipText = "Ajouter Consultation", prefixIcon = "e-expand", id = "addConsultation" }, new { text = "Edit", tooltipText = "Editer Consultation", prefixIcon = "e-expand", id = "editConsultation" }, "Delete", "Print", "Search" };
         string url = "/Consultations/Consultations/" + Model.Patient.Id.ToString();
     }
 
