@@ -14,7 +14,7 @@ namespace Cabinet.Models.CabinetViewModel.Informations
 
         // Cris immediat?
         public bool Cry { get; set; }
-
+        public bool Cyanose { get; set; }
         // 0 - 10 Apgar 1 mn
         [Range(0, 10)]
         public int Apgar1mn { get; set; }

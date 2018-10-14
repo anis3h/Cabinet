@@ -34,7 +34,7 @@ function pregnancyValueChange() {
 
     var pregnancyRow = document.getElementById('pregnancyRow');
 
-    if (listObj.value !== 'Prématuré') {
+    if (listObj.value !== 'Prématurité') {
         pregnancyRow.hidden = true;
     } else {
         pregnancyRow.hidden = false;
