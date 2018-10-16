@@ -6,6 +6,7 @@ using Cabinet.Models.CabinetViewModel.Dashboard;
 using Core.Interfaces;
 using Infrastructure.Repositories;
 using Microsoft.AspNetCore.Mvc;
+using Syncfusion;
 
 namespace Cabinet.Controllers
 {
@@ -16,6 +17,7 @@ namespace Cabinet.Controllers
        public DashboardController(IPatientRepository patientRepository)
        {
             _patientRepository = patientRepository;
+            Syncfusion.EJ2.Charts.ChartMajorGridLines test = new Syncfusion.EJ2.Charts.ChartMajorGridLines();
        }
 
         public async Task<IActionResult> Index()
