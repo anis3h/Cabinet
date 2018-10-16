@@ -35,10 +35,10 @@ namespace Cabinet.Services {
 
                 return scheduleViewModel;
             }
-            catch (Exception exp) {
+            catch (Exception ex) {
 
-                Console.WriteLine(exp);
-                throw (exp);
+                Console.WriteLine(ex);
+                throw (ex);
             }
         }
 
@@ -47,8 +47,15 @@ namespace Cabinet.Services {
         }
 
 
-        public Task Add(AppointmentViewModel appointmentViewModel) {
-            throw new NotImplementedException();
+        public async Task Add(AppointmentViewModel appointmentViewModel) {
+
+            try {
+                var appointment = _mapper.Map<AppointmentViewModel, Appointment>(appointmentViewModel);
+                await _scheduleRepository.AddAsync(appointment);
+            }
+            catch (Exception ex) {
+                Console.WriteLine(ex);
+            }
         }
 
         public Task Delete(AppointmentViewModel appointmentViewModel) {

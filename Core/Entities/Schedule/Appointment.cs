@@ -8,6 +8,10 @@ namespace Core.Entities.Schedule {
 
     public class Appointment : EntityBase {
 
+        public Appointment() {
+
+        }
+
 
         public string Subject { get; set; }
 

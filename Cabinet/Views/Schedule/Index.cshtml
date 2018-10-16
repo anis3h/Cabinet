@@ -12,7 +12,7 @@
 
     var dataManager = new DataManager() {
         Url = "Schedule/GetData",
-        //InsertUrl = "Schedule/Insert",
+        InsertUrl = "Schedule/Insert",
         CrudUrl = "Schedule/UpdateData",
         //UpdateUrl = "Schedule/Update",
         //RemoveUrl = "Schedule/Delete",
@@ -79,9 +79,9 @@
                 </td>
             </tr>
             <tr>
-                <td class="e-textlabel">Status</td>
+                <td class="e-textlabel">Location</td>
                 <td colspan="4">
-                    <input type="text" id="EventType" name="EventType" class="e-field" style="width: 100%" />
+                    <input type="text" id="Location" name="Location" class="e-field e-input" style="width: 100%" />
                 </td>
             </tr>
             <tr>
@@ -114,7 +114,7 @@
         if (args.requestType === 'eventCreate') {
 
             var eventData = args.data;
-            eventData.Description = document.getElementById("DescriptionValue").innerText;
+            eventData.Description = document.getElementById("Description").innerText;
         }
     }
 
@@ -123,17 +123,17 @@
         var scheduleObj = document.getElementById('schedule').ej2_instances[0];
 
         if (args.type === 'Editor') {
-            var statusElement = args.element.querySelector('#EventType');
+            //var statusElement = args.element.querySelector('#EventType');
 
-            if (!statusElement.classList.contains('e-dropdownlist')) {
+            //if (!statusElement.classList.contains('e-dropdownlist')) {
 
-                var dropDownListObject = new ej.dropdowns.DropDownList({
-                    placeholder: 'Choose status', value: statusElement.value,
-                    dataSource: ['New', 'Requested', 'Confirmed']
-                });
-                dropDownListObject.appendTo(statusElement);
-                statusElement.setAttribute('name', 'EventType');
-            }
+            //    var dropDownListObject = new ej.dropdowns.DropDownList({
+            //        placeholder: 'Choose status', value: statusElement.value,
+            //        dataSource: ['New', 'Requested', 'Confirmed']
+            //    });
+            //    dropDownListObject.appendTo(statusElement);
+            //    statusElement.setAttribute('name', 'EventType');
+            //}
 
             var startElement = args.element.querySelector('#StartTime');
 
@@ -179,7 +179,7 @@
 
                     element.addEventListener("keypress", function (e) {
 
-                        document.getElementById("DescriptionValue").innerHTML = e.target.value;
+                        document.getElementById("Description").innerHTML = e.target.value;
                     });
                 }
             }
