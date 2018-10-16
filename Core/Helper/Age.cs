@@ -15,7 +15,9 @@
 */
 
 
+using Newtonsoft.Json;
 using System;
+
 
 public class Age
 
@@ -35,6 +37,7 @@ public class Age
         }
     }
 
+    [JsonConstructor]
     public Age(DateTime Bday)
     {
 
@@ -47,10 +50,11 @@ public class Age
 
         Count(Bday, Cday);
 
-    }
+    } 
 
 
 
+    
     public void Count(DateTime Bday)
     {
 
