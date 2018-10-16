@@ -44,7 +44,7 @@ namespace Cabinet.Controllers
 
             
                 await _patientViewModelService.UpdatePatientWithInformation(informationViewModel.Patient);
-                return RedirectToAction("Index", "Patient");
+                return RedirectToAction("Index", "Family", informationViewModel.Patient.Id);
             }
 
             catch (Exception exp) {

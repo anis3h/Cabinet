@@ -6,23 +6,23 @@
 @section ControlsSection{
     @{
 
-        List<object> toolbarItems = new List<object>() { new { text = "Edit", tooltipText = "Ajouter Consultation", prefixIcon = "e-expand", id = "addConsultation" }, "Delete", "Print", "Search" };
+        List<object> toolbarItems = new List<object>() { new { text = "Ajouter", tooltipText = "Ajouter Consultation", prefixIcon = "e-expand", id = "addConsultation" }, new { text = "Edit", tooltipText = "Editer Consultation", prefixIcon = "e-expand", id = "editConsultation" }, "Delete", "Print", "Search" };
         string url = "/Consultations/Consultations/" + Model.Patient.Id.ToString();
     }
 
     <div>
         <div>
-            <ejs-grid id="GridConsultation" locale="fr-FR" dataSource="@Model.Patient.Consultations" toolbar=toolbarItems toolbarClick="toolbarClickConsultation" allowPaging="true" allowSorting="true" allowFiltering="true" allowGrouping="true">
+            <ejs-grid id="GridConsultation" locale="fr" dataSource="@Model.Patient.Consultations" toolbar=toolbarItems toolbarClick="toolbarClickConsultation" allowPaging="true" allowSorting="true" allowFiltering="true" allowGrouping="true">
                 @*<e-data-manager url="url" insertUrl="/Consultations/Insert" updateUrl="/Consultations/Update" removeUrl="/Consultations/Delete" adaptor="UrlAdaptor"></e-data-manager>*@
                 <e-grid-editSettings  allowDeleting="true" showDeleteConfirmDialog="true"></e-grid-editSettings>
                 <e-grid-selectionsettings type="Single" mode="Row"></e-grid-selectionsettings>
                 <e-grid-pagesettings pageCount="4" pageSizes="true"></e-grid-pagesettings>
                 <e-grid-columns>
                     <e-grid-column field="Id" headerText="Consultation ID" visible="false" isPrimaryKey="true" textAlign="Right" validationRules="@(new { required=true})" width="100"></e-grid-column>
-                    <e-grid-column field="Synthese" validationRules="@(new { required=true})" headerText="Synthese" textAlign="Center" width="120"></e-grid-column>
-                    @*<e-grid-column id="Test" field="Id" headerText="Customer ID" width="150" textAlign="Center"></e-grid-column>*@
-                    <e-grid-column field="Diagnostic" validationRules="@(new { required=true})" headerText="Diagnostic" textAlign="Center" width="120"></e-grid-column>
                     <e-grid-column field="Date" validationRules="@(new { required=true})" headerText="Date of Consultation" width="130" textAlign="Center" editType="datepickeredit" format="yMd"></e-grid-column>
+                    <e-grid-column field="Synthese" validationRules="@(new { required=true})" headerText="Synthese" textAlign="Center" width="120"></e-grid-column>
+                    <e-grid-column field="Diagnostic" validationRules="@(new { required=true})" headerText="Diagnostic" textAlign="Center" width="120"></e-grid-column>
+
                 </e-grid-columns>
             </ejs-grid>
         </div>

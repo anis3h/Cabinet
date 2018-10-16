@@ -8,7 +8,6 @@ namespace Cabinet.Models.CabinetViewModel.Patient
 {
     public class PatientViewModel : PatientBaseViewModel
     {
-        public int FileNumber { get; set; }
         public string Adresse { get; set; }
     }
 }

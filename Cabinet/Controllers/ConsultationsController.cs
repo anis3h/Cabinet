@@ -38,6 +38,19 @@ namespace Cabinet.Controllers
             }
         }
 
+        [HttpGet("[controller]/[action]")]
+        public IActionResult Consultation()
+        {
+            try
+            {
+                return View();
+            }
+            catch (Exception exp)
+            {
+                throw (exp);
+            }
+        }
+
         [HttpGet("[controller]/[action]/{id}")]
         public async Task<IActionResult> Consultation([FromRoute] int id)
         {

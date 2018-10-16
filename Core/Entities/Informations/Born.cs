@@ -20,6 +20,7 @@ namespace Core.Entities.Informations
         public Allaitement Allaitement { get; set; }
         // Remarque
         public string RemarqueAllaitement { get; set; }
+        public bool Cyanose { get; set; }
        
     }
 }
