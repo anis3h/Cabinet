@@ -12,7 +12,7 @@
 
     <div>
         <div>
-            <ejs-grid id="GridConsultation" locale="fr" dataSource="@Model.Patient.Consultations" toolbar=toolbarItems toolbarClick="toolbarClickConsultation" allowPaging="true" allowSorting="true" allowFiltering="true" allowGrouping="true">
+            <ejs-grid id="GridConsultation" locale="fr" dataSource="@Model.Patient.Consultations" toolbar=toolbarItems toolbarClick="toolbarClickConsultation" allowPaging="true" allowSorting="true" allowFiltering="true">
                 @*<e-data-manager url="url" insertUrl="/Consultations/Insert" updateUrl="/Consultations/Update" removeUrl="/Consultations/Delete" adaptor="UrlAdaptor"></e-data-manager>*@
                 <e-grid-editSettings  allowDeleting="true" showDeleteConfirmDialog="true"></e-grid-editSettings>
                 <e-grid-selectionsettings type="Single" mode="Row"></e-grid-selectionsettings>
