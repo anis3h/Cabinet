@@ -1,13 +1,14 @@
-﻿
+﻿@using Syncfusion.EJ2.Charts; 
+
 @{
     ViewData["Title"] = "Index";
 }
 @{
-    var majorGridLines = new { width = 0.000001 };
-    var lineStyle = new { width = 0.000001 };
-    var majorTickLines = new { width = 0.000001 };
-    var minorTickLines = new { width = 0.000001 };
-  
+    var majorGridLines = new ChartMajorGridLines(){ Width = 0.000001 };
+  //  var lineStyle = new { width = 0.000001 };
+  //  var majorTickLines = new { width = 0.000001 };
+   // var minorTickLines = new { width = 0.000001 };
+
     var marker = new
     {
         visible = true,
@@ -17,7 +18,7 @@
 
     var border = new Syncfusion.EJ2.Charts.ChartBorder { Width = 0, Color = "transparent" };
 
-    var line = new { width = 0.0001 };
+    var line = new ChartAxisLine () { Width = 0.0001 };
 
     var labelStyle = new { color = "transparent" };
     var tooltip = new { enable = true };
@@ -70,9 +71,9 @@
                     <ejs-chart id="lineContainer" load="window.onChartLoad2" title="Ananlyse des Patients">
                         <e-chart-tooltipsettings enable="true">
                         </e-chart-tooltipsettings>
-                        <e-chart-primaryxaxis interval=1 majorGridLines="line">
+                        <e-chart-primaryxaxis interval=1 majorGridLines="majorGridLines">
                         </e-chart-primaryxaxis>
-                        <e-chart-primaryyaxis interval=50   lineStyle="line">
+                        <e-chart-primaryyaxis interval=50  lineStyle="line">
                         </e-chart-primaryyaxis>
                         <e-series-collection>
                             <e-series dataSource="ViewBag.dataSource" xName='X' yName='Y' name='Patients' type="@Syncfusion.EJ2.Charts.ChartSeriesType.Column">

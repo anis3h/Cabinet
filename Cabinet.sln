@@ -11,13 +11,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core", "Core\Core.csproj", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{3A2B8620-96B3-4808-9B00-E1D87825136F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ControllerUnitTests", "UnitTest\ControllerUnitTests.csproj", "{D8589560-57A3-4D9C-AE12-7602F6655E71}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ControllerUnitTests", "ControllerUnitTests\ControllerUnitTests.csproj", "{D8589560-57A3-4D9C-AE12-7602F6655E71}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FunctionalTests", "FunctionalTests\FunctionalTests.csproj", "{B20282DE-0BBE-4253-8DF3-4205DBA7D596}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IntegrationTests", "IntegrationTests\IntegrationTests.csproj", "{9D87265E-25E8-4DB6-B84A-90558B4FDE59}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreUnitTests", "UnitTests\CoreUnitTests.csproj", "{9F6E2E52-66D2-437D-B25A-E7D04C35A27E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreUnitTests", "CoreUnitTests\CoreUnitTests.csproj", "{9F6E2E52-66D2-437D-B25A-E7D04C35A27E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
