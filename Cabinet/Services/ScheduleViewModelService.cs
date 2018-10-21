@@ -49,7 +49,7 @@ namespace Cabinet.Services {
 
         public async Task Add(AppointmentViewModel appointmentViewModel) {
 
-            try {
+            try {              
                 var appointment = _mapper.Map<AppointmentViewModel, Appointment>(appointmentViewModel);
                 await _scheduleRepository.AddAsync(appointment);
             }
@@ -58,12 +58,26 @@ namespace Cabinet.Services {
             }
         }
 
-        public Task Delete(AppointmentViewModel appointmentViewModel) {
-            throw new NotImplementedException();
+        public async Task Update(AppointmentViewModel appointmentViewModel) {
+
+            try {
+                var appointment = _mapper.Map<AppointmentViewModel, Appointment>(appointmentViewModel);
+                await _scheduleRepository.UpdateAsync(appointment);
+            }
+            catch (Exception exp) {
+                Console.WriteLine(exp);
+            }
         }
 
-        public Task Update(AppointmentViewModel appointmentViewModel) {
-            throw new NotImplementedException();
+        public async Task Delete(int id) {
+
+            try {
+                var appointment = await _scheduleRepository.GetByIdAsync(id);
+                await _scheduleRepository.DeleteAsync(appointment);
+            }
+            catch (Exception exp) {
+                Console.WriteLine(exp);
+            }
         }
     }
 }

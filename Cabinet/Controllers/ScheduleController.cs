@@ -14,7 +14,6 @@ namespace Cabinet.Controllers
 
         private readonly IScheduleViewModelService _scheduleViewModelService;
 
-
         public ScheduleController(IScheduleViewModelService scheduleViewModelService) {
 
             _scheduleViewModelService = scheduleViewModelService;
@@ -38,41 +37,39 @@ namespace Cabinet.Controllers
                 return BadRequest(ModelState);
             }
 
+            value.Value.Id = null;
             await _scheduleViewModelService.Add(value.Value);
             return View("Index");
         }
 
-        public async Task<IActionResult> UpdateData([FromBody]CRUDModel<AppointmentViewModel> value) {
-            // this block of code will execute while inserting the appointments
+        public async Task<IActionResult> Update([FromBody]CRUDModel<AppointmentViewModel> value) {
 
-            string test;
+            if (!ModelState.IsValid) {
+                return BadRequest(ModelState);
+            }
+
+            await _scheduleViewModelService.Update(value.Value);
             return View("Index");
         }
 
-        //public async Task<IActionResult> Update([FromBody]CRUDModel<PatientViewModel> value) {
-        //    if (!ModelState.IsValid) {
-        //        return BadRequest(ModelState);
-        //    }
 
-        //    await _patientViewModelService.Update(value.Value);
-        //    return View("Index");
-        //}
+        public async Task<IActionResult> Delete([FromBody]CRUDModel<AppointmentViewModel> value) {
 
-        //public async Task<IActionResult> Delete([FromBody]CRUDModel<PatientViewModel> value) {
-        //    try {
-        //        if (!ModelState.IsValid) {
-        //            return BadRequest(ModelState);
-        //        }
+            try {
 
-        //        // Value in Syncfusion = null --> Syncfusion Bug
-        //        await _patientViewModelService.Delete((int)(Int64)value.Key);
-        //        return View("Index");
-        //    }
-        //    catch (Exception exp) {
-        //        Console.WriteLine(exp);
-        //        throw (exp);
-        //    }
-        //}
-    
+                if (!ModelState.IsValid) {
+                    return BadRequest(ModelState);
+                }
+
+                // Value in Syncfusion = null --> Syncfusion Bug
+                await _scheduleViewModelService.Delete((int)value.Deleted.FirstOrDefault().Id);
+                return View("Index");
+            }
+            catch (Exception exp) {
+
+                Console.WriteLine(exp);
+                throw (exp);
+            }
+        }
     }
 }

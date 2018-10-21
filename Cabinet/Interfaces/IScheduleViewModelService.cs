@@ -17,6 +17,6 @@ namespace Cabinet.Interfaces {
 
         Task Update(AppointmentViewModel appointmentViewModel);
 
-        Task Delete(AppointmentViewModel appointmentViewModel);
+        Task Delete(int id);
     }
 }

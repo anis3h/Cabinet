@@ -8,11 +8,7 @@ namespace Cabinet.Models.CabinetViewModel.Schedule {
 
     public class AppointmentViewModel {
 
-        public AppointmentViewModel() {
-
-        }
-
-        public int Id { get; set; }
+        public int? Id { get; set; }
 
         public string Subject { get; set; }
 

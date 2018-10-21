@@ -4,11 +4,13 @@ using Cabinet.Models.CabinetViewModel.Consultations;
 using Cabinet.Models.CabinetViewModel.Family;
 using Cabinet.Models.CabinetViewModel.Informations;
 using Cabinet.Models.CabinetViewModel.Patient;
+using Cabinet.Models.CabinetViewModel.Schedule;
 using Core.Entities;
 using Core.Entities.Consultations;
 using Core.Entities.Family;
 using Core.Entities.Informations;
 using Core.Entities.Patients;
+using Core.Entities.Schedule;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -59,6 +61,10 @@ namespace Cabinet.Automapper
             // Consultations
             CreateMap<Consultation, ConsultationViewModel>();
             CreateMap<ConsultationViewModel, Consultation>();
+
+            // Schedule
+            CreateMap<AppointmentViewModel, Appointment>();
+            CreateMap<Appointment, AppointmentViewModel>();
         }
     }
 }
