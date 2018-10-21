@@ -7,192 +7,238 @@
 @section ControlsSection{
     @{
 
-        
+
     }
 
-    <div>
-        <Form asp-controller="Consultations" asp-action="Consultation" method="post">
-            @*<div class="row">
-                    <p> @Html.DisplayFor(model => model.Patient.DateOfBirth)</p>
-                    <p> @Html.DisplayNameFor(model => model.Patient.DateOfBirth)</p>
-                </div>*@
-            <div class="col-lg-12 control-section">
-
-                <div class="content-wrapper">
-
-                    <div class="row">
-                        <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6">
-                            <b>I</b>
+<div class="mt-3">
+    <Form asp-controller="Consultations" asp-action="Consultation" method="post">
+        <ejs-accordion id="ParentNested" expandMode="Multiple">
+            <e-accordion-accordionitems>
+                <e-accordion-accordionitem header="ANAMNÈSE" content='#nested1' expanded="false"></e-accordion-accordionitem>
+                <e-accordion-accordionitem header="MENSURATIONS" content='#nested2' expanded="false"></e-accordion-accordionitem>
+                <e-accordion-accordionitem header="EXAMENS" content='#nested30' expanded="true"></e-accordion-accordionitem>
+                <e-accordion-accordionitem header="EXAMENS BIOLOGIQUES" content='#nested4' expanded="false"></e-accordion-accordionitem>
+                <e-accordion-accordionitem header="EXAMENS RADIOLOGIQUES" content='#nested5' expanded="false"></e-accordion-accordionitem>
+                <e-accordion-accordionitem header="DIAGNOSTICS" content='#nested6' expanded="false"></e-accordion-accordionitem>
+                <e-accordion-accordionitem header="THÉRAPIE" content='#nested7' expanded="false"></e-accordion-accordionitem>
+                <e-accordion-accordionitem header="SYNTHÈSE" content='#nested8' expanded="false"></e-accordion-accordionitem>
+            </e-accordion-accordionitems>
+        </ejs-accordion>
+        <div class="control_wrapper accordion-control-section">
+            <div id="nested1" style="display: none">
+                <div class="row">
+                    <div>
+                        <input required="" type="hidden" asp-for="Id">
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12">
+                        <div class="e-float-input">
+                            <input required="" type="text" asp-for="Anamnese">
+                            <span class="e-float-line"></span>
+                            <label class="e-float-text" asp-for="Anamnese">Anamnese: </label>
                         </div>
                     </div>
-                    <div class="row">
-                        <div>
-                            <input required="" type="hidden" asp-for="Id">
-                        </div>
-                        <div class="col-xs-3 col-sm-3 col-lg-3 col-md-3">
-                            <div class="e-float-input">
-                                <input required="" type="number" asp-for="Temperature">
-                                <span class="e-float-line"></span>
-                                <label class="e-float-text" asp-for="Temperature">Temperature</label>
-                            </div>
-                        </div>
-                        <div class="col-xs-3 col-sm-3 col-lg-3 col-md-3">
-                            <div class="e-float-input">
-                                <input required="" type="number" asp-for="Pc">
-                                <span class="e-float-line"></span>
-                                <label class="e-float-text" asp-for="Pc">Pc: </label>
-                            </div>
-                        </div>
-                        <div class="col-xs-3 col-sm-3 col-lg-3 col-md-3">
-                            <div class="e-float-input">
-                                <input required="" type="number" asp-for="Weight">
-                                <span class="e-float-line"></span>
-                                <label class="e-float-text" asp-for="Weight">Poids: </label>
-                            </div>
-                        </div>
-                        <div class="col-xs-3 col-sm-3 col-lg-3 col-md-3">
-                            <div class="e-float-input">
-                                <input required="" type="number" asp-for="Cut">
-                                <span class="e-float-line"></span>
-                                <label class="e-float-text" asp-for="Cut">Taille: </label>
-                            </div>
-                        </div>
-                    </div>
-
-
-
-                    <div class="row">
-                        <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6">
-                            <b>II</b>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div>
-                            <input required="" type="hidden" asp-for="Id">
-                        </div>
-                        <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12">
-                            <div class="e-float-input">
-                                <input required="" type="text" asp-for="EtatGeneral">
-                                <span class="e-float-line"></span>
-                                <label class="e-float-text" asp-for="EtatGeneral">EtatGeneral: </label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div>
-                            <input required="" type="hidden" asp-for="Id">
-                        </div>
-                        <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12">
-                            <div class="e-float-input">
-                                <input required="" type="text" asp-for="Anamnèse">
-                                <span class="e-float-line"></span>
-                                <label class="e-float-text" asp-for="Anamnèse">Anamnèse: </label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div>
-                            <input required="" type="hidden" asp-for="Id">
-                        </div>
-                        <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12">
-                            <div class="e-float-input">
-                                <input required="" type="text" asp-for="Examen">
-                                <span class="e-float-line"></span>
-                                <label class="e-float-text" asp-for="Examen">Éxamen: </label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div>
-                            <input required="" type="hidden" asp-for="Id">
-                        </div>
-                        <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12">
-                            <div class="e-float-input">
-                                <input required="" type="text" asp-for="Inspection">
-                                <span class="e-float-line"></span>
-                                <label class="e-float-text" asp-for="Inspection">Inspection: </label>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="row">
-                        <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6">
-                            <b>Peau</b>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div>
-                            <input required="" type="hidden" asp-for="Id">
-                        </div>
-                        <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6">
-                            <div class="e-float-input">
-                                <input required="" type="text" asp-for="CouleurPeau">
-                                <span class="e-float-line"></span>
-                                <label class="e-float-text" asp-for="CouleurPeau">Couleur de Peau: </label>
-                            </div>
-                        </div>
-                        <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6">
-                            <div class="e-float-input">
-                                <input required="" type="text" asp-for="DescriptionCouleurPeau">
-                                <span class="e-float-line"></span>
-                                <label class="e-float-text" asp-for="DescriptionCouleurPeau">Description: </label>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="row">
-                        <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6">
-                            <b>X</b>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div>
-                            <input required="" type="hidden" asp-for="Id">
-                        </div>
-                        <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12">
-                            <div class="e-float-input">
-                                <input required="" type="text" asp-for="Synthese">
-                                <span class="e-float-line"></span>
-                                <label class="e-float-text" asp-for="Synthese">Synthese: </label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div>
-                            <input required="" type="hidden" asp-for="Id">
-                        </div>
-                        <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12">
-                            <div class="e-float-input">
-                                <input required="" type="text" asp-for="Diagnostic">
-                                <span class="e-float-line"></span>
-                                <label class="e-float-text" asp-for="Diagnostic">Diagnostic: </label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div>
-                            <input required="" type="hidden" asp-for="Id">
-                        </div>
-                        <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12">
-                            <div class="e-float-input">
-                                <input required="" type="text" asp-for="Traitement">
-                                <span class="e-float-line"></span>
-                                <label class="e-float-text" asp-for="Traitement">Traitement: </label>
-                            </div>
-                        </div>
-                    </div>
-
-                    <button type="submit" class="btn btn-default">Register</button>
-
                 </div>
             </div>
-        </Form>
-    </div>
+
+            <div id="nested2" style="display: none">
+                @await Html.PartialAsync("../Shared/Consultations/_MensurationsPartial.cshtml", Model)              
+            </div>
+
+            <div id="nested30" style="display: none">
+                @await Html.PartialAsync("../Shared/Consultations/_ExaminationsPartial.cshtml", Model)
+            </div>
+        </div>
+
+      
+
+
+
+        @*<ejs-accordion id="defaultAccordion">
+                <e-accordion-accordionitems>
+                    <e-accordion-accordionitem expanded="true" header="ASP.NET" content="<div>Test</div>">
+
+
+                    </e-accordion-accordionitem>
+                    <e-accordion-accordionitem header="ASP.NET MVC" content="Test2"></e-accordion-accordionitem>
+                    <e-accordion-accordionitem header="JavaScript" content="Test3"></e-accordion-accordionitem>
+                </e-accordion-accordionitems>
+            </ejs-accordion>*@
+
+        <button type="submit" class="btn btn-default">Register</button>
+        @*</div>*@
+    </Form>
+</div>
+
+    @*<div class="row">
+            <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6">
+                <b>I</b>
+            </div>
+        </div>
+        <div class="row">
+            <div>
+                <input required="" type="hidden" asp-for="Id">
+            </div>
+            <div class="col-xs-3 col-sm-3 col-lg-3 col-md-3">
+                <div class="e-float-input">
+                    <input required="" type="number" asp-for="Temperature">
+                    <span class="e-float-line"></span>
+                    <label class="e-float-text" asp-for="Temperature">Temperature</label>
+                </div>
+            </div>
+            <div class="col-xs-3 col-sm-3 col-lg-3 col-md-3">
+                <div class="e-float-input">
+                    <input required="" type="number" asp-for="Pc">
+                    <span class="e-float-line"></span>
+                    <label class="e-float-text" asp-for="Pc">Pc: </label>
+                </div>
+            </div>
+            <div class="col-xs-3 col-sm-3 col-lg-3 col-md-3">
+                <div class="e-float-input">
+                    <input required="" type="number" asp-for="Weight">
+                    <span class="e-float-line"></span>
+                    <label class="e-float-text" asp-for="Weight">Poids: </label>
+                </div>
+            </div>
+            <div class="col-xs-3 col-sm-3 col-lg-3 col-md-3">
+                <div class="e-float-input">
+                    <input required="" type="number" asp-for="Cut">
+                    <span class="e-float-line"></span>
+                    <label class="e-float-text" asp-for="Cut">Taille: </label>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="row">
+            <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6">
+                <b>II</b>
+            </div>
+        </div>
+        <div class="row">
+            <div>
+                <input required="" type="hidden" asp-for="Id">
+            </div>
+            <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12">
+                <div class="e-float-input">
+                    <input required="" type="text" asp-for="EtatGeneral">
+                    <span class="e-float-line"></span>
+                    <label class="e-float-text" asp-for="EtatGeneral">EtatGeneral: </label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div>
+                <input required="" type="hidden" asp-for="Id">
+            </div>
+            <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12">
+                <div class="e-float-input">
+                    <input required="" type="text" asp-for="Anamnèse">
+                    <span class="e-float-line"></span>
+                    <label class="e-float-text" asp-for="Anamnèse">Anamnèse: </label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div>
+                <input required="" type="hidden" asp-for="Id">
+            </div>
+            <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12">
+                <div class="e-float-input">
+                    <input required="" type="text" asp-for="Examen">
+                    <span class="e-float-line"></span>
+                    <label class="e-float-text" asp-for="Examen">Éxamen: </label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div>
+                <input required="" type="hidden" asp-for="Id">
+            </div>
+            <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12">
+                <div class="e-float-input">
+                    <input required="" type="text" asp-for="Inspection">
+                    <span class="e-float-line"></span>
+                    <label class="e-float-text" asp-for="Inspection">Inspection: </label>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6">
+                <b>Peau</b>
+            </div>
+        </div>
+        <div class="row">
+            <div>
+                <input required="" type="hidden" asp-for="Id">
+            </div>
+            <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6">
+                <div class="e-float-input">
+                    <input required="" type="text" asp-for="CouleurPeau">
+                    <span class="e-float-line"></span>
+                    <label class="e-float-text" asp-for="CouleurPeau">Couleur de Peau: </label>
+                </div>
+            </div>
+            <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6">
+                <div class="e-float-input">
+                    <input required="" type="text" asp-for="DescriptionCouleurPeau">
+                    <span class="e-float-line"></span>
+                    <label class="e-float-text" asp-for="DescriptionCouleurPeau">Description: </label>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6">
+                <b>X</b>
+            </div>
+        </div>
+        <div class="row">
+            <div>
+                <input required="" type="hidden" asp-for="Id">
+            </div>
+            <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12">
+                <div class="e-float-input">
+                    <input required="" type="text" asp-for="Synthese">
+                    <span class="e-float-line"></span>
+                    <label class="e-float-text" asp-for="Synthese">Synthese: </label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div>
+                <input required="" type="hidden" asp-for="Id">
+            </div>
+            <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12">
+                <div class="e-float-input">
+                    <input required="" type="text" asp-for="Diagnostic">
+                    <span class="e-float-line"></span>
+                    <label class="e-float-text" asp-for="Diagnostic">Diagnostic: </label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div>
+                <input required="" type="hidden" asp-for="Id">
+            </div>
+            <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12">
+                <div class="e-float-input">
+                    <input required="" type="text" asp-for="Traitement">
+                    <span class="e-float-line"></span>
+                    <label class="e-float-text" asp-for="Traitement">Traitement: </label>
+                </div>
+            </div>
+        </div>*@
+
+
 }
 
 <style>
+
+
     .e-input-picture::before {
         content: '\e7b3';
         font-family: e-icons;
@@ -241,39 +287,41 @@
 </style>
 
 @section Scripts {
-    <script>
-        var inputObject = {};
-        var input = document.querySelectorAll('.e-input-group .e-input,.e-float-input.e-input-group input');
-        var inputIcon = document.querySelectorAll('.e-input-group-icon');
-        var focusFn = function (index) {
-            return function () {
-                getParentNode(input[index]).classList.add('e-input-focus');
+
+
+    @*<script>
+            var inputObject = {};
+            var input = document.querySelectorAll('.e-input-group .e-input,.e-float-input.e-input-group input');
+            var inputIcon = document.querySelectorAll('.e-input-group-icon');
+            var focusFn = function (index) {
+                return function () {
+                    getParentNode(input[index]).classList.add('e-input-focus');
+                };
             };
-        };
-        var blurFn = function (index) {
-            return function () { getParentNode(input[index]).classList.remove('e-input-focus'); };
-        };
-        var mouseupFn = function () {
-            var ele = this; setTimeout(function () {
-                ele.classList.remove('e-input-btn-ripple');
-            }, 500);
-        };
-        for (var i = 0; i < input.length; i++) {
-            input[i].addEventListener('focus', focusFn(i));
-            input[i].addEventListener('blur', blurFn(i));
-        }
-        for (var j = 0; j < inputIcon.length; j++) {
-            inputIcon[j].addEventListener('mousedown', function () {
-                this.classList.add('e-input-btn-ripple');
-            });
-            inputIcon[j].addEventListener('mouseup', mouseupFn);
-        }
-        function getParentNode(element) {
-            var parentNode = element.parentNode;
-            if (parentNode.classList.contains('e-input-in-wrap')) {
-                return parentNode.parentNode;
+            var blurFn = function (index) {
+                return function () { getParentNode(input[index]).classList.remove('e-input-focus'); };
+            };
+            var mouseupFn = function () {
+                var ele = this; setTimeout(function () {
+                    ele.classList.remove('e-input-btn-ripple');
+                }, 500);
+            };
+            for (var i = 0; i < input.length; i++) {
+                input[i].addEventListener('focus', focusFn(i));
+                input[i].addEventListener('blur', blurFn(i));
             }
-            return parentNode;
-        }
-    </script>
+            for (var j = 0; j < inputIcon.length; j++) {
+                inputIcon[j].addEventListener('mousedown', function () {
+                    this.classList.add('e-input-btn-ripple');
+                });
+                inputIcon[j].addEventListener('mouseup', mouseupFn);
+            }
+            function getParentNode(element) {
+                var parentNode = element.parentNode;
+                if (parentNode.classList.contains('e-input-in-wrap')) {
+                    return parentNode.parentNode;
+                }
+                return parentNode;
+            }
+        </script>*@
 }

@@ -3,6 +3,7 @@ using Cabinet.Interfaces;
 using Cabinet.Models.CabinetViewModel.Consultations;
 using Core.Entities.Consultations;
 using Core.Interfaces;
+using Core.Specifications.Consultations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,6 +37,8 @@ namespace Cabinet.Services
         public async Task<ConsultationViewModel> GetConsultation(int consultationId)
         {
             var consultation = await _consultationRepository.GetByIdAsync(consultationId);
+            var consultationWithAllDataSpecification = new ConsultationWithAllDataSpecification(row => row.Id == consultationId);
+            var consultationTest = await _consultationRepository.ListAsync(consultationWithAllDataSpecification);
             var consultationViewModel = _mapper.Map<Consultation, ConsultationViewModel>(consultation);
             return consultationViewModel;
         }

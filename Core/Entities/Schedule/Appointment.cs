@@ -29,6 +29,8 @@ namespace Core.Entities.Schedule {
 
         public string Description { get; set; }
 
+        // Patient
+
         //public string StartTimezone { get; set; }
 
         //public string EndTimezone { get; set; }
