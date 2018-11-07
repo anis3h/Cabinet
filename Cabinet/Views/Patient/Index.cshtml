@@ -6,7 +6,7 @@
 @section ControlsSection{
     @{
 
-        List<object> toolbarItems = new List<object>() { "Add", "Edit", "Update", "Delete", "Search", new { text = "Informations", tooltipText = "Edit Informations", prefixIcon = "e-expand", id = "editInformations" }, new { text = "Famille", tooltipText = "Edit Family", prefixIcon = "e-expand", id = "editFamily" }, new { text = "Consultations", tooltipText = "Edit Consultations", prefixIcon = "e-expand", id = "editConsultations" }, "Print" };
+        List<object> toolbarItems = new List<object>() { "Add", "Edit", "Update", "Delete", "Search", new { text = "Informations", tooltipText = "Edit Informations", prefixIcon = "fa-info-circle", id = "editInformations" }, new { text = "Famille", tooltipText = "Edit Family", prefixIcon = "fa-family", id = "editFamily" }, new { text = "Consultations", tooltipText = "Edit Consultations", prefixIcon = "fa-consultation", id = "editConsultations" }, "Print" };
     }
 
     <div class="container mt-3">
@@ -37,3 +37,28 @@
 </script>
 
 @*"dd/MM/y"*@
+
+<style>
+
+.fa-info-circle::before {
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    font-size: 16px;
+    content: '\f05a';
+}
+
+.fa-family::before {
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    font-size: 16px;
+    content: '\f0c0';
+}
+
+.fa-consultation::before {
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 400;
+    font-size: 16px;
+    content: '\f2bb';
+}
+
+</style>
