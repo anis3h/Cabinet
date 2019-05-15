@@ -6,6 +6,7 @@ namespace Cabinet.Models.CabinetViewModel.Consultations
 {
     public class TherapieViewModel
     {
+        public int Id { get; set; }
         //Allergie medicamenteuse: oui/non(si oui phrase)
         public bool? AllergieMedicamenteuse { get; set; }
         public string AllergieMedicamenteuseDescr { get; set; }

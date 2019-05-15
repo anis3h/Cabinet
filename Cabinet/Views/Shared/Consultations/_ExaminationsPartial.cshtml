@@ -22,55 +22,44 @@
         <div id="nested31" style="display: none">
             @await Html.PartialAsync("../Consultations/_InspectionPartial.cshtml", Model)
         </div>
-
         <div id="nested32" style="display: none">
+            @await Html.PartialAsync("../Consultations/_SkinPartial.cshtml", Model)
+        </div>
+        <div id="nested33" style="display: none">
+            @await Html.PartialAsync("../Consultations/_PalpationPartial.cshtml", Model)
+        </div>
+        <div id="nested34" style="display: none">
+            @await Html.PartialAsync("../Consultations/_ArticulationsPartial.cshtml", Model)
+        </div>
+        <div id="nested35" style="display: none">
+            @await Html.PartialAsync("../Consultations/_HeadPartial.cshtml", Model)
+        </div>
+        <div id="nested36" style="display: none">
+            @await Html.PartialAsync("../Consultations/_AuscultationCardioPulmonairePartial.cshtml", Model)
+        </div>
+        <div id="nested37" style="display: none">
+            @await Html.PartialAsync("../Consultations/_AbdomenPartial.cshtml", Model)
+        </div>
+        <div id="nested38" style="display: none">
+            @await Html.PartialAsync("../Consultations/_OgePartial.cshtml", Model)
+        </div>
+        <div id="nested39" style="display: none">
+            @await Html.PartialAsync("../Consultations/_NeurologiquePartial.cshtml", Model)
+        </div>
+       
+        <div id="nested40" style="display: none">
             <div class="row">
                 <div>
-                    <input required="" type="hidden" asp-for="Id">
+                    <input required="" type="hidden" asp-for="Examination.Id">
                 </div>
                 <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12">
                     <div class="e-float-input">
-                        <input required="" type="text" asp-for="Diagnostic">
+                        <input required="" type="text" asp-for="Examination.Autres">
                         <span class="e-float-line"></span>
-                        <label class="e-float-text" asp-for="Diagnostic">Diagnostic: </label>
+                        <label class="e-float-text" asp-for="Examination.Autres">Autres: </label>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-    @*<div class="row">
-            <div>
-                <input required="" type="hidden" asp-for="Examination.Id">
-            </div>
-            <div class="col-xs-3 col-sm-3 col-lg-3 col-md-3">
-                <div class="e-float-input">
-                    <input required="" type="number" asp-for="Mensuration.Poids">
-                    <span class="e-float-line"></span>
-                    <label class="e-float-text" asp-for="Mensuration.Poids">Poids: </label>
-                </div>
-            </div>
-
-            <div class="col-xs-3 col-sm-3 col-lg-3 col-md-3">
-                <div class="e-float-input">
-                    <input required="" type="number" asp-for="Mensuration.PercentilPoids">
-                    <span class="e-float-line"></span>
-                    <label class="e-float-text" asp-for="Mensuration.PercentilPoids">Percentil: </label>
-                </div>
-            </div>
-
-            <div class="col-xs-3 col-sm-3 col-lg-3 col-md-3">
-                <div class="e-float-input">
-                    <input required="" type="number" asp-for="Mensuration.Taille">
-                    <span class="e-float-line"></span>
-                    <label class="e-float-text" asp-for="Mensuration.Taille">Taille: </label>
-                </div>
-            </div>
-            <div class="col-xs-3 col-sm-3 col-lg-3 col-md-3">
-                <div class="e-float-input">
-                    <input required="" type="number" asp-for="Mensuration.PercentilTaille">
-                    <span class="e-float-line"></span>
-                    <label class="e-float-text" asp-for="Mensuration.PercentilTaille">Percentil: </label>
-                </div>
-            </div>
-        </div>*@

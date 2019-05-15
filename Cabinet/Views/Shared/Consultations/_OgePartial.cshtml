@@ -1,0 +1,64 @@
+﻿@using Cabinet.Models.CabinetViewModel.Consultations
+
+
+@model ConsultationViewModel
+<div class="row">
+    <div>
+        <input required="" type="hidden" asp-for="Examination.Oge.Id">
+    </div>
+    <div class="col-xs-3 col-sm-3 col-lg-3 col-md-3">
+        <div class="e-float-input">
+            <input required="" type="text" asp-for="Examination.Oge.Sex">
+            <span class="e-float-line"></span>
+            <label class="e-float-text" asp-for="Examination.Oge.Sex">Sex: </label>
+        </div>
+    </div>
+
+    <div class="col-xs-3 col-sm-3 col-lg-3 col-md-3">
+        <div class="e-float-input">
+            <input required="" type="text" asp-for="Examination.Oge.TesticulePlace">
+            <span class="e-float-line"></span>
+            <label class="e-float-text" asp-for="Examination.Oge.TesticulePlace">Testicules en place: </label>
+        </div>
+    </div>
+
+    <div class="col-xs-3 col-sm-3 col-lg-3 col-md-3">
+        <div class="e-float-input">
+            <input required="" type="text" asp-for="Examination.Oge.TesticulePlaceDescr">
+            <span class="e-float-line"></span>
+            <label class="e-float-text" asp-for="Examination.Oge.TesticulePlaceDescr">Testicules en place Descr.: </label>
+        </div>
+    </div>
+    <div class="col-xs-2 col-sm-2 col-lg-2 col-md-2">
+        <div class="e-float-input">
+            <input required="" type="text" asp-for="Examination.Oge.AmbiguitéSexuelle">
+            <span class="e-float-line"></span>
+            <label class="e-float-text" asp-for="Examination.Oge.AmbiguitéSexuelle">Ambiguité sexuelle: </label>
+        </div>
+    </div>
+    <div class="col-xs-1 col-sm-1 col-lg-1 col-md-1">
+        <div class="e-float-input">
+            <input required="" type="text" asp-for="Examination.Oge.AmbiguitéSexuelleDescr">
+            <span class="e-float-line"></span>
+            <label class="e-float-text" asp-for="Examination.Oge.AmbiguitéSexuelleDescr">Ambiguité sexuelle Descr.: </label>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-2 col-sm-2 col-lg-2 col-md-2">
+        <div class="e-float-input">
+            <input required="" type="text" asp-for="Examination.Oge.Hernie">
+            <span class="e-float-line"></span>
+            <label class="e-float-text" asp-for="Examination.Oge.Hernie">Hernie: </label>
+        </div>
+    </div>
+    <div class="col-xs-1 col-sm-1 col-lg-1 col-md-1">
+        <div class="e-float-input">
+            <input required="" type="text" asp-for="Examination.Oge.HernieDescr">
+            <span class="e-float-line"></span>
+            <label class="e-float-text" asp-for="Examination.Oge.HernieDescr">Hernie Descr.: </label>
+        </div>
+    </div>
+
+
+</div>

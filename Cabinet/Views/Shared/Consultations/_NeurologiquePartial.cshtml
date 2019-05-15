@@ -1,0 +1,93 @@
+﻿@using Cabinet.Models.CabinetViewModel.Consultations
+
+@model ConsultationViewModel
+<div class="row">
+    <div>
+        <input required="" type="hidden" asp-for="Examination.Neurologique.Id">
+    </div>
+    <div class="col-xs-3 col-sm-3 col-lg-3 col-md-3">
+        <div class="e-float-input">
+            <input required="" type="text" asp-for="Examination.Neurologique.NuqueSouple">
+            <span class="e-float-line"></span>
+            <label class="e-float-text" asp-for="Examination.Neurologique.NuqueSouple">Nuque souple: </label>
+        </div>
+    </div>
+
+    <div class="col-xs-3 col-sm-3 col-lg-3 col-md-3">
+        <div class="e-float-input">
+            <input required="" type="text" asp-for="Examination.Neurologique.SignesMénigrésPositifs">
+            <span class="e-float-line"></span>
+            <label class="e-float-text" asp-for="Examination.Neurologique.SignesMénigrésPositifs">Signes méningés postifs: </label>
+        </div>
+    </div>
+
+    <div class="col-xs-3 col-sm-3 col-lg-3 col-md-3">
+        <div class="e-float-input">
+            <input required="" type="text" asp-for="Examination.Neurologique.TroublesSensoriels">
+            <span class="e-float-line"></span>
+            <label class="e-float-text" asp-for="Examination.Neurologique.TroublesSensoriels">Troubles sensoriels: </label>
+        </div>
+    </div>
+    <div class="col-xs-3 col-sm-3 col-lg-3 col-md-3">
+        <div class="e-float-input">
+            <input required="" type="text" asp-for="Examination.Neurologique.TroublesSensorielsDesc">
+            <span class="e-float-line"></span>
+            <label class="e-float-text" asp-for="Examination.Neurologique.TroublesSensorielsDesc">Troubles sensoriels Descr.: </label>
+        </div>
+    </div>
+
+</div>
+
+<div class="row">
+    <div class="mt-3">
+        <ejs-accordion id="ParentNested39" expandMode="Multiple">
+            <e-accordion-accordionitems>
+                <e-accordion-accordionitem header="ROT-s" content='#nested391' expanded="false"></e-accordion-accordionitem>
+            </e-accordion-accordionitems>
+        </ejs-accordion>
+        <div id="nested391" style="display: none">
+            <div class="row">
+                <div>
+                    <input required="" type="hidden" asp-for="Examination.Neurologique.Rots.Id">
+                </div>
+                <div class="col-xs-3 col-sm-3 col-lg-3 col-md-3">
+                    <div class="e-float-input">
+                        <input required="" type="text" asp-for="Examination.Neurologique.Rots.Présents">
+                        <span class="e-float-line"></span>
+                        <label class="e-float-text" asp-for="Examination.Neurologique.Rots.Présents">Présents: </label>
+                    </div>
+                </div>
+
+                <div class="col-xs-3 col-sm-3 col-lg-3 col-md-3">
+                    <div class="e-float-input">
+                        <input required="" type="text" asp-for="Examination.Neurologique.Rots.PrésentsDescr">
+                        <span class="e-float-line"></span>
+                        <label class="e-float-text" asp-for="Examination.Neurologique.Rots.PrésentsDescr">Présents Descr.: </label>
+                    </div>
+                </div>
+
+                <div class="col-xs-3 col-sm-3 col-lg-3 col-md-3">
+                    <div class="e-float-input">
+                        <input required="" type="text" asp-for="Examination.Neurologique.Rots.SymétriquesClaire">
+                        <span class="e-float-line"></span>
+                        <label class="e-float-text" asp-for="Examination.Neurologique.Rots.SymétriquesClaire">symétriques[claire]: </label>
+                    </div>
+                </div>
+                <div class="col-xs-2 col-sm-2 col-lg-2 col-md-2">
+                    <div class="e-float-input">
+                        <input required="" type="text" asp-for="Examination.Neurologique.Rots.SymétriquesClaireDescr">
+                        <span class="e-float-line"></span>
+                        <label class="e-float-text" asp-for="Examination.Neurologique.Rots.SymétriquesClaireDescr">symétriques[claire] Descr.: </label>
+                    </div>
+                </div>
+                <div class="col-xs-1 col-sm-1 col-lg-1 col-md-1">
+                    <div class="e-float-input">
+                        <input required="" type="text" asp-for="Examination.Neurologique.Rots.Babinski">
+                        <span class="e-float-line"></span>
+                        <label class="e-float-text" asp-for="Examination.Neurologique.Rots.Babinski">Babinski: </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

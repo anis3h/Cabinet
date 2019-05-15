@@ -1,0 +1,57 @@
+﻿@using Cabinet.Models.CabinetViewModel.Consultations
+
+
+@model ConsultationViewModel
+    <div class="row">
+        <div>
+            <input required="" type="hidden" asp-for="Examination.Skin.Id">
+        </div>
+        <div class="col-xs-3 col-sm-3 col-lg-3 col-md-3">
+            <div class="e-float-input">
+                <input required="" type="text" asp-for="Examination.Skin.SkinColor">
+                <span class="e-float-line"></span>
+                <label class="e-float-text" asp-for="Examination.Skin.SkinColor">Couleur: </label>
+            </div>
+        </div>
+
+        <div class="col-xs-3 col-sm-3 col-lg-3 col-md-3">
+            <div class="e-float-input">
+                <input required="" type="text" asp-for="Examination.Skin.Cyanose">
+                <span class="e-float-line"></span>
+                <label class="e-float-text" asp-for="Examination.Skin.Cyanose">Cyanose: </label>
+            </div>
+        </div>
+
+        <div class="col-xs-3 col-sm-3 col-lg-3 col-md-3">
+            <div class="e-float-input">
+                <input required="" type="text" asp-for="Examination.Skin.Tr">
+                <span class="e-float-line"></span>
+                <label class="e-float-text" asp-for="Examination.Skin.Tr">Tr: </label>
+            </div>
+        </div>
+        <div class="col-xs-2 col-sm-2 col-lg-2 col-md-2">
+            <div class="e-float-input">
+                <input required="" type="text" asp-for="Examination.Skin.IctereIntensité">
+                <span class="e-float-line"></span>
+                <label class="e-float-text" asp-for="Examination.Skin.IctereIntensité">Ictère d´intensité: </label>
+            </div>
+        </div>
+        <div class="col-xs-1 col-sm-1 col-lg-1 col-md-1">
+            <div class="e-float-input">
+                <input required="" type="text" asp-for="Examination.Skin.Eruption">
+                <span class="e-float-line"></span>
+                <label class="e-float-text" asp-for="Examination.Skin.Eruption">Eruptions: </label>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12">
+            <div class="e-float-input">
+                <input required="" type="text" asp-for="Examination.Skin.EruptionDescr">
+                <span class="e-float-line"></span>
+                <label class="e-float-text" asp-for="Examination.Skin.EruptionDescr">Eruption Descr.: </label>
+            </div>
+        </div>
+
+
+    </div>

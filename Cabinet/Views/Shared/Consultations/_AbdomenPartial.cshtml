@@ -1,0 +1,104 @@
+﻿@using Cabinet.Models.CabinetViewModel.Consultations
+
+@model ConsultationViewModel
+<div class="row">
+    <div>
+        <input required="" type="hidden" asp-for="Examination.Abdomen.Id">
+    </div>
+    <div class="col-xs-3 col-sm-3 col-lg-3 col-md-3">
+        <div class="e-float-input">
+            <input required="" type="text" asp-for="Examination.Abdomen.Ballonné">
+            <span class="e-float-line"></span>
+            <label class="e-float-text" asp-for="Examination.Abdomen.Ballonné">Ballonné: </label>
+        </div>
+    </div>
+
+    <div class="col-xs-3 col-sm-3 col-lg-3 col-md-3">
+        <div class="e-float-input">
+            <input required="" type="text" asp-for="Examination.Abdomen.Souple">
+            <span class="e-float-line"></span>
+            <label class="e-float-text" asp-for="Examination.Abdomen.Souple">Souple: </label>
+        </div>
+    </div>
+
+    <div class="col-xs-3 col-sm-3 col-lg-3 col-md-3">
+        <div class="e-float-input">
+            <input required="" type="text" asp-for="Examination.Abdomen.Défense">
+            <span class="e-float-line"></span>
+            <label class="e-float-text" asp-for="Examination.Abdomen.Défense">Défense: </label>
+        </div>
+    </div>
+    <div class="col-xs-2 col-sm-2 col-lg-2 col-md-2">
+        <div class="e-float-input">
+            <input required="" type="text" asp-for="Examination.Abdomen.FosseIliaqueLibre">
+            <span class="e-float-line"></span>
+            <label class="e-float-text" asp-for="Examination.Abdomen.FosseIliaqueLibre">Fosse iliaque libre: </label>
+        </div>
+    </div>
+    <div class="col-xs-1 col-sm-1 col-lg-1 col-md-1">
+        <div class="e-float-input">
+            <input required="" type="text" asp-for="Examination.Abdomen.FosseIliaqueLibreDescr">
+            <span class="e-float-line"></span>
+            <label class="e-float-text" asp-for="Examination.Abdomen.FosseIliaqueLibreDescr">Fosse iliaque libre Descr.: </label>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-3 col-sm-3 col-lg-3 col-md-3">
+        <div class="e-float-input">
+            <input required="" type="text" asp-for="Examination.Abdomen.MassePalpable">
+            <span class="e-float-line"></span>
+            <label class="e-float-text" asp-for="Examination.Abdomen.MassePalpable">Masse palpable: </label>
+        </div>
+    </div>
+
+    <div class="col-xs-3 col-sm-3 col-lg-3 col-md-3">
+        <div class="e-float-input">
+            <input required="" type="text" asp-for="Examination.Abdomen.MassePalpableDescr">
+            <span class="e-float-line"></span>
+            <label class="e-float-text" asp-for="Examination.Abdomen.MassePalpableDescr">Masse palpable Descr.: </label>
+        </div>
+    </div>
+
+    <div class="col-xs-3 col-sm-3 col-lg-3 col-md-3">
+        <div class="e-float-input">
+            <input required="" type="text" asp-for="Examination.Abdomen.Hm">
+            <span class="e-float-line"></span>
+            <label class="e-float-text" asp-for="Examination.Abdomen.Hm">HM: 0 - 5 TD: </label>
+        </div>
+    </div>
+    <div class="col-xs-2 col-sm-2 col-lg-2 col-md-2">
+        <div class="e-float-input">
+            <input required="" type="text" asp-for="Examination.Abdomen.Sm">
+            <span class="e-float-line"></span>
+            <label class="e-float-text" asp-for="Examination.Abdomen.Sm">SM: 0 - 5 TD: </label>
+        </div>
+    </div>
+    <div class="col-xs-1 col-sm-1 col-lg-1 col-md-1">
+        <div class="e-float-input">
+            <input required="" type="text" asp-for="Examination.Abdomen.DouleurLombaireSpontanée">
+            <span class="e-float-line"></span>
+            <label class="e-float-text" asp-for="Examination.Abdomen.DouleurLombaireSpontanée">Douleur lombaire spontanée: </label>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-3 col-sm-3 col-lg-3 col-md-3">
+        <div class="e-float-input">
+            <input required="" type="text" asp-for="Examination.Abdomen.DouleurLombaireÈbranlement">
+            <span class="e-float-line"></span>
+            <label class="e-float-text" asp-for="Examination.Abdomen.DouleurLombaireÈbranlement">Douleur lombaire à l’ébranlement: </label>
+        </div>
+    </div>
+
+    <div class="col-xs-3 col-sm-3 col-lg-3 col-md-3">
+        <div class="e-float-input">
+            <input required="" type="text" asp-for="Examination.Abdomen.Vessie">
+            <span class="e-float-line"></span>
+            <label class="e-float-text" asp-for="Examination.Abdomen.Vessie">Vessie: </label>
+        </div>
+    </div>
+
+</div>
