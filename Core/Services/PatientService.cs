@@ -10,15 +10,41 @@ namespace Core.Services
 {
     public class PatientService : IPatientService
     {
-        IAsyncRepository<Patient> _patientRepository;
-        public PatientService(IAsyncRepository<Patient> patientRepository)
+        //IAsyncRepository<Patient> _patientRepository;
+        public PatientService()
         {
-            _patientRepository = patientRepository;
+            //_patientRepository = patientRepository;
         }
 
         public async Task CreatePatientAsync(Patient patient)
         {
-             await _patientRepository.AddAsync(patient);
+             //await _patientRepository.AddAsync(patient);
+        }
+
+        public async Task<List<Patient>> GetPatientItems()
+        {
+            try
+            {
+                //_logger.LogInformation("GetCatalogItems called.");
+                //var patients = await _patientRepository.ListAllAsync();
+                var patient = new Patient()
+                {
+                    Name = "Herpich",
+                    FirstName = "Walter",
+                    Tel = "123456789",
+                    Adresse = "Pharmatechnik"
+                };
+
+                var patients = new List<Patient>();
+                patients.Add(patient);
+
+                return patients;
+            }
+            catch (Exception exp)
+            {
+                Console.WriteLine(exp);
+                throw (exp);
+            }
         }
     }
 }

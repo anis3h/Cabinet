@@ -10,5 +10,6 @@ namespace Core.Services
     public interface IPatientService
     {     
         Task CreatePatientAsync(Patient patient);
+        Task<List<Patient>> GetPatientItems();
     }
 }
