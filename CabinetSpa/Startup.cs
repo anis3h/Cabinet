@@ -42,6 +42,25 @@ namespace AngularTest
                 options.AutomaticAuthentication = false;
             });
 
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(
+                    builder =>
+                    {
+                        builder.AllowAnyOrigin();
+                    });
+
+            });
+            //services.AddCors(options =>
+            //{
+            //    options.AddPolicy(MyAllowSpecificOrigins,
+            //    builder =>
+            //    {
+            //        builder.WithOrigins("http://example.com",
+            //                            "http://www.contoso.com");
+            //    });
+            //});
+
             //services.AddDbContext<CabinetContext>(options => options.UseSqlServer(Configuration.GetConnectionString("CabinetConnection")).EnableSensitiveDataLogging());
 
             //services.AddIdentity<ApplicationUser, IdentityRole>()
@@ -70,7 +89,7 @@ namespace AngularTest
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-
+            app.UseCors();
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
@@ -80,7 +99,7 @@ namespace AngularTest
                 Path.Combine(Directory.GetCurrentDirectory(), "Svgs")),
                 RequestPath = "/Svgs"
             });
-
+   
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

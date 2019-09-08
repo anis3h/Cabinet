@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { data } from './datasource';
 import { HttpClient } from '@angular/common/http';
+import {Configuration} from '../configurations/app.constants';
 
 @Component({
   selector: 'app-home',
@@ -14,8 +15,8 @@ export class PatientComponent {
   //ngOnInit(): void {
   //  this.data = data;
   //}
-  constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
-    http.get<Patient[]>(baseUrl + 'api/Patient').subscribe(result => {
+  constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string, private configuration: Configuration) {
+    http.get<Patient[]>(configuration.patientServer).subscribe(result => {
       this.patients = result;
     }, error => console.error(error));
   }

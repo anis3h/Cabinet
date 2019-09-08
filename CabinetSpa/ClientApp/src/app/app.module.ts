@@ -13,6 +13,7 @@ import { PatientComponent } from './patient/patient.component';
 // Imported Syncfusion button module from buttons package
 import { ButtonModule } from '@syncfusion/ej2-angular-buttons';
 import { GridModule } from '@syncfusion/ej2-angular-grids';
+import { Configuration } from './configurations/app.constants';
 
 @NgModule({
   declarations: [
@@ -35,9 +36,9 @@ import { GridModule } from '@syncfusion/ej2-angular-grids';
     ]),
     //Registering EJ2 button module
     ButtonModule,
-    GridModule 
+    GridModule
   ],
-  providers: [],
+  providers: [Configuration],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
