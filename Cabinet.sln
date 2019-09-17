@@ -19,7 +19,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IntegrationTests", "Integra
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreUnitTests", "CoreUnitTests\CoreUnitTests.csproj", "{9F6E2E52-66D2-437D-B25A-E7D04C35A27E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PatientApi", "PatientApi\PatientApi.csproj", "{706D6505-E893-47F2-A028-77E1A3A1D970}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PatientApi", "PatientApi\PatientApi.csproj", "{706D6505-E893-47F2-A028-77E1A3A1D970}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
