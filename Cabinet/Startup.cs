@@ -16,6 +16,7 @@ using Core.Interfaces;
 using Cabinet.Interfaces;
 using AutoMapper;
 using Newtonsoft.Json.Serialization;
+using Core.Services;
 
 namespace Cabinet
 {
@@ -51,7 +52,8 @@ namespace Cabinet
             services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
             services.AddScoped(typeof(IAsyncRepository<>), typeof(EfRepository<>));
 
-            services.AddScoped<IPatientViewModelService, PatientService>();
+            services.AddScoped<IPatientViewModelService, PatientViewModelService>();
+            services.AddScoped<IPatientService, PatientService>();
             services.AddScoped<IConsultationViewModelService, ConsultationViewModelService>();
             services.AddScoped<IPatientRepository, PatientRepository>();
             services.AddScoped<IScheduleViewModelService, ScheduleViewModelService>();

@@ -19,24 +19,24 @@ using System.Threading.Tasks;
 
 namespace Cabinet.Services
 {
-    public class PatientService : IPatientViewModelService
+    public class PatientViewModelService : IPatientViewModelService
     {
        // private readonly ILogger<CatalogService> _logger;
-        private readonly IPatientRepository _patientRepository;
-        private readonly IAsyncRepository<PatientParent> _patientParentRepository;
+        //private readonly IPatientRepository _patientRepository;
+        //private readonly IAsyncRepository<PatientParent> _patientParentRepository;
         private readonly IMapper _mapper;
+        IPatientService _patientService;
 
         // ToDO IUnitRepository
-        public PatientService(IPatientRepository patientRepository, IAsyncRepository<PatientParent> patientParentRepository, IMapper mapper)
+        public PatientViewModelService(IPatientService patientService, IMapper mapper, IPatientService patientService2)
         {
-            _patientRepository = patientRepository;
-            _patientParentRepository = patientParentRepository;
             _mapper = mapper;
+            _patientService = patientService2;
         }
 
         public async Task<PatientViewModel> GetPatient(int patientId)
         {
-            var patient = await _patientRepository.GetByIdAsync(patientId);
+            var patient = await _patientService.GetPatient(patientId);
             var patientViewModel = _mapper.Map<Patient, PatientViewModel>(patient);
             return patientViewModel;
         }
@@ -46,7 +46,7 @@ namespace Cabinet.Services
             try
             {
                 //_logger.LogInformation("GetCatalogItems called.");
-                var patients = await _patientRepository.ListAllAsync();
+                var patients = await _patientService.GetPatientItems();
                 var patientViewModelList = _mapper.Map<List<Patient>, List<PatientViewModel>>(patients);
                 PatientIndexViewModel patientIndexViewModel = new PatientIndexViewModel();
                 patientIndexViewModel.PatientItems = patientViewModelList;
@@ -61,33 +61,28 @@ namespace Cabinet.Services
 
         public async Task<PatientViewModel> GetPatientWithAllData(int patientId)
         {
-            var patientSpecification = new PatientWithAllDataSpecification(row => row.Id == patientId);
-            return await MapPatient<PatientViewModel>(patientSpecification);
+            var patient = await _patientService.GetPatientWithAllData(patientId);
+            return _mapper.Map<Patient, PatientViewModel>(patient);
         }
 
         public async Task<FamilyPatientViewModel> GetPatientWithFamily(int patientId)
         {
-            var patientSpecification = new PatientWithFamilySpecification(row => row.Id == patientId);
-            return (await MapPatient<FamilyPatientViewModel>(patientSpecification)) ;
+            var patient = await _patientService.GetPatientWithFamily(patientId);
+            return _mapper.Map<Patient, FamilyPatientViewModel>(patient);
         }
       
         public async Task<InformationPatientViewModel> GetPatientWithInformation(int patientId)
         {
-            var patientSpecification = new PatientWithInformationsSpecification(row => row.Id == patientId);
-            return await MapPatient<InformationPatientViewModel>(patientSpecification);
+            var patient = await _patientService.GetPatientWithInformation(patientId);
+            return _mapper.Map<Patient, InformationPatientViewModel>(patient);
         }
 
         public async Task UpdatePatientWithInformation(InformationPatientViewModel informationPatientViewModel) {
 
             try {
-
-                //var patient = _mapper.Map<InformationPatientViewModel, Patient>(informationPatientViewModel);
-                var patientSpecification = new PatientWithInformationsSpecification(row => row.Id == informationPatientViewModel.Id);
-                var patient = await GetPatientWithPatientSpecification(patientSpecification);
+                var patient = new Patient();
                 _mapper.Map(informationPatientViewModel, patient);
-
-
-                await _patientRepository.UpdateAsync(patient);
+                await _patientService.UpdatePatientWithInformation(patient);
             }
             catch (Exception exp) {
                 Console.WriteLine(exp);
@@ -98,8 +93,10 @@ namespace Cabinet.Services
         {
             try
             {
+                // local time zone offset as TimeSpan object                
+                // add the offsetTime to the datetime recieved as UTC
                 var patient = _mapper.Map<PatientViewModel, Patient>(patientViewModel);
-                var entity = await _patientRepository.AddAsync(patient);
+                await _patientService.Add(patient);
             }
             catch (Exception exp)
             {
@@ -111,18 +108,9 @@ namespace Cabinet.Services
         {
             try
             {
-                var patientSpecification = new PatientWithFamilySpecification(row => row.Id == patientViewModel.Id);
-                var patient = await GetPatientWithPatientSpecification(patientSpecification);
+                var patient = new Patient();
                 _mapper.Map(patientViewModel, patient);
-                // Add new Parents
-                if (patient.PatientParents == null || patient.PatientParents.Count == 0)
-                {
-                    patient.AddPatientParents();
-                }
-              
-                patient.UpdatePatientSiblings();
-                
-                await _patientRepository.UpdateAsync(patient);
+                await _patientService.UpdatePatientWithFamily(patient);
             }
             catch (Exception exp)
             {
@@ -130,13 +118,12 @@ namespace Cabinet.Services
             }
         }
 
-
         public async Task Delete(PatientViewModel patientViewModel)
         {
             try
             {
                 var patient = _mapper.Map<PatientViewModel, Patient>(patientViewModel);
-                await _patientRepository.DeleteAsync(patient);
+                await _patientService.Delete(patient);
             }
             catch (Exception exp)
             {
@@ -149,8 +136,7 @@ namespace Cabinet.Services
             try
             {
                 // I get the patient beacause Value.Value = null. This a Syncfusion Bug!
-                var patient = await _patientRepository.GetByIdAsync(key);
-                await _patientRepository.DeleteAsync(patient);
+                 await _patientService.Delete(key);
             }
             catch (Exception exp)
             {
@@ -163,7 +149,7 @@ namespace Cabinet.Services
             try
             {
                 var patient = _mapper.Map<PatientViewModel, Patient>(patientViewModel);
-                await _patientRepository.UpdateAsync(patient);
+                await _patientService.Update(patient);
             }
             catch (Exception exp)
             {
@@ -173,23 +159,8 @@ namespace Cabinet.Services
 
         public async Task<ConsultationsPatientViewModel> GetPatientWithConsultations(int patientId)
         {
-            var patientSpecification = new PatientWithConsultationsSpecification(row => row.Id == patientId);
-            return await MapPatient<ConsultationsPatientViewModel>(patientSpecification);
+            var patient = await _patientService.GetPatientWithConsultations(patientId);
+            return _mapper.Map<Patient, ConsultationsPatientViewModel>(patient);
         }
-
-        private async Task<TViewModel> MapPatient<TViewModel>(PatientBaseSpecification patientSpecification)
-        {
-            var patient = await GetPatientWithPatientSpecification(patientSpecification);
-            var patientViewModel = _mapper.Map<Patient, TViewModel>(patient);
-            return patientViewModel;
-        }
-
-        private async Task<Patient> GetPatientWithPatientSpecification(PatientBaseSpecification patientSpecification)
-        {
-            patientSpecification.AddIncludePatient();
-            return (await _patientRepository.ListAsync(patientSpecification)).FirstOrDefault();
-        }
-
-       
     }
 }

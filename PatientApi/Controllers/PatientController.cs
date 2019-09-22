@@ -77,22 +77,50 @@ namespace AngularTest.Controllers
             return "value";
         }
 
-        // POST: api/Patient
-        [HttpPost]
-        public void Post([FromBody] string value)
-        {
-        }
+        //// POST: api/Patient
+        //[HttpPost]
+        //public Task<ActionResult> Post([FromBody]CRUDModel<PatientViewModel> value)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest(ModelState);
+        //    }
+        //    await _patientViewModelService.Add(value.Value);
+        //    return View("Index");
+        //}
 
-        // PUT: api/Patient/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
+        //// PUT: api/Patient/5
+        //[HttpPut("{id}")]
+        //public Task<ActionResult> Put([FromBody]CRUDModel<PatientViewModel> value)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest(ModelState);
+        //    }
+        //    await _patientViewModelService.Update(value.Value);
+        //    return View("Index");
+        //}
 
-        // DELETE: api/ApiWithActions/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
+        //// DELETE: api/ApiWithActions/5
+        //[HttpDelete("{id}")]
+        //public void Delete(int id)
+        //{
+        //    try
+        //    {
+        //        if (!ModelState.IsValid)
+        //        {
+        //            return BadRequest(ModelState);
+        //        }
+
+        //        // Value in Syncfusion = null --> Syncfusion Bug
+        //        await _patientViewModelService.Delete((int)(Int64)value.Key);
+        //        return View("Index");
+        //    }
+        //    catch (Exception exp)
+        //    {
+        //        Console.WriteLine(exp);
+        //        throw (exp);
+        //    }
+        //}
     }
 }

@@ -66,15 +66,8 @@ namespace Cabinet.Controllers
             if (!ModelState.IsValid) {
                 return BadRequest(ModelState);
             }
-            // local time zone offset as TimeSpan object                
-
-
-            // add the offsetTime to the datetime recieved as UTC
-            value.Value.DateOfBirth = ChangeUtcDate(value.Value.DateOfBirth);
-
             await _patientViewModelService.Add(value.Value);
             return View("Index");
-
         }
 
         public async Task<ActionResult> Update([FromBody]CRUDModel<PatientViewModel> value)
@@ -82,7 +75,6 @@ namespace Cabinet.Controllers
             if (!ModelState.IsValid) {
                 return BadRequest(ModelState);
             }
-            value.Value.DateOfBirth = ChangeUtcDate(value.Value.DateOfBirth);
             await _patientViewModelService.Update(value.Value);
             return View("Index");
         }
@@ -111,14 +103,7 @@ namespace Cabinet.Controllers
         {
             return View();
         }
-        public DateTime ChangeUtcDate(DateTime dateTime)
-        {
-            var offsetTime = TimeZoneInfo.Local.GetUtcOffset(DateTime.UtcNow).Ticks;
-
-            // convert time zone offset to minutes
-            var localtime_minutes = TimeSpan.FromTicks(offsetTime).TotalMinutes;
-            return dateTime.AddMinutes(localtime_minutes);
-        }
+      
 
     }
 }
