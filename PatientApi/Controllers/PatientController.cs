@@ -3,33 +3,36 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using CommunCabinet.Dtos;
+using CommunCabinet.MapperServices.Interfaces;
 using Core.Entities.Patients;
 using Core.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Syncfusion.EJ2.Base;
+//using Syncfusion.EJ2.Base;
 
 namespace AngularTest.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
-    public class PatientController : ControllerBase
+    public class PatientController : Controller
     {
+        IPatientMapperService _patientService;
 
-        IPatientService _patientService;
-
-        public PatientController(IPatientService patientService)
+        public PatientController(IPatientMapperService patientService)
         {
             _patientService = patientService;
         }
 
         // GET: api/Patient
         [HttpGet]
-        public async Task<List<Patient>> Patients()
+        public async Task<IActionResult> Patients()
         {
-            var patientList = await _patientService.GetPatientItems();
+            var patientViewModel = await _patientService.GetPatientItems();
             //  return Json(patientViewModel);
 
-            IEnumerable<Patient> DataSource = patientList;
+            //IEnumerable<PatientDto> DataSource = patientViewModel.Take(10);
             //DataOperations operation = new DataOperations();
             //if (dm.Search != null && dm.Search.Count > 0)
             //{
@@ -43,7 +46,7 @@ namespace AngularTest.Controllers
             //{
             //    DataSource = operation.PerformFiltering(DataSource, dm.Where, dm.Where[0].Operator);
             //}
-            //int count = DataSource.Cast<PatientViewModel>().Count();
+            //int count = DataSource.Cast<PatientDto>().Count();
             //if (dm.Skip != 0)
             //{
             //    DataSource = operation.PerformSkip(DataSource, dm.Skip);         //Paging
@@ -53,21 +56,7 @@ namespace AngularTest.Controllers
             //    DataSource = operation.PerformTake(DataSource, dm.Take);
             //}
             //return dm.RequiresCounts ? Json(new { result = DataSource, count = count }) : Json(DataSource);
-            //try
-            //{
-            //    XElement root = XElement.Load(@"Svgs\test.svg");
-            //    XNode firstNode = root.FirstNode;
-            //    XElement root2 = XElement.Load(@"Svgs\test2.svg");
-            //    root2.Add(firstNode);
-            //}
-            //catch (Exception ex)
-            //{
-
-            //    throw;
-            //}
-
-
-            return patientList;
+            return Ok(patientViewModel);
         }
 
         // GET: api/Patient/5
