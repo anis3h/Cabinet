@@ -8,15 +8,12 @@ using System.Threading.Tasks;
 
 namespace PatientApi.Automapper
 {
-    public class MapperProfile
+    public class MappingProfile : Profile
     {
-        public class MappingProfile : Profile
+        public MappingProfile()
         {
-            public MappingProfile()
-            {
-                CreateMap<PatientDto, Patient>().ForMember(row => row.PatientParents, opt => opt.Ignore())
-                                                .ForMember(row => row.Siblings, opt => opt.Ignore());
-            }
+            CreateMap<PatientDto, Patient>().ForMember(row => row.PatientParents, opt => opt.Ignore())
+                                            .ForMember(row => row.Siblings, opt => opt.Ignore());
         }
     }
 }
