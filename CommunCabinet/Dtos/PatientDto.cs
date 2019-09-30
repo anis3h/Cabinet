@@ -11,6 +11,6 @@ namespace CommunCabinet.Dtos
         public string Name { get; set; }
         public string FirstName { get; set; }
         public DateTime DateOfBirth { get; set; }
-        //public Age Age { get; set; }
+        public string Adresse { get; set; }
     }
 }

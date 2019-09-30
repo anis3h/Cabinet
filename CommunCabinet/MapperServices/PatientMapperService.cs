@@ -20,10 +20,30 @@ namespace CommunCabinet.MapperServices
             _patientService = patientService;
         }
 
+        public Task Add(PatientDto patientViewModel)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task Delete(PatientDto patientViewModel)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task Delete(int key)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<List<PatientDto>> GetPatientItems()
         {
             var patient = await _patientService.GetPatientItems();
             return _mapper.Map<List<Patient>, List<PatientDto>>(patient);
+        }
+
+        public Task Update(PatientDto patientViewModel)
+        {
+            throw new NotImplementedException();
         }
     }
 }
