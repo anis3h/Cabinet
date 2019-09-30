@@ -1,4 +1,9 @@
-Example of Microsoft ASP.Net core Clean Architecture 
+
+Cabinet: is a software for pediatric practices
+
+the implementation of the software is based of Microsoft ASP.Net core Clean Architecture (MVC ASP.Net Core)
+
+Actually we migrate from MVC to angular.
 
 You can use migrations to create the database.
 Open the PMC:
