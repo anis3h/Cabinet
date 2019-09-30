@@ -20,19 +20,38 @@ namespace CommunCabinet.MapperServices
             _patientService = patientService;
         }
 
-        public Task Add(PatientDto patientViewModel)
+        public async Task Add(PatientDto patientDto)
         {
-            throw new NotImplementedException();
+            try
+            {
+                // local time zone offset as TimeSpan object                
+                // add the offsetTime to the datetime recieved as UTC
+                var patient = _mapper.Map<PatientDto, Patient>(patientDto);
+                await _patientService.Add(patient);
+            }
+            catch (Exception exp)
+            {
+                Console.WriteLine(exp);
+            }
         }
 
-        public Task Delete(PatientDto patientViewModel)
+        public async Task Delete(int key)
         {
-            throw new NotImplementedException();
+            // I get the patient beacause Value.Value = null. This a Syncfusion Bug!
+            await _patientService.Delete(key);
         }
 
-        public Task Delete(int key)
+        public async Task Delete(PatientDto patientDto)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var patient = _mapper.Map<PatientDto, Patient>(patientDto);
+                await _patientService.Delete(patient);
+            }
+            catch (Exception exp)
+            {
+                Console.WriteLine(exp);
+            }
         }
 
         public async Task<List<PatientDto>> GetPatientItems()
@@ -41,9 +60,17 @@ namespace CommunCabinet.MapperServices
             return _mapper.Map<List<Patient>, List<PatientDto>>(patient);
         }
 
-        public Task Update(PatientDto patientViewModel)
+        public async Task Update(PatientDto patientDto)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var patient = _mapper.Map<PatientDto, Patient>(patientDto);
+                await _patientService.Update(patient);
+            }
+            catch (Exception exp)
+            {
+                Console.WriteLine(exp);
+            }
         }
     }
 }

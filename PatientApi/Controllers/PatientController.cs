@@ -77,11 +77,11 @@ namespace AngularTest.Controllers
                 return BadRequest(ModelState);
             }
             await _patientService.Add(value.Value);
-            return View("Index");
+            return Ok();
         }
 
         // PUT: api/Patient/5
-        [HttpPut("{id}")]
+        [HttpPost()]
         public async Task<ActionResult> Update([FromBody]CRUDModel<PatientDto> value)
         {
             if (!ModelState.IsValid)
@@ -89,12 +89,12 @@ namespace AngularTest.Controllers
                 return BadRequest(ModelState);
             }
             await _patientService.Update(value.Value);
-            return View("Index");
+            return Ok();
         }
 
         // DELETE: api/ApiWithActions/5
-        [HttpDelete("{id}")]
-        public async Task<ActionResult> Delete(int id)
+        [HttpPost()]
+        public async Task<ActionResult> Delete([FromBody]CRUDModel<PatientDto> value)
         {
             try
             {
@@ -102,10 +102,9 @@ namespace AngularTest.Controllers
                 {
                     return BadRequest(ModelState);
                 }
-
                 // Value in Syncfusion = null --> Syncfusion Bug
-                await _patientService.Delete(id);
-                return View("Index");
+                await _patientService.Delete((int)(Int64)value.Key);
+                return Ok();
             }
             catch (Exception exp)
             {
