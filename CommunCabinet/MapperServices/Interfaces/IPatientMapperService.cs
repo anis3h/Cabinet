@@ -9,6 +9,7 @@ namespace CommunCabinet.MapperServices.Interfaces
 {
     public interface IPatientMapperService
     {
+        Task<PatientDto> GetPatient(int id);
         Task<List<PatientDto>> GetPatientItems();
         Task Add(PatientDto patientViewModel);
         Task Update(PatientDto patientViewModel);
