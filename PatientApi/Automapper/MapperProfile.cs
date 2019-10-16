@@ -14,6 +14,7 @@ namespace PatientApi.Automapper
         {
             CreateMap<PatientDto, Patient>().ForMember(row => row.PatientParents, opt => opt.Ignore())
                                             .ForMember(row => row.Siblings, opt => opt.Ignore());
+            CreateMap<Patient, PatientDto>();
         }
     }
 }
