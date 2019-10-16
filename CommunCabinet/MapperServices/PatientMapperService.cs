@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using Patient = Core.Entities.Patients.Patient;
 
 namespace CommunCabinet.MapperServices
 {
@@ -53,6 +54,13 @@ namespace CommunCabinet.MapperServices
                 Console.WriteLine(exp);
             }
         }
+
+        public async Task<PatientDto> GetPatient(int id)
+        {
+            var patient = await _patientService.GetPatient(id);
+            return _mapper.Map<Patient, PatientDto>(patient);
+        }
+
 
         public async Task<List<PatientDto>> GetPatientItems()
         {
