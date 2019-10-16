@@ -7,6 +7,7 @@ using CommunCabinet.MapperServices;
 using CommunCabinet.MapperServices.Interfaces;
 using Core.Interfaces;
 using Core.Services;
+using Infrastructure.Configurations;
 using Infrastructure.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -32,9 +33,9 @@ namespace InformationsApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<CabinetContext>(options => 
-                options.UseSqlServer(Configuration.GetConnectionString("CabinetConnection")).EnableSensitiveDataLogging());
-
+            //services.AddDbContext<CabinetContext>(options => 
+            //    options.UseSqlServer(Configuration.GetConnectionString("CabinetConnection")).EnableSensitiveDataLogging());
+            services.AddDataAccessServices(Configuration.GetConnectionString("CabinetConnection"));
             services.AddCors(options =>
             {
                 options.AddDefaultPolicy(
@@ -47,10 +48,11 @@ namespace InformationsApi
                     });
 
             });
-            services.AddScoped(typeof(IAsyncRepository<>), typeof(EfRepository<>));
+            //services.AddScoped(typeof(IAsyncRepository<>), typeof(EfRepository<>));
+            //services.AddScoped<IPatientRepository, PatientRepository>();
             services.AddScoped<IPatientMapperService, PatientMapperService>();
             services.AddScoped<IPatientService, PatientService>();
-            services.AddScoped<IPatientRepository, PatientRepository>();
+         
 
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 

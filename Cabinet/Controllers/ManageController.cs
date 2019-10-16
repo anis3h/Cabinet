@@ -13,6 +13,7 @@ using Microsoft.Extensions.Options;
 using Cabinet.Models;
 using Cabinet.Models.ManageViewModels;
 using Cabinet.Services;
+using Core.Entities.Identity;
 
 namespace Cabinet.Controllers
 {

@@ -9,10 +9,13 @@ using Core.Entities.Informations;
 using Core.Entities.Patients;
 using Core.Entities.Schedule;
 using Core.Entities.Consultations.Examinations;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Core.Entities.Identity;
+using Microsoft.AspNetCore.Identity;
 
 namespace Infrastructure.Repositories
 {
-    public class CabinetContext:DbContext
+    public class CabinetContext :  DbContext
     {
         
        //public DbSet<Father> Fathers { get; set; }

@@ -7,6 +7,7 @@ using CommunCabinet.MapperServices;
 using CommunCabinet.MapperServices.Interfaces;
 using Core.Interfaces;
 using Core.Services;
+using Infrastructure.Configurations;
 using Infrastructure.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -34,15 +35,10 @@ namespace PatientApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-            services.AddDbContext<CabinetContext>(options => options.UseSqlServer(Configuration.GetConnectionString("CabinetConnection")).EnableSensitiveDataLogging());
-
-            //services.AddIdentity<ApplicationUser, IdentityRole>()
-            //    .AddEntityFrameworkStores<ApplicationDbContext>()
-            //    .AddDefaultTokenProviders();
-
+            //services.AddDbContext<CabinetContext>(options => options.UseSqlServer(Configuration.GetConnectionString("CabinetConnection")).EnableSensitiveDataLogging()); 
+            services.AddDataAccessServices(Configuration.GetConnectionString("CabinetConnection"));
             services.AddMvc().AddJsonOptions(options => options.SerializerSettings.ContractResolver = new DefaultContractResolver());
-           
-
+          
             services.AddCors(options =>
             {
                 options.AddDefaultPolicy(
@@ -56,12 +52,13 @@ namespace PatientApi
 
             });
 
-            services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
-            services.AddScoped(typeof(IAsyncRepository<>), typeof(EfRepository<>));
+            //services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
+            //services.AddScoped(typeof(IAsyncRepository<>), typeof(EfRepository<>));
+            //services.AddScoped<IPatientRepository, PatientRepository>();
 
             services.AddScoped<IPatientMapperService, PatientMapperService>();
             services.AddScoped<IPatientService, PatientService>();
-            services.AddScoped<IPatientRepository, PatientRepository>();
+   
             services.AddAutoMapper();
         }
 
