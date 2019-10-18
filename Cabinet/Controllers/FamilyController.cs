@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Cabinet.Interfaces;
+﻿using Cabinet.Interfaces;
 using Cabinet.Models.CabinetViewModel.Family;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using Syncfusion.EJ2.Base;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Cabinet.Controllers
 {
@@ -28,7 +26,7 @@ namespace Cabinet.Controllers
             {
                 var familyViewModel = new FamilyViewModel();
                 familyViewModel.Patient = await _patientViewModelService.GetPatientWithFamily(id);
-               // ViewBag.Data = familyViewModel.Patient.Siblings;
+                // ViewBag.Data = familyViewModel.Patient.Siblings;
                 return View(familyViewModel);
             }
             catch (Exception exp)
@@ -42,8 +40,10 @@ namespace Cabinet.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Index(FamilyViewModel familyViewModel)
         {
-            try {
-                if (!ModelState.IsValid) {
+            try
+            {
+                if (!ModelState.IsValid)
+                {
                     return BadRequest(ModelState);
                 }
 
@@ -51,8 +51,8 @@ namespace Cabinet.Controllers
                 await _patientViewModelService.UpdatePatientWithFamily(familyViewModel.Patient);
 
                 return RedirectToAction("Index", "Patient");
-            }           
-             catch (Exception exp)
+            }
+            catch (Exception exp)
             {
                 throw (exp);
             }
@@ -76,26 +76,5 @@ namespace Cabinet.Controllers
             }
             return siblingTarget;
         }
-
-        // [HttpPost]
-        // [AllowAnonymous]
-        // //  [ValidateAntiForgeryToken]
-        //// public void SiblingsFromGrid(FamilyViewModel familyViewModel, [FromBody] List<SiblingViewModel> data)
-        // public void SiblingsFromGrid([FromBody] string test)
-        // {
-        //     try
-        //     {
-
-
-
-
-        //     }
-
-        //     catch (Exception exp)
-        //     {
-        //         throw (exp);
-        //     }
-        // }
-
     }
 }
