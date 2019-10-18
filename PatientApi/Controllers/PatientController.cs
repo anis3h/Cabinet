@@ -1,19 +1,11 @@
-﻿using System;
+﻿using CommunCabinet.Dtos;
+using CommunCabinet.MapperServices.Interfaces;
+using Microsoft.AspNetCore.Mvc;
+using Syncfusion.EJ2.Base;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Xml.Linq;
-using CommunCabinet.Dtos;
-using CommunCabinet.MapperServices.Interfaces;
-using Core.Entities.Patients;
-using Core.Services;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
-using Syncfusion.EJ2;
-using Syncfusion.EJ2.Base;
-using Microsoft.AspNetCore.Razor.TagHelpers;
-using Microsoft.AspNet.OData.Routing;
 //using Syncfusion.EJ2.Base;
 
 namespace AngularTest.Controllers
@@ -30,7 +22,7 @@ namespace AngularTest.Controllers
         }
 
         // GET: api/Patient
-        
+
         public async Task<IActionResult> Patients([FromBody]DataManagerRequest dm)
         {
             var patientViewModel = await _patientService.GetPatientItems();
