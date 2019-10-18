@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
-//using Microsoft.AspNetCore.Identity;
-//using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -34,23 +34,31 @@ namespace Cabinet
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-         
+            services.AddDbContext<ApplicationDbContext>(options =>
+               options.UseSqlServer(Configuration.GetConnectionString("CabinetConnection")));
+
+            services.AddIdentity<ApplicationUser, IdentityRole>()
+                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddDefaultTokenProviders();
+
+            services.AddDbContext<CabinetContext>(options => options.UseSqlServer(Configuration.GetConnectionString("CabinetConnection")).EnableSensitiveDataLogging());
+           
             services.Configure<IISOptions>(options =>
             {
                 options.AutomaticAuthentication = false;
             });
-            services.AddDataAccessServices(Configuration.GetConnectionString("CabinetConnection"));
+            //services.AddDataAccessServices(Configuration.GetConnectionString("CabinetConnection"));
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
-            //services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
-            //services.AddScoped(typeof(IAsyncRepository<>), typeof(EfRepository<>));
-            //services.AddScoped<IPatientRepository, PatientRepository>();
-            //services.AddScoped<IScheduleRepository, ScheduleRepository>();
+            services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
+            services.AddScoped(typeof(IAsyncRepository<>), typeof(EfRepository<>));
+            services.AddScoped<IPatientRepository, PatientRepository>();
+            services.AddScoped<IScheduleRepository, ScheduleRepository>();
             services.AddScoped<IPatientViewModelService, PatientViewModelService>();
             services.AddScoped<IPatientService, PatientService>();
             services.AddScoped<IConsultationViewModelService, ConsultationViewModelService>();
             services.AddScoped<IScheduleViewModelService, ScheduleViewModelService>();
-            
+           
             services.AddMvc().AddJsonOptions(options => options.SerializerSettings.ContractResolver = new DefaultContractResolver());
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
         }

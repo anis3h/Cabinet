@@ -35,7 +35,7 @@ namespace PatientApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-            //services.AddDbContext<CabinetContext>(options => options.UseSqlServer(Configuration.GetConnectionString("CabinetConnection")).EnableSensitiveDataLogging()); 
+            services.AddDbContext<CabinetContext>(options => options.UseSqlServer(Configuration.GetConnectionString("CabinetConnection")).EnableSensitiveDataLogging()); 
             services.AddDataAccessServices(Configuration.GetConnectionString("CabinetConnection"));
             services.AddMvc().AddJsonOptions(options => options.SerializerSettings.ContractResolver = new DefaultContractResolver());
           
@@ -52,9 +52,9 @@ namespace PatientApi
 
             });
 
-            //services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
-            //services.AddScoped(typeof(IAsyncRepository<>), typeof(EfRepository<>));
-            //services.AddScoped<IPatientRepository, PatientRepository>();
+            services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
+            services.AddScoped(typeof(IAsyncRepository<>), typeof(EfRepository<>));
+            services.AddScoped<IPatientRepository, PatientRepository>();
 
             services.AddScoped<IPatientMapperService, PatientMapperService>();
             services.AddScoped<IPatientService, PatientService>();
