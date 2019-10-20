@@ -5,9 +5,8 @@ using Core.Entities.Patients;
 using Core.Services;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
-using Patient = Core.Entities.Patients.Patient;
+
 
 namespace CommunCabinet.MapperServices
 {
@@ -68,6 +67,13 @@ namespace CommunCabinet.MapperServices
             return _mapper.Map<List<Patient>, List<PatientDto>>(patient);
         }
 
+        public async Task<FamilyPatientDto> GetPatientWithFamily(int patientId)
+        {
+            var patient = await _patientService.GetPatientWithFamily(patientId);
+            var test = _mapper.Map<Patient, FamilyPatientDto>(patient);
+            return test;
+        }
+
         public async Task Update(PatientDto patientDto)
         {
             try
@@ -79,6 +85,11 @@ namespace CommunCabinet.MapperServices
             {
                 Console.WriteLine(exp);
             }
+        }
+
+        public Task UpdatePatientWithFamily(FamilyPatientDto patient)
+        {
+            throw new NotImplementedException();
         }
     }
 }

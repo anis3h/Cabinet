@@ -16,7 +16,7 @@ namespace InformationsApi.Controllers
             _patientService = patientMapperService;
         }
 
-        // GET: api/Informations/5
+        // GET: api/Informations/information/5
         [Route("information/{id}")]
         [HttpGet]
         public async Task<IActionResult> Informations(int id)

@@ -1,8 +1,5 @@
 ﻿using CommunCabinet.Dtos;
-using Core.Entities.Patients;
-using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace CommunCabinet.MapperServices.Interfaces
@@ -15,5 +12,7 @@ namespace CommunCabinet.MapperServices.Interfaces
         Task Update(PatientDto patientViewModel);
         Task Delete(PatientDto patientViewModel);
         Task Delete(int key);
+        Task<FamilyPatientDto> GetPatientWithFamily(int patientId);
+        Task UpdatePatientWithFamily(FamilyPatientDto patient);
     }
 }
