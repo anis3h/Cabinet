@@ -12,8 +12,9 @@ namespace CommunCabinet.MapperServices
 {
     public class PatientMapperService : IPatientMapperService
     {
-        public IMapper _mapper;
-        IPatientService _patientService;
+        private readonly IMapper _mapper;
+        private readonly IPatientService _patientService;
+
         public PatientMapperService(IMapper mapper, IPatientService patientService)
         {
             _mapper = mapper;
@@ -88,6 +89,17 @@ namespace CommunCabinet.MapperServices
         }
 
         public Task UpdatePatientWithFamily(FamilyPatientDto patient)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<PatientInformationDto> GetPatientWithInformation(int patientId)
+        {
+            var patient = await _patientService.GetPatientWithInformation(patientId);
+            return _mapper.Map<Patient, PatientInformationDto>(patient);
+        }
+
+        public async Task UpdatePatientWithInformation(PatientInformationDto patient)
         {
             throw new NotImplementedException();
         }

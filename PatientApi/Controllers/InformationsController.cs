@@ -19,9 +19,10 @@ namespace InformationsApi.Controllers
         // GET: api/Informations/information/5
         [Route("information/{id}")]
         [HttpGet]
-        public async Task<IActionResult> Informations(int id)
+        public async Task<IActionResult> Information(int id)
         {
-            return new JsonResult(await _patientService.GetPatient(id));
+            var patient = await _patientService.GetPatientWithInformation(id);
+            return new JsonResult(patient);
         }
 
         // POST: api/Informations

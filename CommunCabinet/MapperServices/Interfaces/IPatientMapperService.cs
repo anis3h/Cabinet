@@ -14,5 +14,7 @@ namespace CommunCabinet.MapperServices.Interfaces
         Task Delete(int key);
         Task<FamilyPatientDto> GetPatientWithFamily(int patientId);
         Task UpdatePatientWithFamily(FamilyPatientDto patient);
+        Task<PatientInformationDto> GetPatientWithInformation(int patientId);
+        Task UpdatePatientWithInformation(PatientInformationDto patient);
     }
 }
