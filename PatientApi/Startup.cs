@@ -31,7 +31,6 @@ namespace PatientApi
             services.AddDbContext<CabinetContext>(options => options.UseSqlServer(Configuration.GetConnectionString("CabinetConnection")).EnableSensitiveDataLogging());
             //services.AddDataAccessServices(Configuration.GetConnectionString("CabinetConnection"));
             services.AddMvc().AddJsonOptions(options => options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver());
-
             services.AddCors(options =>
             {
                 options.AddDefaultPolicy(
