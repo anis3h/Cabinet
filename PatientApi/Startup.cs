@@ -34,9 +34,11 @@ namespace PatientApi
             //services.AddDataAccessServices(Configuration.GetConnectionString("CabinetConnection"));
             services.AddMvc().AddJsonOptions(options => options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver());
 
-            services.AddAuthentication(sharedOptions =>
+            services.AddAuthentication(options =>
             {
-                sharedOptions.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+                //options.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
+                //options.DefaultAuthenticateScheme = OpenIdConnectDefaults.AuthenticationScheme;
             })
            .AddAzureADBearer(options => Configuration.Bind("AzureAd", options));
             //services.AddCors(options =>
@@ -87,6 +89,7 @@ namespace PatientApi
             }
             app.UseCors();
             app.UseHttpsRedirection();
+            app.UseAuthentication();
             app.UseMvc();
         }
     }
