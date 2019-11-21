@@ -99,9 +99,17 @@ namespace CommunCabinet.MapperServices
             return _mapper.Map<Patient, PatientInformationDto>(patient);
         }
 
-        public async Task UpdatePatientWithInformation(PatientInformationDto patient)
+        public async Task UpdatePatientWithInformation(PatientInformationDto patientInformationDto)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var patient = _mapper.Map<PatientInformationDto, Patient>(patientInformationDto);
+                await _patientService.Update(patient);
+            }
+            catch (Exception exp)
+            {
+                Console.WriteLine(exp);
+            }
         }
     }
 }

@@ -1,5 +1,7 @@
-﻿using CommunCabinet.MapperServices.Interfaces;
+﻿using CommunCabinet.Dtos;
+using CommunCabinet.MapperServices.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Threading.Tasks;
 
 namespace InformationsApi.Controllers
@@ -9,55 +11,42 @@ namespace InformationsApi.Controllers
     [ApiController]
     public class InformationsController : ControllerBase
     {
-        private readonly IPatientMapperService _patientService;
+        private readonly IPatientMapperService _patientMapperService;
 
         public InformationsController(IPatientMapperService patientMapperService)
         {
-            _patientService = patientMapperService;
+            _patientMapperService = patientMapperService;
         }
 
         // GET: api/Informations/information/5
-        [Route("information/{id}")]
+        [Route("Information/{id}")]
         [HttpGet]
         public async Task<IActionResult> Information(int id)
         {
-            var patient = await _patientService.GetPatientWithInformation(id);
+            var patient = await _patientMapperService.GetPatientWithInformation(id);
             return new JsonResult(patient);
         }
 
-        // POST: api/Informations
-        //[HttpPost]
-        //public async Task<IActionResult> Informations(InformationViewModel informationViewModel)
-        //{
+        //POST: api/Informations
+        [Route("Informations")]
+        [HttpPost]
+        public async Task<IActionResult> Informations(PatientInformationDto patientInformationDto)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
 
-        //    try
-        //    {
-
-        //        if (!ModelState.IsValid)
-        //        {
-        //            return BadRequest(ModelState);
-        //        }
-
-
-        //        Enum.TryParse(Request.Form["pregnancyType"], out TypPregnancy typPregnancy);
-        //        informationViewModel.Patient.Pregnancy.TypPregnancy = typPregnancy;
-
-        //        Enum.TryParse(Request.Form["positionType"], out TypPosition typPosition);
-        //        informationViewModel.Patient.Pregnancy.Position = typPosition;
-
-        //        Enum.TryParse(Request.Form["allaitementType"], out Allaitement typAllaitement);
-        //        informationViewModel.Patient.Born.Allaitement = typAllaitement;
-
-
-        //        await _patientViewModelService.UpdatePatientWithInformation(informationViewModel.Patient);
-        //        return RedirectToAction("Index", "Family", informationViewModel.Patient.Id);
-        //    }
-
-        //    catch (Exception exp)
-        //    {
-        //        throw (exp);
-        //    }
-        //}
+            try
+            {
+                await _patientMapperService.UpdatePatientWithInformation(patientInformationDto);
+                return Ok();
+            }
+            catch (Exception exp)
+            {
+                throw (exp);
+            }
+        }
 
         //// PUT: api/Informations/5
         //[HttpPut("{id}")]

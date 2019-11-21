@@ -17,6 +17,12 @@ namespace PatientApi.Automapper
                                                   .ForMember(row => row.Siblings, opt => opt.Ignore());
 
             CreateMap<Patient, PatientInformationDto>().ForMember(row => row.Patient, opt => opt.MapFrom(src => src));
+            CreateMap<PatientInformationDto, Patient>()
+                .ForMember(row => row.FirstName, opt => opt.MapFrom(src => src.Patient.FirstName))
+                .ForMember(row => row.Name, opt => opt.MapFrom(src => src.Patient.Name))
+                .ForMember(row => row.Id, opt => opt.MapFrom(src => src.Patient.Id))
+                .ForMember(row => row.Born, opt => opt.MapFrom(src => src.Born))
+                .ForMember(row => row.Pregnancy, opt => opt.MapFrom(src => src.Pregnancy));
             CreateMap<Born, BornDto>();
             CreateMap<BornDto, Born>();
             CreateMap<Pregnancy, PregnancyDto>();
