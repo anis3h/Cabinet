@@ -104,7 +104,7 @@ namespace CommunCabinet.MapperServices
             try
             {
                 var patient = _mapper.Map<PatientInformationDto, Patient>(patientInformationDto);
-                await _patientService.Update(patient);
+                await _patientService.UpdatePatientWithInformation(patient);
             }
             catch (Exception exp)
             {

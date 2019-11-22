@@ -27,10 +27,10 @@ namespace InformationsApi.Controllers
             return new JsonResult(patient);
         }
 
-        //POST: api/Informations
-        [Route("Informations")]
+        //POST: api/Information
+        [Route("Information")]
         [HttpPost]
-        public async Task<IActionResult> Informations(PatientInformationDto patientInformationDto)
+        public async Task<IActionResult> Information(PatientInformationDto patientInformationDto)
         {
             if (!ModelState.IsValid)
             {

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -16,7 +18,8 @@ namespace CommunCabinet.Dtos
         // 0 - 10 Apgar 5 mn
         public int Apgar5mn { get; set; }
         // maternelle exclusif/ mixte / Artificiel
-        public Allaitement Allaitement { get; set; }
+        [JsonConverter(typeof(StringEnumConverter))]
+        public Allaitement? Allaitement { get; set; }
         // Remarque
         public string RemarqueAllaitement { get; set; }
     }

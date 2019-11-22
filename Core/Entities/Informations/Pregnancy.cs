@@ -9,7 +9,7 @@ namespace Core.Entities.Informations
     // Schwangerschaft
     public class Pregnancy : EntityBase
     {
-        public TypPregnancy TypPregnancy { get; set; }
+        public TypPregnancy? TypPregnancy { get; set; }
         // Mois
         public int Month { get; set; }
         // Semaine

@@ -16,5 +16,6 @@ namespace CommunCabinet.Dtos
         public DateTime DateOfBirth { get; set; }
         //[JsonProperty(PropertyName = "adresse")]
         public string Adresse { get; set; }
+        public string Tel { get; set; }
     }
 }

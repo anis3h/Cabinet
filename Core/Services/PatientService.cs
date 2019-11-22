@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
 using System.Linq;
+using Core.Entities.Informations;
 
 namespace Core.Services
 {
@@ -61,14 +62,16 @@ namespace Core.Services
         public async Task<Patient> GetPatientWithInformation(int patientId)
         {
             var patientSpecification = new PatientWithInformationsSpecification(row => row.Id == patientId);
-            return await GetPatientWithPatientSpecification(patientSpecification);
+            var patient = await GetPatientWithPatientSpecification(patientSpecification);
+            if (patient.Pregnancy == null) patient.Pregnancy = new Pregnancy();
+            if (patient.Born == null) patient.Born = new Born();
+            return patient;
         }
 
         public async Task UpdatePatientWithInformation(Patient patientNew)
         {
             try
             {
-                //var patient = _mapper.Map<InformationPatientViewModel, Patient>(informationPatientViewModel);
                 var patientSpecification = new PatientWithInformationsSpecification(row => row.Id == patientNew.Id);
                 var patientOld = await GetPatientWithPatientSpecification(patientSpecification);
                 _mapper.Map(patientNew, patientOld);
