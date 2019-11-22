@@ -17,5 +17,6 @@ namespace CommunCabinet.Dtos
         //[JsonProperty(PropertyName = "adresse")]
         public string Adresse { get; set; }
         public string Tel { get; set; }
+        public Age Age { get; set; }
     }
 }
