@@ -18,5 +18,6 @@ namespace CommunCabinet.Dtos
         public string Adresse { get; set; }
         public string Tel { get; set; }
         public Age Age { get; set; }
+        public int? Fraternity { get; set; }
     }
 }

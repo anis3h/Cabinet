@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using CommunCabinet.Dtos;
+using Core.Entities.Family;
 using Core.Entities.Informations;
 using Core.Entities.Patients;
 
@@ -15,7 +16,9 @@ namespace PatientApi.Automapper
             CreateMap<Patient, PatientDto>();
 
             CreateMap<Patient, FamilyPatientDto>().ForMember(row => row.Patient, opt => opt.MapFrom(src => src))
-                                                  .ForMember(row => row.Siblings, opt => opt.Ignore());
+                                                  .ForMember(row => row.Siblings, opt => opt.MapFrom(src => src.Siblings));
+
+            CreateMap<Sibling, SiblingDto>();
 
             CreateMap<Patient, PatientInformationDto>()
                 .ForMember(row => row.Patient, opt => opt.MapFrom(src => src));
