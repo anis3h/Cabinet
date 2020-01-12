@@ -5,7 +5,8 @@ using Core.Interfaces;
 using Core.Services;
 using Infrastructure.Repositories;
 using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authentication.AzureAD.UI;
+using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -34,22 +35,8 @@ namespace PatientApi
             //services.AddDataAccessServices(Configuration.GetConnectionString("CabinetConnection"));
             services.AddMvc().AddJsonOptions(options => options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver());
 
-            services.AddAuthentication(options =>
-            {
-                options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
-                //options.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
-                //options.DefaultAuthenticateScheme = OpenIdConnectDefaults.AuthenticationScheme;
-            })
-           .AddAzureADBearer(options => Configuration.Bind("AzureAd", options));
-            //services.AddCors(options =>
-            //{
-            //    options.AddPolicy("AllowOrigin",
-            //        builder => builder.WithOrigins("http://localhost:4200")
-            //            .AllowAnyHeader()
-            //            .AllowAnyMethod());
-            //});
-
-
+            services.AddAuthentication(AzureADDefaults.BearerAuthenticationScheme)
+                 .AddAzureADBearer(options => Configuration.Bind("AzureAd", options));
 
             services.AddCors(options =>
             {
@@ -62,12 +49,26 @@ namespace PatientApi
                         builder.AllowAnyHeader();
                     });
             });
+            services.Configure<OpenIdConnectOptions>(AzureADDefaults.OpenIdScheme, options =>
+            {
+                options.Authority = options.Authority + "/v2.0/";         // Microsoft identity platform
+                options.TokenValidationParameters.ValidateIssuer = false; // accept several tenants (here simplified)
+            });
 
-            services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
-            services.AddScoped(typeof(IAsyncRepository<>), typeof(EfRepository<>));
-            services.AddScoped<IPatientRepository, PatientRepository>();
-            services.AddScoped<IPatientMapperService, PatientMapperService>();
-            services.AddScoped<IPatientService, PatientService>();
+            //services.AddMvc(options =>
+            //{
+            //    var policy = new AuthorizationPolicyBuilder()
+            //                    .RequireAuthenticatedUser()
+            //                    .Build();
+            //    options.Filters.Add(new AuthorizeFilter(policy));
+            //});
+
+            services.AddTransient(typeof(IRepository<>), typeof(EfRepository<>));
+            services.AddTransient(typeof(IAsyncRepository<>), typeof(EfRepository<>));
+            services.AddTransient<IPatientRepository, PatientRepository>();
+            services.AddTransient<IPatientMapperService, PatientMapperService>();
+            services.AddTransient<IPatientService, PatientService>();
+            services.AddTransient<IParentRepository, ParentRepository>();
 
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
@@ -91,6 +92,7 @@ namespace PatientApi
             app.UseHttpsRedirection();
             app.UseAuthentication();
             app.UseMvc();
+
         }
     }
 }

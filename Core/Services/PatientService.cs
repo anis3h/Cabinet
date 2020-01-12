@@ -1,15 +1,13 @@
-﻿using Core.Entities;
+﻿using AutoMapper;
 using Core.Entities.Family;
+using Core.Entities.Informations;
 using Core.Entities.Patients;
 using Core.Interfaces;
 using Core.Specifications.PatientSpecifications;
 using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-using AutoMapper;
 using System.Linq;
-using Core.Entities.Informations;
+using System.Threading.Tasks;
 
 namespace Core.Services
 {
@@ -18,13 +16,15 @@ namespace Core.Services
 
         private readonly IPatientRepository _patientRepository;
         private readonly IAsyncRepository<PatientParent> _patientParentRepository;
+        private readonly IParentRepository _parentRepository;
         private readonly IMapper _mapper;
         // ToDO IUnitRepository
-        public PatientService(IPatientRepository patientRepository, IAsyncRepository<PatientParent> patientParentRepository, IMapper mapper)
+        public PatientService(IPatientRepository patientRepository, IAsyncRepository<PatientParent> patientParentRepository, IMapper mapper, IParentRepository parentRepository)
         {
             _patientRepository = patientRepository;
             _patientParentRepository = patientParentRepository;
             _mapper = mapper;
+            _parentRepository = parentRepository;
         }
 
         public async Task<Patient> GetPatient(int patientId)
@@ -99,24 +99,48 @@ namespace Core.Services
             }
         }
 
-        public async Task UpdatePatientWithFamily(Patient newPatient)
+        public async Task<Patient> UpdatePatientWithFamily(Patient newPatient)
         {
             try
             {
                 var patientSpecification = new PatientWithFamilySpecification(row => row.Id == newPatient.Id);
                 var oldPatient = await GetPatientWithPatientSpecification(patientSpecification);
+                if (oldPatient == null) return null;
                 _mapper.Map(newPatient, oldPatient);
+                oldPatient.UpdatePatientSiblings();
                 // Add new Parents
                 if (oldPatient.PatientParents == null || oldPatient.PatientParents.Count == 0)
                 {
                     oldPatient.AddPatientParents();
                 }
-                oldPatient.UpdatePatientSiblings();
-                await _patientRepository.UpdateAsync(oldPatient);
+
+                int results = await _patientRepository.UpdateAsync(oldPatient);
+
+                // Update Parents
+                if (oldPatient.PatientParents != null && oldPatient.PatientParents.Count > 0)
+                {
+                    // update Father
+                    if (newPatient.Father != null)
+                    {
+                        var existedFather = await _parentRepository.GetByIdAsync(newPatient.Father.Id);
+                        _mapper.Map(newPatient.Father, existedFather as Father);
+                        await _parentRepository.UpdateAsync(existedFather);
+                    }
+                    // update Mother
+                    if (newPatient.Mother != null)
+                    {
+                        var existedMother = await _parentRepository.GetByIdAsync(newPatient.Mother.Id);
+                        _mapper.Map(newPatient.Mother, existedMother as Mother);
+                        await _parentRepository.UpdateAsync(existedMother);
+                    }
+                }
+
+                return results > 0 ? oldPatient : null;
             }
             catch (Exception exp)
             {
                 Console.WriteLine(exp);
+                throw;
             }
         }
 
@@ -150,7 +174,7 @@ namespace Core.Services
         {
             try
             {
-                patient.DateOfBirth = ChangeUtcDate(patient.DateOfBirth);          
+                patient.DateOfBirth = ChangeUtcDate(patient.DateOfBirth);
                 await _patientRepository.UpdateAsync(patient);
             }
             catch (Exception exp)

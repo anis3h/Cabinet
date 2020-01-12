@@ -88,9 +88,19 @@ namespace CommunCabinet.MapperServices
             }
         }
 
-        public Task UpdatePatientWithFamily(FamilyPatientDto patient)
+        public async Task<FamilyPatientDto> UpdatePatientWithFamily(FamilyPatientDto familyPatient)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var patient = _mapper.Map<FamilyPatientDto, Patient>(familyPatient);
+                var updatedPatient = await _patientService.UpdatePatientWithFamily(patient);
+                return _mapper.Map<Patient, FamilyPatientDto>(updatedPatient);
+            }
+            catch (Exception exp)
+            {
+                Console.WriteLine(exp);
+                throw;
+            }
         }
 
         public async Task<PatientInformationDto> GetPatientWithInformation(int patientId)

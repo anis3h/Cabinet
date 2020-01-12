@@ -1,4 +1,5 @@
-﻿using CommunCabinet.MapperServices.Interfaces;
+﻿using CommunCabinet.Dtos;
+using CommunCabinet.MapperServices.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
@@ -33,27 +34,24 @@ namespace PatientApi.Controllers
             }
         }
 
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> Index(FamilyPatientDto familyPatientDto)
-        //{
-        //    try
-        //    {
-        //        if (!ModelState.IsValid)
-        //        {
-        //            return BadRequest(ModelState);
-        //        }
+        [Route("family")]
+        [HttpPost]
+        public async Task<IActionResult> UpdatePatient(FamilyPatientDto familyPatientDto)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest(ModelState);
+                }
 
-        //        familyViewModel.Patient.Siblings = GetFromFormSiblings();
-        //        await _patientViewModelService.UpdatePatientWithFamily(familyViewModel.Patient);
-
-        //        return RedirectToAction("Index", "Patient");
-        //    }
-        //    catch (Exception exp)
-        //    {
-        //        throw (exp);
-        //    }
-        //}
+                return new JsonResult(await _patientMapperService.UpdatePatientWithFamily(familyPatientDto));
+            }
+            catch (Exception exp)
+            {
+                throw (exp);
+            }
+        }
 
         //private List<SiblingViewModel> GetFromFormSiblings()
         //{

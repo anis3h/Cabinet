@@ -1,19 +1,17 @@
-﻿using Core.Entities;
-using Core.Entities.Consultations;
+﻿using Core.Entities.Consultations;
 using Core.Entities.Family;
 using Core.Entities.Informations;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
-using System.Text;
 
 namespace Core.Entities.Patients
 {
     public class Patient : Person
     {
         public DateTime DateOfBirth { get; set; }
-        public List<PatientParent> PatientParents { get; internal set; }
+        public List<PatientParent> PatientParents { get; set; } = new List<PatientParent>();
         public Born Born { get; set; }
         public int FileNumber { get; set; }
         // Schwangerschaft
@@ -26,7 +24,7 @@ namespace Core.Entities.Patients
         public List<Sister> Sisters { get; set; }
         [NotMapped]
         public List<Parent> Parents { get; set; } = new List<Parent>();
-    
+
         private Father _father;
         [NotMapped]
         public Father Father
@@ -42,7 +40,8 @@ namespace Core.Entities.Patients
                 }
                 else return _father;
             }
-            set {
+            set
+            {
                 _father = value;
             }
         }
@@ -92,15 +91,16 @@ namespace Core.Entities.Patients
 
         public int? Fraternity
         {
-            get {
+            get
+            {
                 if (Siblings != null)
                     return Siblings.Count();
                 else return null;
             }
         }
-        
+
         // Untersuchungen
-        public List<Consultation> Consultations{ get; set; }
+        public List<Consultation> Consultations { get; set; }
 
         public Age Age
         {
@@ -114,11 +114,10 @@ namespace Core.Entities.Patients
 
         // Call if the Father and Mother are modified
         // TODo Mit Gerry die Function in Automapper verschieben 
-        // => Initial PatientPArent List PatientParent in Automapper 
+        // => Initial PatientParent List PatientParent in Automapper 
         public void AddPatientParents()
         {
-            if (PatientParents == null)
-                PatientParents = new List<PatientParent>();
+
             if (Father != null)
             {
                 Parents.Add(Father);
@@ -134,6 +133,23 @@ namespace Core.Entities.Patients
                     PatientParents.Add(new PatientParent() { Parent = parent, Patient = this });
                 }
             }
+
+
+            //if (Father != null)
+            //{
+            //    Parents.Add(Father);
+            //}
+            //if (Mother != null)
+            //{
+            //    Parents.Add(Mother);
+            //}
+            //foreach (Parent parent in Parents)
+            //{
+            //    if (!PatientParents.Any(row => row.Parent.Id == parent.Id && row.Parent.Id != 0))
+            //    {
+            //        PatientParents.Add(new PatientParent() { Parent = parent, Patient = this });
+            //    }
+            //}
         }
 
         public void UpdatePatientSiblings()
@@ -146,7 +162,7 @@ namespace Core.Entities.Patients
             {
                 SiblingsNew.AddRange(Sisters);
             }
-            
+
             if (Brothers != null && Brothers.Count != 0)
             {
                 SiblingsNew.AddRange(Brothers);
@@ -160,16 +176,16 @@ namespace Core.Entities.Patients
                     Siblings.Add(siblingNew);
                 }
             }
-            
+
             // ToDo Delete
             //var siblingsToControl = new List<Sibling>();
             //siblingsToControl.AddRange(Siblings);
-                
+
             //foreach (Sibling siblingToControl  in siblingsToControl)
             //{
             //    if (!SiblingsNew.Any(row => row.Id == siblingToControl.Id && row.Id != 0))
             //    {
-                   
+
             //        Siblings.RemoveAll(row => row.Id == siblingToControl.Id);
             //    }
             //}

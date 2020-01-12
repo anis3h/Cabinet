@@ -1,7 +1,4 @@
 ﻿using Core.Entities.Patients;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Core.Entities.Family
 {
@@ -9,7 +6,6 @@ namespace Core.Entities.Family
     {
         // EF
         public PatientParent() { }
-
         public Patient Patient { get; set; }
         public Parent Parent { get; set; }
     }

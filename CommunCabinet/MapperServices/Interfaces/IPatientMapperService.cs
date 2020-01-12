@@ -13,7 +13,7 @@ namespace CommunCabinet.MapperServices.Interfaces
         Task Delete(PatientDto patientViewModel);
         Task Delete(int key);
         Task<FamilyPatientDto> GetPatientWithFamily(int patientId);
-        Task UpdatePatientWithFamily(FamilyPatientDto patient);
+        Task<FamilyPatientDto> UpdatePatientWithFamily(FamilyPatientDto patient);
         Task<PatientInformationDto> GetPatientWithInformation(int patientId);
         Task UpdatePatientWithInformation(PatientInformationDto patient);
     }
