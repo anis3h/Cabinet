@@ -108,17 +108,11 @@ namespace Core.Services
                 if (oldPatient == null) return null;
                 _mapper.Map(newPatient, oldPatient);
                 oldPatient.UpdatePatientSiblings();
-                // Add new Parents
-                if (oldPatient.PatientParents == null || oldPatient.PatientParents.Count == 0)
-                {
-                    oldPatient.AddPatientParents();
-                }
-
-                int results = await _patientRepository.UpdateAsync(oldPatient);
-
+                int results;
                 // Update Parents
                 if (oldPatient.PatientParents != null && oldPatient.PatientParents.Count > 0)
                 {
+                    results = await _patientRepository.UpdateAsync(oldPatient);
                     // update Father
                     if (newPatient.Father != null)
                     {
@@ -134,7 +128,12 @@ namespace Core.Services
                         await _parentRepository.UpdateAsync(existedMother);
                     }
                 }
-
+                // Add new Parents
+                else
+                {
+                    oldPatient.AddPatientParents();
+                    results = await _patientRepository.UpdateAsync(oldPatient);
+                }
                 return results > 0 ? oldPatient : null;
             }
             catch (Exception exp)
