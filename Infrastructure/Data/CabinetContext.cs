@@ -1,24 +1,19 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Core.Entities;
-using Core.Entities.Consultations;
+﻿using Core.Entities.Consultations;
+using Core.Entities.Consultations.Examinations;
 using Core.Entities.Family;
 using Core.Entities.Informations;
 using Core.Entities.Patients;
 using Core.Entities.Schedule;
-using Core.Entities.Consultations.Examinations;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Core.Entities.Identity;
-using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using System;
+//using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace Infrastructure.Repositories
 {
-    public class CabinetContext :  DbContext
+    public class CabinetContext : DbContext
     {
-        
-       //public DbSet<Father> Fathers { get; set; }
+
+        //public DbSet<Father> Fathers { get; set; }
         public DbSet<Parent> Parents { get; set; }
         public DbSet<PatientParent> PatientParents { get; set; }
         // public DbSet<Mother> Mothers { get; set; }
@@ -78,7 +73,7 @@ namespace Infrastructure.Repositories
                 .HasForeignKey("PatientId");
 
             // Use the shadow property as a foreign key
-           
+
             modelBuilder.Entity<PatientParent>()
              .Property<int>("PatientId");
             modelBuilder.Entity<PatientParent>()
@@ -173,7 +168,7 @@ namespace Infrastructure.Repositories
                 .HasOne(p => p.Examination)
                 .WithOne(p => p.Palpation)
                 .HasForeignKey<Palpation>("ExaminationId");
-           
+
             modelBuilder.Entity<Articulation>()
               .Property<int>("ExaminationId");
 
@@ -259,12 +254,12 @@ namespace Infrastructure.Repositories
                     v => v.ToString(),
                     v => (Vessie)Enum.Parse(typeof(Vessie), v));
 
-             modelBuilder
-                .Entity<Articulation>()
-                .Property(e => e.Ortolani)
-                .HasConversion(
-                    v => v.ToString(),
-                    v => (Ortolani)Enum.Parse(typeof(Ortolani), v));
+            modelBuilder
+               .Entity<Articulation>()
+               .Property(e => e.Ortolani)
+               .HasConversion(
+                   v => v.ToString(),
+                   v => (Ortolani)Enum.Parse(typeof(Ortolani), v));
 
             modelBuilder
                .Entity<AuscultationCardioPulmonaire>()

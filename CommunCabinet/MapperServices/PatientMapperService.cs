@@ -61,7 +61,6 @@ namespace CommunCabinet.MapperServices
             return _mapper.Map<Patient, PatientDto>(patient);
         }
 
-
         public async Task<List<PatientDto>> GetPatientItems()
         {
             var patient = await _patientService.GetPatientItems();

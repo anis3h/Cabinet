@@ -29,6 +29,7 @@ namespace Core.Services
 
         public async Task<Patient> GetPatient(int patientId)
         {
+
             var patient = await _patientRepository.GetByIdAsync(patientId);
             return patient;
         }
@@ -38,6 +39,7 @@ namespace Core.Services
             try
             {
                 //_logger.LogInformation("GetCatalogItems called.");
+                var patient = await _patientRepository.GetPatientsTest();
                 return await _patientRepository.ListAllAsync();
             }
             catch (Exception exp)
