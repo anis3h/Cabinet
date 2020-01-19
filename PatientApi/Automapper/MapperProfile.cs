@@ -38,7 +38,8 @@ namespace PatientApi.Automapper
 
             CreateMap<Pregnancy, PregnancyDto>();
 
-
+            CreateMap<Father, FatherDto>();
+            CreateMap<Mother, MotherDto>();
             // DTO to Entity
 
             CreateMap<PatientDto, Patient>().ForMember(row => row.PatientParents, opt => opt.Ignore())
