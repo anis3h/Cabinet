@@ -13,7 +13,6 @@ namespace Core.Services
 {
     public class PatientService : IPatientService
     {
-
         private readonly IPatientRepository _patientRepository;
         private readonly IAsyncRepository<PatientParent> _patientParentRepository;
         private readonly IParentRepository _parentRepository;
@@ -38,8 +37,6 @@ namespace Core.Services
         {
             try
             {
-                //_logger.LogInformation("GetCatalogItems called.");
-                var patient = await _patientRepository.GetPatientsTest();
                 return await _patientRepository.ListAllAsync();
             }
             catch (Exception exp)
@@ -189,13 +186,6 @@ namespace Core.Services
             var patientSpecification = new PatientWithConsultationsSpecification(row => row.Id == patientId);
             return await GetPatientWithPatientSpecification(patientSpecification);
         }
-
-        //private async Task<TViewModel> MapPatient<TViewModel>(PatientBaseSpecification patientSpecification)
-        //{
-        //    var patient = await GetPatientWithPatientSpecification(patientSpecification);
-        //    var patientViewModel = _mapper.Map<Patient, TViewModel>(patient);
-        //    return patientViewModel;
-        //}
 
         private async Task<Patient> GetPatientWithPatientSpecification(PatientBaseSpecification patientSpecification)
         {

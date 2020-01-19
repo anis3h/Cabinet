@@ -6,7 +6,6 @@ namespace Core.Interfaces
 {
     public interface IPatientRepository : IAsyncRepository<Patient>
     {
-        Task<Patient> GetPatientsTest();
         Task<List<PatientBirthStatistik>> GetGeburtsDatumCountByYears();
     }
 }

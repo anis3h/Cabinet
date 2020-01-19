@@ -1,24 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using AutoMapper;
+using Cabinet.Data;
+using Cabinet.Interfaces;
+using Cabinet.Services;
+//using Infrastructure.Configurations;
+using Core.Entities.Identity;
+using Core.Interfaces;
+using Core.Services;
+using Infrastructure.Repositories;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Cabinet.Data;
-using Cabinet.Models;
-using Cabinet.Services;
-using Infrastructure.Repositories;
-using Core.Interfaces;
-using Cabinet.Interfaces;
-using AutoMapper;
+using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json.Serialization;
-using Core.Services;
-using Infrastructure.Configurations;
-using Core.Entities.Identity;
+using System;
 
 namespace Cabinet
 {
@@ -28,50 +25,56 @@ namespace Cabinet
         {
             Configuration = configuration;
         }
-
         public IConfiguration Configuration { get; }
         // Gerry
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApplicationDbContext>(options =>
-               options.UseSqlServer(Configuration.GetConnectionString("CabinetConnection")));
+          options.UseSqlServer(
+              Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddDbContext<CabinetContext>(options => options.UseSqlServer(Configuration.GetConnectionString("CabinetConnection")).EnableSensitiveDataLogging());
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
-            services.AddDbContext<CabinetContext>(options => options.UseSqlServer(Configuration.GetConnectionString("CabinetConnection")).EnableSensitiveDataLogging());
-           
-            services.Configure<IISOptions>(options =>
-            {
-                options.AutomaticAuthentication = false;
-            });
-            //services.AddDataAccessServices(Configuration.GetConnectionString("CabinetConnection"));
+            //services.Configure<IISOptions>(options =>
+            //{
+            //    options.AutomaticAuthentication = false;
+            //});
+
+            services.AddControllersWithViews()
+               .AddNewtonsoftJson(options =>
+               {
+                   options.SerializerSettings.ContractResolver = new DefaultContractResolver();
+               });
+            services.AddRazorPages();
+
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
-            services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
-            services.AddScoped(typeof(IAsyncRepository<>), typeof(EfRepository<>));
-            services.AddScoped<IPatientRepository, PatientRepository>();
-            services.AddScoped<IScheduleRepository, ScheduleRepository>();
-            services.AddScoped<IPatientViewModelService, PatientViewModelService>();
-            services.AddScoped<IPatientService, PatientService>();
-            services.AddScoped<IConsultationViewModelService, ConsultationViewModelService>();
-            services.AddScoped<IScheduleViewModelService, ScheduleViewModelService>();
-           
-            services.AddMvc().AddJsonOptions(options => options.SerializerSettings.ContractResolver = new DefaultContractResolver());
+            services.AddTransient(typeof(IRepository<>), typeof(EfRepository<>));
+            services.AddTransient(typeof(IAsyncRepository<>), typeof(EfRepository<>));
+            services.AddTransient<IPatientRepository, PatientRepository>();
+            services.AddTransient<IScheduleRepository, ScheduleRepository>();
+            services.AddTransient<IPatientViewModelService, PatientViewModelService>();
+            services.AddTransient<IPatientService, PatientService>();
+            services.AddTransient<IConsultationViewModelService, ConsultationViewModelService>();
+            services.AddTransient<IScheduleViewModelService, ScheduleViewModelService>();
+            services.AddTransient<IParentRepository, ParentRepository>();
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             //Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("@31362e322e30gl9DaqAIDbQnW8qzhE5dNdp53oBRcySLZldFTkTflmM=");
             Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MjA3MjRAMzEzNjJlMzIyZTMwRHFNenA4Q3M3RlJUblN5OHN5TG9hZWJQVVpPa29IM09JMW1OYnd0c04yWT0=");
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseBrowserLink();
+                //app.UseBrowserLink();
                 app.UseDatabaseErrorPage();
             }
             else
@@ -83,14 +86,18 @@ namespace Cabinet
 
             app.UseStaticFiles();
 
-            app.UseAuthentication();
+            app.UseRouting();
 
-            app.UseMvc(routes =>
+            app.UseAuthentication();
+            app.UseAuthorization();
+
+            app.UseEndpoints(endpoints =>
             {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Patient}/{action=Index}/{id?}");
+                endpoints.MapDefaultControllerRoute()
+                    .RequireAuthorization();
+                endpoints.MapRazorPages();
             });
+
         }
     }
 }

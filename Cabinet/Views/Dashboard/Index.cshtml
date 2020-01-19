@@ -78,7 +78,8 @@
                         <e-series-collection>
                             <e-series dataSource="ViewBag.dataSource" xName='X' yName='Y' name='Patients' type="@Syncfusion.EJ2.Charts.ChartSeriesType.Column">
                                 <e-series-marker>
-                                    <e-series-datalabel visible="true" font="font" position="Top"></e-series-datalabel>
+                                    @*ich habe hier font="font" gelöscht und durch e-font ersetzt*@
+                                    <e-series-datalabel visible="true" position="Top"><e-font color="Black" fontWeight="FontWeight" font-size="13px" /></e-series-datalabel>
                                 </e-series-marker>
                             </e-series>
                         </e-series-collection>

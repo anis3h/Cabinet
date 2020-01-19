@@ -9,18 +9,19 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace ControllerUnitTests.Controller {
+namespace ControllerUnitTests.Controller
+{
 
 
-    public class FamilyControllerTests {
-
+    public class FamilyControllerTests
+    {
 
         [Fact]
-        public async Task Index_ReturnsViewResultWithFamilyViewModel_ShouldShowFamily() {
+        public async Task Index_ReturnsViewResultWithFamilyViewModel_ShouldShowFamily()
+        {
 
             // Arrange
             int testPatientId = 2;
@@ -37,9 +38,9 @@ namespace ControllerUnitTests.Controller {
             var model = Assert.IsType<FamilyViewModel>(viewResult.ViewData.Model);
         }
 
-
         [Fact]
-        public async Task IndexPOST_ReturnsBadRequestResult_WhenModelStateIsInvalid() {
+        public async Task IndexPOST_ReturnsBadRequestResult_WhenModelStateIsInvalid()
+        {
 
             var mockService = new Mock<IPatientViewModelService>();
             mockService.Setup(service => service.UpdatePatientWithFamily(It.IsAny<FamilyPatientViewModel>()));
@@ -53,9 +54,9 @@ namespace ControllerUnitTests.Controller {
             Assert.IsType<SerializableError>(badRequestResult.Value);
         }
 
-
         [Fact]
-        public async Task IndexPOST_ReturnsARedirectAndUpdatePatientFamily_WhenModelStateIsValid() {
+        public async Task IndexPOST_ReturnsARedirectAndUpdatePatientFamily_WhenModelStateIsValid()
+        {
 
             var mockService = new Mock<IPatientViewModelService>();
             mockService.Setup(service => service.UpdatePatientWithFamily(It.IsAny<FamilyPatientViewModel>()))
@@ -76,7 +77,8 @@ namespace ControllerUnitTests.Controller {
         }
 
         [Fact]
-        public async Task GetFromFormSiblings_AddSisterViewModel_WhenSiblingTypeSister() {
+        public async Task GetFromFormSiblings_AddSisterViewModel_WhenSiblingTypeSister()
+        {
 
             var mockService = new Mock<IPatientViewModelService>();
             mockService.Setup(service => service.UpdatePatientWithFamily(It.IsAny<FamilyPatientViewModel>()))
@@ -97,8 +99,8 @@ namespace ControllerUnitTests.Controller {
             Assert.Empty(familyViewModel.Patient.Brothers);
         }
 
-
-        private FormCollection GetRequestFormCollection() {
+        private FormCollection GetRequestFormCollection()
+        {
 
             var dic = new Dictionary<string, StringValues>();
 
@@ -108,9 +110,11 @@ namespace ControllerUnitTests.Controller {
             return new FormCollection(dic);
         }
 
-        private SiblingViewModel GetSiblingViewModel() {
+        private SiblingViewModel GetSiblingViewModel()
+        {
 
-            var siblingViewModel = new SiblingViewModel() {
+            var siblingViewModel = new SiblingViewModel()
+            {
 
                 Health = true,
                 Id = 1,
@@ -123,19 +127,22 @@ namespace ControllerUnitTests.Controller {
             return siblingViewModel;
         }
 
-        private FamilyViewModel GetFamilyViewModel() {
+        private FamilyViewModel GetFamilyViewModel()
+        {
 
-            var familyViewModel = new FamilyViewModel {
+            var familyViewModel = new FamilyViewModel
+            {
 
 
-                Patient = new FamilyPatientViewModel {
+                Patient = new FamilyPatientViewModel
+                {
                     Id = 4,
                     Name = "Vier",
                     FirstName = "Person",
                     DateOfBirth = new DateTime(2018, 8, 1, 7, 0, 0),
                     Age = new Age(new DateTime(2018, 8, 1)),
                     Siblings = new List<SiblingViewModel>(),
-                   
+
                 }
             };
 

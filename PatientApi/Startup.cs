@@ -34,10 +34,10 @@ namespace PatientApi
             services.AddDbContext<CabinetContext>(options => options.UseSqlServer(Configuration.GetConnectionString("CabinetConnection")).EnableSensitiveDataLogging());
             //services.AddDataAccessServices(Configuration.GetConnectionString("CabinetConnection"));
             services.AddControllers()
-    .AddNewtonsoftJson(options =>
-    {
-        options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
-    });
+          .AddNewtonsoftJson(options =>
+          {
+              options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+          });
             //services.AddMvc().AddJsonOptions(options => options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver());
 
             services.AddAuthentication(AzureADDefaults.BearerAuthenticationScheme)
