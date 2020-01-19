@@ -1,16 +1,16 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.AzureAD.UI" Version="3.0.2" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.0.2" />
-    <PackageReference Include="Microsoft.AspNetCore.OData" Version="7.2.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.AzureAD.UI" Version="3.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.OData" Version="7.3.0" />
     <!--<PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="3.0.2" PrivateAssets="All" />-->
-    <PackageReference Include="Syncfusion.EJ2.AspNet.Core" Version="17.2.0.51" />
-    <PackageReference Include="Syncfusion.EJ2.JavaScript" Version="17.2.0.51" />
+    <PackageReference Include="Syncfusion.EJ2.AspNet.Core" Version="17.4.0.43" />
+    <PackageReference Include="Syncfusion.EJ2.JavaScript" Version="17.4.0.43" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CommunCabinet\CommunCabinet.csproj" />
