@@ -15,3 +15,5 @@ Run Update-Database to apply the new migration to the database. This command cre
 PM:
 1) Add-Migration -context CabinetContext -project infrastructure TestMigration
 2) Update-Database -context CabinetContext -project infrastructure
+
+Swagger: https://localhost:44393/swagger/index.html 
