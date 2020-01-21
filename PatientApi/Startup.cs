@@ -4,15 +4,13 @@ using CommunCabinet.MapperServices.Interfaces;
 using Core.Interfaces;
 using Core.Services;
 using Infrastructure.Repositories;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.AzureAD.UI;
-using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Models;
 using Newtonsoft.Json.Serialization;
 using System;
 
@@ -38,10 +36,16 @@ namespace PatientApi
           {
               options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
           });
-            //services.AddMvc().AddJsonOptions(options => options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver());
 
-            services.AddAuthentication(AzureADDefaults.BearerAuthenticationScheme)
-                 .AddAzureADBearer(options => Configuration.Bind("AzureAd", options));
+            // Register the Swagger generator, defining 1 or more Swagger documents
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
+            });
+            //services.AddSwaggerGenNewtonsoftSupport(); // explicit opt-in
+
+            //services.AddAuthentication(AzureADDefaults.BearerAuthenticationScheme)
+            //     .AddAzureADBearer(options => Configuration.Bind("AzureAd", options));
 
             services.AddCors(options =>
             {
@@ -54,11 +58,11 @@ namespace PatientApi
                         builder.AllowAnyHeader();
                     });
             });
-            services.Configure<OpenIdConnectOptions>(AzureADDefaults.OpenIdScheme, options =>
-            {
-                options.Authority = options.Authority + "/v2.0/";         // Microsoft identity platform
-                options.TokenValidationParameters.ValidateIssuer = false; // accept several tenants (here simplified)
-            });
+            //services.Configure<OpenIdConnectOptions>(AzureADDefaults.OpenIdScheme, options =>
+            //{
+            //    options.Authority = options.Authority + "/v2.0/";         // Microsoft identity platform
+            //    options.TokenValidationParameters.ValidateIssuer = false; // accept several tenants (here simplified)
+            //});
 
             //services.AddMvc(options =>
             //{
@@ -76,7 +80,7 @@ namespace PatientApi
             services.AddTransient<IParentRepository, ParentRepository>();
 
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-            services.AddMvc(); //.SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -96,8 +100,17 @@ namespace PatientApi
             app.UseCors();
             app.UseHttpsRedirection();
             //app.UseAuthentication();
-            //app.UseHttpsRedirection();
-            //app.UseStaticFiles();
+            app.UseStaticFiles();
+
+            // Enable middleware to serve generated Swagger as a JSON endpoint.
+            app.UseSwagger();
+
+            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
+            // specifying the Swagger JSON endpoint.
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+            });
 
             app.UseRouting();
 
@@ -105,8 +118,6 @@ namespace PatientApi
             {
                 endpoints.MapControllers();
             });
-            //app.UseMvc();
-
         }
     }
 }

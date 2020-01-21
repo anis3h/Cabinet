@@ -22,7 +22,7 @@ namespace AngularTest.Controllers
         }
 
         // GET: api/Patient
-
+        [HttpGet]
         public async Task<IActionResult> Patients([FromBody]DataManagerRequest dm)
         {
             try
@@ -74,12 +74,6 @@ namespace AngularTest.Controllers
 
         }
 
-        // GET: api/Patient/5
-        [HttpGet("{id}", Name = "Get")]
-        public string Get(int id)
-        {
-            return "value";
-        }
 
         // POST: api/Patient
         [HttpPost]
