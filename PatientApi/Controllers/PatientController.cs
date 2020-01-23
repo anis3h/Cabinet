@@ -10,8 +10,39 @@ using System.Threading.Tasks;
 
 namespace AngularTest.Controllers
 {
+    [ApiVersion("1.0")]
+    [ApiController]
+    [Route("api/v{version:apiVersion}/[controller]")]
+    //[ApiExplorerSettings(GroupName = "v1")]
+    public class HelloWorldController : Controller
+    {
+        [HttpGet]
+        [Route("")]
+        public string Get() => "Hello world!";
+    }
+
+    [ApiVersion("2.0")]
+    [ApiVersion("3.0")]
+    [ApiController]
+    [Route("api/v{version:apiVersion}/helloworld")]
+    public class HelloWorld2Controller : Controller
+    {
+        [HttpGet]
+        [Route("{test}")]
+        //[ApiExplorerSettings(GroupName = "v2")]
+        public string Get(int test) => "Hello world v2!";
+
+        [HttpGet, MapToApiVersion("3.0")]
+        [Route("")]
+        //[ApiExplorerSettings(GroupName = "v3")]
+        public string GetV3() => "Hello world v3!";
+    }
+
+
+
     [Route("api/[controller]/[action]")]
     [ApiController]
+    [ApiExplorerSettings(GroupName = "v2")]
     public class PatientController : Controller
     {
         IPatientMapperService _patientService;
@@ -22,6 +53,7 @@ namespace AngularTest.Controllers
         }
 
         // GET: api/Patient
+        [HttpGet]
         public async Task<IActionResult> Patients([FromBody]DataManagerRequest dm)
         {
             try
