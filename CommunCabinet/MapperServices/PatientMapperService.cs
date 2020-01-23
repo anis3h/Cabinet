@@ -69,9 +69,17 @@ namespace CommunCabinet.MapperServices
 
         public async Task<FamilyPatientDto> GetPatientWithFamily(int patientId)
         {
-            var patient = await _patientService.GetPatientWithFamily(patientId);
-            var test = _mapper.Map<Patient, FamilyPatientDto>(patient);
-            return test;
+            try
+            {
+                var patient = await _patientService.GetPatientWithFamily(patientId);
+                var test = _mapper.Map<Patient, FamilyPatientDto>(patient);
+                return test;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
         }
 
         public async Task Update(PatientDto patientDto)

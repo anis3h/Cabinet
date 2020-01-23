@@ -22,7 +22,6 @@ namespace AngularTest.Controllers
         }
 
         // GET: api/Patient
-        [HttpGet]
         public async Task<IActionResult> Patients([FromBody]DataManagerRequest dm)
         {
             try

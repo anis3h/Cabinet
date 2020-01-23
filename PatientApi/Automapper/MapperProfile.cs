@@ -24,7 +24,9 @@ namespace PatientApi.Automapper
 
             CreateMap<Patient, FamilyPatientDto>()
                 .ForMember(row => row.Patient, opt => opt.MapFrom(src => src))
-                .ForMember(row => row.Siblings, opt => opt.MapFrom(src => src.Siblings));
+                .ForMember(row => row.Siblings, opt => opt.MapFrom(src => src.Siblings))
+                .ForMember(row => row.Father, opt => opt.MapFrom(src => src.Father != null ? src.Father : new Father()))
+                .ForMember(row => row.Mother, opt => opt.MapFrom(src => src.Mother != null ? src.Mother : new Mother()));
 
             CreateMap<Sibling, SiblingDto>();
 
