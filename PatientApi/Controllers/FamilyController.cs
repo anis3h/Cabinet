@@ -22,7 +22,7 @@ namespace PatientApi.Controllers
 
         [Route("family/{id}")]
         [HttpGet]
-        public async Task<IActionResult> Index(int id)
+        public async Task<IActionResult> GetFamily(int id)
         {
             try
             {
@@ -37,7 +37,7 @@ namespace PatientApi.Controllers
 
         [Route("family")]
         [HttpPost]
-        public async Task<IActionResult> UpdatePatient(FamilyPatientDto familyPatientDto)
+        public async Task<IActionResult> UpdateFamily(FamilyPatientDto familyPatientDto)
         {
             try
             {

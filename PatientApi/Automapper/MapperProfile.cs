@@ -49,6 +49,7 @@ namespace PatientApi.Automapper
 
             CreateMap<FamilyPatientDto, Patient>()
                 .ForMember(row => row.Id, opt => opt.MapFrom(src => src.Patient.Id))
+                .ForMember(row => row.FileNumber, opt => opt.MapFrom(src => src.Patient.FileNumber))
                 .ForMember(row => row.FirstName, opt => opt.MapFrom(src => src.Patient.FirstName))
                 .ForMember(row => row.Name, opt => opt.MapFrom(src => src.Patient.Name))
                 .ForMember(row => row.DateOfBirth, opt => opt.MapFrom(src => src.Patient.DateOfBirth))
@@ -64,6 +65,7 @@ namespace PatientApi.Automapper
 
             CreateMap<PatientInformationDto, Patient>()
               .ForMember(row => row.Id, opt => opt.MapFrom(src => src.Patient.Id))
+              .ForMember(row => row.FileNumber, opt => opt.MapFrom(src => src.Patient.FileNumber))
               .ForMember(row => row.FirstName, opt => opt.MapFrom(src => src.Patient.FirstName))
               .ForMember(row => row.Name, opt => opt.MapFrom(src => src.Patient.Name))
               .ForMember(row => row.DateOfBirth, opt => opt.MapFrom(src => src.Patient.DateOfBirth))

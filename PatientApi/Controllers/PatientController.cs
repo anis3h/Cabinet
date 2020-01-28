@@ -10,33 +10,6 @@ using System.Threading.Tasks;
 
 namespace AngularTest.Controllers
 {
-    [ApiVersion("1.0")]
-    [ApiController]
-    [Route("api/v{version:apiVersion}/[controller]")]
-    public class HelloWorldController : Controller
-    {
-        [HttpGet]
-        [Route("")]
-        public string Get() => "Hello world!";
-    }
-
-    [ApiVersion("2.0")]
-    [ApiVersion("3.0")]
-    [ApiController]
-    [Route("api/v{version:apiVersion}/helloworld")]
-    public class HelloWorld2Controller : Controller
-    {
-        [HttpGet]
-        [Route("{test}")]
-        public string Get(int test) => "Hello world v2!";
-
-        [HttpGet, MapToApiVersion("3.0")]
-        [Route("")]
-        public string GetV3() => "Hello world v3!";
-    }
-
-
-
     [Route("api/v{version:apiVersion}/[controller]/[action]")]
     [ApiController]
     [ApiVersion("1.0")]
@@ -50,7 +23,7 @@ namespace AngularTest.Controllers
         }
 
         // GET: api/Patient
-
+        [HttpPost]
         public async Task<IActionResult> Patients([FromBody]DataManagerRequest dm)
         {
             try
@@ -96,10 +69,8 @@ namespace AngularTest.Controllers
             }
             catch (Exception ex)
             {
-
                 throw;
             }
-
         }
 
         // POST: api/Patient
@@ -147,4 +118,29 @@ namespace AngularTest.Controllers
             }
         }
     }
+
+    //[ApiVersion("1.0")]
+    //[ApiController]
+    //[Route("api/v{version:apiVersion}/[controller]")]
+    //public class HelloWorldController : Controller
+    //{
+    //    [HttpGet]
+    //    [Route("")]
+    //    public string Get() => "Hello world!";
+    //}
+
+    //[ApiVersion("2.0")]
+    //[ApiVersion("3.0")]
+    //[ApiController]
+    //[Route("api/v{version:apiVersion}/helloworld")]
+    //public class HelloWorld2Controller : Controller
+    //{
+    //    [HttpGet]
+    //    [Route("{test}")]
+    //    public string Get(int test) => "Hello world v2!";
+
+    //    [HttpGet, MapToApiVersion("3.0")]
+    //    [Route("")]
+    //    public string GetV3() => "Hello world v3!";
+    //}
 }
