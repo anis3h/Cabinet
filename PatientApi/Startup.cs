@@ -68,14 +68,6 @@ namespace PatientApi
                     // options.IncludeXmlComments(XmlCommentsFilePath);
                 });
 
-            // Register the Swagger generator, defining 1 or more Swagger documents
-            //services.AddSwaggerGen(c =>
-            //{
-            //    c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API - V1", Version = "v1" });
-            //    c.SwaggerDoc("v2", new OpenApiInfo { Title = "My API - V2", Version = "v2" });
-            //    c.SwaggerDoc("v3", new OpenApiInfo { Title = "My API - V3", Version = "v3" });
-            //});
-
             //services.AddSwaggerGenNewtonsoftSupport(); // explicit opt-in
 
             //services.AddAuthentication(AzureADDefaults.BearerAuthenticationScheme)

@@ -7,8 +7,9 @@ using System.Threading.Tasks;
 namespace InformationsApi.Controllers
 {
 
-    [Route("api/[controller]")]
+    [Route("api/v{version:apiVersion}/[controller]")]
     [ApiController]
+    [ApiVersion("1.0")]
     public class InformationsController : ControllerBase
     {
         private readonly IPatientMapperService _patientMapperService;

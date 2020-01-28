@@ -8,8 +8,9 @@ using System.Threading.Tasks;
 
 namespace PatientApi.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/v{version:apiVersion}/[controller]")]
     [ApiController]
+    [ApiVersion("1.0")]
     public class FamilyController : ControllerBase
     {
         private readonly IPatientMapperService _patientMapperService;

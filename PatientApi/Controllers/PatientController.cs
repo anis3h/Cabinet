@@ -13,7 +13,6 @@ namespace AngularTest.Controllers
     [ApiVersion("1.0")]
     [ApiController]
     [Route("api/v{version:apiVersion}/[controller]")]
-    //[ApiExplorerSettings(GroupName = "v1")]
     public class HelloWorldController : Controller
     {
         [HttpGet]
@@ -29,20 +28,18 @@ namespace AngularTest.Controllers
     {
         [HttpGet]
         [Route("{test}")]
-        //[ApiExplorerSettings(GroupName = "v2")]
         public string Get(int test) => "Hello world v2!";
 
         [HttpGet, MapToApiVersion("3.0")]
         [Route("")]
-        //[ApiExplorerSettings(GroupName = "v3")]
         public string GetV3() => "Hello world v3!";
     }
 
 
 
-    [Route("api/[controller]/[action]")]
+    [Route("api/v{version:apiVersion}/[controller]/[action]")]
     [ApiController]
-    [ApiExplorerSettings(GroupName = "v2")]
+    [ApiVersion("1.0")]
     public class PatientController : Controller
     {
         IPatientMapperService _patientService;
@@ -53,7 +50,7 @@ namespace AngularTest.Controllers
         }
 
         // GET: api/Patient
-        [HttpGet]
+
         public async Task<IActionResult> Patients([FromBody]DataManagerRequest dm)
         {
             try
@@ -104,7 +101,6 @@ namespace AngularTest.Controllers
             }
 
         }
-
 
         // POST: api/Patient
         [HttpPost]
