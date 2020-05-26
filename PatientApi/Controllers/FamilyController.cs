@@ -22,12 +22,12 @@ namespace PatientApi.Controllers
 
         [Route("family/{id}")]
         [HttpGet]
-        public async Task<IActionResult> GetFamily(int id)
+        public async Task<ActionResult<FamilyPatientDto>> GetFamily(int id)
         {
             try
             {
                 var patient = await _patientMapperService.GetPatientWithFamily(id);
-                return new JsonResult(patient);
+                return patient;
             }
             catch (Exception exp)
             {
@@ -37,21 +37,14 @@ namespace PatientApi.Controllers
 
         [Route("family")]
         [HttpPost]
-        public async Task<IActionResult> UpdateFamily(FamilyPatientDto familyPatientDto)
+        public async Task<ActionResult<FamilyPatientDto>> UpdateFamily(FamilyPatientDto familyPatientDto)
         {
-            try
-            {
-                if (!ModelState.IsValid)
-                {
-                    return BadRequest(ModelState);
-                }
+            if (ModelState.IsValid)
+                return BadRequest(ModelState);
 
-                return new JsonResult(await _patientMapperService.UpdatePatientWithFamily(familyPatientDto));
-            }
-            catch (Exception exp)
-            {
-                throw (exp);
-            }
+            int x = 0;
+            int y = 5 / x;
+            return await _patientMapperService.UpdatePatientWithFamily(familyPatientDto);
         }
 
         //private List<SiblingViewModel> GetFromFormSiblings()

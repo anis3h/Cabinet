@@ -25,6 +25,8 @@ namespace CommunCabinet.MapperServices
         {
             try
             {
+                if (patientDto.FirstName == "Test")
+                    throw new Exception("Name can not be Test");
                 // local time zone offset as TimeSpan object                
                 // add the offsetTime to the datetime recieved as UTC
                 var patient = _mapper.Map<PatientDto, Patient>(patientDto);
@@ -33,6 +35,7 @@ namespace CommunCabinet.MapperServices
             catch (Exception exp)
             {
                 Console.WriteLine(exp);
+                throw;
             }
         }
 
